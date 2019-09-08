@@ -19,6 +19,21 @@
     "@angular/platform-browser": "~8.0.1",
     "@angular/platform-browser-dynamic": "~8.0.1",
     "@angular/router": "~8.0.1",
+    "@hapi/joi": "^15.1.1",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "bootstrap": "^4.3.1",
+    "dotenv": "^8.1.0",
+    "express": "^4.17.1",
+    "jquery": "^3.4.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.6.13",
+    "passport": "^0.4.0",
+    "passport-facebook-token": "^3.3.0",
+    "passport-google-plus-token": "^2.1.0",
+    "passport-jwt": "^4.0.0",
+    "path": "^0.12.7",
+    "popper.js": "^1.15.0",
     "rxjs": "~6.4.0",
     "tslib": "^1.9.0",
     "zone.js": "~0.9.1"
@@ -43,5 +58,10 @@
     "ts-node": "~7.0.0",
     "tslint": "~5.15.0",
     "typescript": "~3.4.3"
-  }
+  },
+  "description": "This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.0.4.",
+  "main": "karma.conf.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }
