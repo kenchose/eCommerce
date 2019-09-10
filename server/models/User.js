@@ -10,12 +10,10 @@ const UserSchema = new mongoose.Schema({
     local:{
         email:{
             type:String,
-            lowercase:true,
-            required:true
+            lowercase:true
         },
         password:{
-            type:String,
-            required:true
+            type:String
         }
     },
     google:{
@@ -25,7 +23,7 @@ const UserSchema = new mongoose.Schema({
         email:{
             type:String,
             lowercase:true
-        },
+        }
     },
     facebook:{
         id:{
@@ -34,9 +32,24 @@ const UserSchema = new mongoose.Schema({
         email:{
             type:String,
             lowercase:true
-        },
+        }
     }
 }, {timestamps:true});
+
+UserSchema.pre('save', async function(next) {
+    try {
+        if(this.method !== 'local'){
+            next();
+        }
+
+        const salt = await bcrypt.genSalt(10);
+        const hashedPassword = await bcrypt.hash(this.local.password, salt);
+        this.local.password = hashedPassword;
+        next();
+    } catch(error) {
+        next(error);
+    }
+})
 
 UserSchema.methods.isValidPassword = async function(newPassword) {
     try {
