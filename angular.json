@@ -29,7 +29,10 @@
             ],
             "styles": [
               "src/styles.scss",
-              "node_modules/bootstrap/dist/css/bootstrap.min.css"
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "../ecommerce/node_modules/@fortawesome/fontawesome-free/scss/fontawesome.scss",
+              "../ecommerce/node_modules/@fortawesome/fontawesome-free/scss/brands.scss",
+              "../ecommerce/node_modules/@fortawesome/fontawesome-free/scss/solid.scss"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",

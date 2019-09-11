@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,SAAS,CAAC;EACN,gBAAgB,EAAC,OAAO;CAC3B",
+    "sources": [
+        "trending.component.scss"
+    ],
+    "names": [],
+    "file": "trending.component.css"
+}

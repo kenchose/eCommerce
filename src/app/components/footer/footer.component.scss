@@ -1,0 +1,13 @@
+#footer {
+    background-color:#d8d8d8;
+}
+hr {
+    border-color: black solid 1px;
+    margin: 18px 0;
+    width:100%
+  }
+.footer-contact::before {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid red !important;
+  }
