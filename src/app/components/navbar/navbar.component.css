@@ -1,4 +1,50 @@
 #navbar {
-  background-color: #f2f2f2;
+  background-color: #000000;
+}
+
+.nav-item, .navbar-item {
+  color: #fff;
+}
+
+.nav-item:hover, .navbar-item:hover {
+  color: #749102;
+}
+
+.flex-center {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.flex-end {
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+.custom-toggler .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255,255,255, 0.9)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+}
+
+.custom-toggler.navbar-toggler {
+  border-color: #fff;
+}
+
+.btn-signin {
+  background-image: -webkit-gradient(linear, left top, right top, from(#c1c161), color-stop(0%, #c1c161), to(#d4d4b1));
+  background-image: linear-gradient(to right, #c1c161 0%, #c1c161 0%, #d4d4b1 100%);
+}
+
+.btn-google, .btn-facebook {
+  border: lightblue 3px solid;
+}
+
+.btn-google .fa-google-plus-g, .btn-google .fa-facebook-f, .btn-facebook .fa-google-plus-g, .btn-facebook .fa-facebook-f {
+  color: lightblue;
+  padding: 1em;
+}
+
+.btn-google {
+  width: 73px;
 }
 /*# sourceMappingURL=navbar.component.css.map */

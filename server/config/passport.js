@@ -31,7 +31,7 @@ passport.use(new LocalStrategy({
     try {
         const user = await User.findOne({"local.email":email});
         if(!user) {
-            return done(null, false)
+            return done(null, "Email isn't registered.")
         }
         const isMatch = await user.isValidPassword(password);
         if(!isMatch) {

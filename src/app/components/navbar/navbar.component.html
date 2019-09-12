@@ -1,57 +1,119 @@
-<div id="navbar" class="row">
-    <div class="col-lg-4 col-12">
-        <a class="navbar-brand" [routerLink]="['home']">Cartify</a>
+<!-- <nav class="site-header sticky-top py-1">
+    <div class="container d-flex flex-column flex-md-row justify-content-between">
+        <a class="py-2" href="#">Cartify image</a>
+        <a class="py-2 d-none d-" href="#">Tour</a>
+        <a class="py-2 d-none d-" href="#">Product</a>
+        <a class="py-2 d-none d-" href="#">Men</a>
+        <a class="py-2 d-none d-" href="#">Women</a>
+        <a class="py-2 d-none d-" href="#">SIGN IN<i class="fa fa-user ml-2"></i></a>
+        <a class="py-2 d-none d-" href="#">STORES<i class="fas fa-map-marker-alt ml-2"></i></a>
+        <a class="py-2 d-none d-" href="#">CART<i class="fas fa-cart-plus ml-2"></i></a>
     </div>
-    <div class="col-lg-4 col-12">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
+</nav> -->
+
+<nav id="navbar" class="navbar navbar-expand-lg p-4">
+    <div class="col-lg-4">
+        <div class="row">
+            <a class="navbar-brand navbar-item" href="#">Cartify</a>
+            <button class="navbar-toggler ml-auto custom-toggler" type="button" data-toggle="collapse" data-target="#toggleContent">
+              <span class="navbar-toggler-icon"></span>
             </button>
-            
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                    <div class="col-lg-4 col-12">
-                        <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Collections
-                                </a>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdown" id="navbarDropdownOthers">
-                                    <a class="dropdown-item" href="#">Men</a>
-                                    <div class="dropdown-menu" aria-labelledby="navbarDropdownOthers">
-                                            <a class="dropdown-item" href="#">kids</a>
-                                            <a class="dropdown-item" href="#">toys</a>
-                                    </div>
-                                    <a class="dropdown-item" href="#">Women</a>
-                                <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#">On sale</a>
-                                </div>
-                            </li>
-                        </div>
-                    <div class="col-lg-4 col-12">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="#">Shop <span class="sr-only">(current)</span></a>
-                        </li>
-                    </div>
-                    <div class="col-lg-4 col-12">
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Conact</a>
-                        </li>
-                    </div>
-                </ul>
-            </div>
-        </nav>
+        </div>
     </div>
-    <div class="col-lg-4 col-12">
-        <ul>
-            <li>
-                <i class="fas fa-at">SIGN IN</i>
-            </li>
-            <li>
-                <i class="fas fa-at">STORES</i>
-            </li>
-            <li>
-                <i class="fas fa-cart-plus">CART</i>
-            </li>
-        </ul>
+    <div class="collapse navbar-collapse col-lg-4 flex-center" id="toggleContent">
+        <div class="row">
+            <ul class="navbar-nav">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle navbar-item" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Collections
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">Men</a>
+                        <a class="dropdown-item" href="#">Women</a>
+                    <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">On sale</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link navbar-item" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link navbar-item" href="#">Link</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="collapse navbar-collapse col-lg-4 flex-end" id="toggleContent">
+        <div class="row">
+            <ul class="navbar-nav">
+                <li class="nav-item">       
+                    <a class="nav-link navbar-item nav-item" data-toggle="modal" data-target="#elegantModalForm" href="#collapseLogReg" role="button" aria-expanded="false" aria-controls="collapseExample">SIGN IN<i class="fa fa-user ml-2"></i></a>
+                    <!-- <a class="nav-link navbar-item nav-item" data-toggle="collapse" href="#collapseLogReg" role="button" aria-expanded="false" aria-controls="collapseExample">SIGN IN<i class="fa fa-user ml-2"></i></a> -->
+                </li>          
+                <li class="nav-item">
+                    <a class="nav-link navbar-item nav-item" href="">STORES<i class="fas fa-map-marker-alt ml-2"></i></a>
+                </li>          
+                <li class="nav-item">
+                    <a class="nav-link navbar-item nav-item" href="">CART<i class="fas fa-cart-plus ml-2"></i></a>
+                </li>            
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Modal -->
+<div class="modal fade" id="elegantModalForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <!--Content-->
+        <div class="modal-content">
+            <!--Header-->
+            <div class="modal-header text-center">
+                <h3 class="modal-title w-100 dark-grey-text font-weight-bold my-3" id="myModalLabel"><strong>Sign in</strong></h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <!--Body-->
+            <div class="modal-body mx-4">
+                <!--Form-->
+                <form (submit)="login(this.oldUser)">
+                    <div class="mb-5 form-group input-group">
+                        <input type="email" class="form-control form-control-lg" 
+                        [(ngModel)]="oldUser.email" 
+                        name="oldUser.email" 
+                        placeholder="Your email">
+                    </div>
+
+                    <div class="mb-5 form-group input-group input-group-lg">
+                        <input type="password" class="form-control form-control-lg" 
+                        [(ngModel)]="oldUser.password"
+                        name="oldUser.password"
+                        placeholder="Your password">
+                    </div>
+                    
+                    <div class="text-centermb-3 form-group">
+                        <button type="submit" class="btn btn-signin rounded-pill p-3 text-uppercase font-weight-bold btn-block">Sign in</button>
+                    </div>
+
+                    <div class="m-2 form-group">
+                        <p class="h3 text-center">OR</p>
+                    </div>
+                    
+                    <p class="font-small dark-grey-text text-right font-weight-bold d-flex justify-content-center mb-3 pt-2">Sign in with:</p>
+                    <div class="row my-3 d-flex justify-content-center">
+                        <!--Facebook-->
+                        <button type="button" class="btn btn-white btn-facebook m-3 rounded-circle shadow"><i class="fab fa-facebook-f"></i></button>
+                        <!--Google +-->
+                        <button type="button" class="btn btn-white btn-google m-3 rounded-circle shadow"><i class="fab fa-google-plus-g"></i></button>
+                    </div>
+                </form>
+            </div>
+            <!--Footer-->
+            <div class="modal-footer mx-5 pt-3 mb-1">
+                <p class="font-small grey-text d-flex justify-content-end">Not a member?<a [routerLink]="['register']"> __Sign Up</a></p>
+            </div>
+        </div>
+        <!--/.Content-->
     </div>
 </div>
+<!-- Modal -->

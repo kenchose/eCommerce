@@ -1,3 +1,51 @@
 #navbar {
-    background-color:#f2f2f2;
+    background-color:#000000;
+}
+
+.nav-item, .navbar-item {
+    color:#fff;
+    &:hover {
+        color:#749102
+    }
+}
+
+.flex-center {
+    justify-content:center;
+}
+
+.flex-end {
+    justify-content:flex-end;
+}
+
+.custom-toggler .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255,255,255, 0.9)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+    // background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255,102,203, 0.5)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+}
+  
+.custom-toggler.navbar-toggler {
+    // border-color: rgb(255,102,203);
+    border-color:#fff;
+} 
+
+// #collapseLogReg {
+//     z-index: 1;
+// }
+
+.btn-signin {
+    // border-radius: 10em;
+    background-image: linear-gradient(to right, #c1c161 0%, #c1c161 0%, #d4d4b1 100%);;
+}
+
+.btn-google, .btn-facebook {
+    // border-radius: 10em;
+    border:lightblue 3px solid;
+    .fa-google-plus-g, .fa-facebook-f {
+        color:lightblue;
+        padding:1em;
+        // text-shadow:2px;
+    }
+}
+
+.btn-google{
+    width:73px;
 }
