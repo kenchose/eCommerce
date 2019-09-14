@@ -14,7 +14,7 @@
 <nav id="navbar" class="navbar navbar-expand-lg p-4">
     <div class="col-lg-4">
         <div class="row">
-            <a class="navbar-brand navbar-item" href="#">Cartify</a>
+            <a class="navbar-brand navbar-item" [routerLink]="['/']">Cartify</a>
             <button class="navbar-toggler ml-auto custom-toggler" type="button" data-toggle="collapse" data-target="#toggleContent">
               <span class="navbar-toggler-icon"></span>
             </button>
@@ -77,8 +77,8 @@
             <div class="modal-body mx-4">
                 <!--Form-->
                 <form (submit)="login(this.oldUser)">
-                    <div class="mb-5 form-group input-group">
-                        <input type="email" class="form-control form-control-lg" 
+                    <div class="mb-4 form-group input-group">
+                        <input type="email" class=" mt-3 form-control form-control-lg" 
                         [(ngModel)]="oldUser.email" 
                         name="oldUser.email" 
                         placeholder="Your email">
@@ -110,7 +110,7 @@
             </div>
             <!--Footer-->
             <div class="modal-footer mx-5 pt-3 mb-1">
-                <p class="font-small grey-text d-flex justify-content-end">Not a member?<a [routerLink]="['register']"> __Sign Up</a></p>
+                <p class="font-small grey-text d-flex justify-content-end">Not a member?<p><a [routerLink]="['registration']" data-dismiss="modal">Sign Up</a></p>
             </div>
         </div>
         <!--/.Content-->

@@ -1,0 +1,10 @@
+.asterisk-label:before{
+    color: red;
+    content: "*";
+    position: absolute;
+    margin-left: -10px;
+}
+
+small {
+    margin-left:10px;
+}

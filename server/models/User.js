@@ -1,5 +1,8 @@
 const bcrypt = require('bcryptjs');
 const mongoose = require('mongoose');
+let passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/
+let emailRegex = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+
 
 const UserSchema = new mongoose.Schema({
     method:{
@@ -10,10 +13,13 @@ const UserSchema = new mongoose.Schema({
     local:{
         email:{
             type:String,
-            lowercase:true
+            lowercase:true,
+            match:[emailRegex, "Must be a valid email."]
         },
         password:{
-            type:String
+            type:String,
+            min:[8, "Password must be at least 8 characters"],
+            match:[passwordRegex, "Password must contain one number and special character"],
         }
     },
     google:{

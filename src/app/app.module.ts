@@ -4,6 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AuthService } from './auth.service';
 import { HttpService } from './http.service';
 import { FormsModule } from '@angular/forms';
+import { FlashMessagesModule } from 'angular2-flash-messages';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -16,6 +17,8 @@ import { FindstoreComponent } from './components/findstore/findstore.component';
 import { EmployyFavoritesComponent } from './components/employy-favorites/employy-favorites.component';
 import { EmployeeChoiceComponent } from './components/employee-choice/employee-choice.component';
 import { RegisterComponent } from './components/register/register.component';
+import { HomeComponent } from './components/home/home.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -29,12 +32,15 @@ import { RegisterComponent } from './components/register/register.component';
     EmployyFavoritesComponent,
     EmployeeChoiceComponent,
     RegisterComponent,
+    HomeComponent,
+    PageNotFoundComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    FlashMessagesModule.forRoot(),
   ],
   providers: [AuthService, HttpService],
   bootstrap: [AppComponent]

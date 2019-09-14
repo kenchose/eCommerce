@@ -21,6 +21,8 @@ module.exports = {
                 .required(),
             password: Joi.string()
                 .required()
+                .min(8)
+                .regex(/(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/) //must contain one number and special character
         })
     }
 }
