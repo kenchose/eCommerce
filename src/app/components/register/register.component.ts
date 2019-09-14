@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from './../../auth.service';
 import { FlashMessagesService } from 'angular2-flash-messages';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -13,7 +14,8 @@ export class RegisterComponent implements OnInit {
 
   constructor(
     private _authService:AuthService,
-    private _flashMessage: FlashMessagesService
+    private _flashMessage: FlashMessagesService,
+    private _router:Router,
   ) { 
     this.newUser = {email:'', password:''}
   }
@@ -25,8 +27,10 @@ export class RegisterComponent implements OnInit {
   }
 
   register(){
-    console.log(this.newUser)
     this._authService.registerUser(this.newUser)
-    .subscribe(user => console.log(user));
-  };
+    .subscribe(user => {
+      console.log(user);
+      this._router.navigate(['/user/home']);
+    })
+  }
 }

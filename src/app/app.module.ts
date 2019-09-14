@@ -19,6 +19,8 @@ import { EmployeeChoiceComponent } from './components/employee-choice/employee-c
 import { RegisterComponent } from './components/register/register.component';
 import { HomeComponent } from './components/home/home.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { UserHomeComponent } from './components/user/user-home/user-home.component';
+import { WelcomeComponent } from './components/welcome/welcome.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +36,8 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
     RegisterComponent,
     HomeComponent,
     PageNotFoundComponent,
+    UserHomeComponent,
+    WelcomeComponent,
   ],
   imports: [
     BrowserModule,
