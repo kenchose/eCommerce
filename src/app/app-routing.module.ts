@@ -7,7 +7,7 @@ import { UserHomeComponent } from './components/user/user-home/user-home.compone
 import { WelcomeComponent } from './components/welcome/welcome.component';
 
 const routes: Routes = [
-  {path:'', component:HomeComponent},
+  {path:'', component:WelcomeComponent},
   {path:"registration", component:RegisterComponent},
   {path:"user/home", component:UserHomeComponent},
   {path:"user/welcome", component:WelcomeComponent},

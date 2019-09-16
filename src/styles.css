@@ -5,4 +5,8 @@
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
 }
+
+p, li {
+  color: #666;
+}
 /*# sourceMappingURL=styles.css.map */

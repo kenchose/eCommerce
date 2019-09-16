@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 export class RegisterComponent implements OnInit {
 
   newUser:any;
+  errors:String[]=[];
 
   constructor(
     private _authService:AuthService,
@@ -21,16 +22,22 @@ export class RegisterComponent implements OnInit {
   }
 
   ngOnInit() {
-    // 1st parameter is a flash message text
-        // 2nd parameter is optional. You can pass object with options.
-        // this._flashMessage.show('We are in about component!', { cssClass: 'alert-success', timeout: 1000 });
+    // this._flashMessage.show('We are in about component!', { cssClass: 'alert-success', timeout: 1000 });
   }
 
   register(){
     this._authService.registerUser(this.newUser)
     .subscribe(user => {
       console.log(user);
-      this._router.navigate(['/user/home']);
+      // if(user.error) {
+      //   for (let key in user){
+      //     this.errors.push(user[key]);
+      //     this.newUser = {email:'', password:''}
+      //     this._router.navigate(['/registration'])
+      //   }
+      // } else {
+        this._router.navigate(['/user/home']);
+      // }
     })
   }
 }
