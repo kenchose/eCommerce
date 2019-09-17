@@ -35,7 +35,9 @@ passport.use(new LocalStrategy({
         }
         const isMatch = await user.isValidPassword(password);
         if(!isMatch) {
-            return done(null, false)
+            return done(null, false, { error: 'Incorrect password.' });
+            // return done(null, false)
+            // return done(new Error('wrong password'), false)
         }
         done(null, user);
     } catch(error) {

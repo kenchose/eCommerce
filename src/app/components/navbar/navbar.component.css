@@ -10,6 +10,10 @@
   color: #749102;
 }
 
+.nav-link {
+  cursor: pointer;
+}
+
 .flex-center {
   -webkit-box-pack: center;
       -ms-flex-pack: center;

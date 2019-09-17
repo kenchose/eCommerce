@@ -37,11 +37,9 @@ module.exports = {
     },
 
     login: async (req, res) => {
-        console.log('controllers ====>', req.body)
         const { email } = req.body;
         const emailExist = await User.findOne({"local.email":email})
-        if(!emailExist) return res.status(400).send('Email isn\'t registered.');
-
+        if(!emailExist) return res.json({error:'Email isn\'t registered.'});
         //GENERATE AND SIGN TOKEN
         const token = signToken(req.user)
         res.status(200).json({token})

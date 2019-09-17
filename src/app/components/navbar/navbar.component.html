@@ -71,45 +71,49 @@
             <div class="modal-header text-center">
                 <h3 class="modal-title w-100 dark-grey-text font-weight-bold my-3" id="myModalLabel"><strong>Sign in</strong></h3>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
+                <span (click)="resetLogin()" aria-hidden="true">&times;</span>
                 </button>
             </div>
             <!--Body-->
             <div class="modal-body mx-4">
                 <!--Form-->
-                <form (submit)="login(formData)" #formData="ngForm">
-                    <div class="mb-4 form-group input-group">
-                        <input type="email" class=" mt-3 form-control form-control-lg" 
-                        [(ngModel)]="oldUser.email" 
+                <form (ngSubmit)="login()" #formData="ngForm" class="needs-validation" novalidate>
+                    <div class="mb-4 form-group input-group input-group-lg">
+                        <input type="email" class=" mt-3 form-control form-control-lg"
+                        [class.is-invalid]="email.dirty && email.invalid"
+                        required
+                        pattern='^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$'
                         name="oldUser.email" 
+                        [(ngModel)]="oldUser.email" 
                         placeholder="Your email"
                         #email="ngModel"
                         >
                     </div>
-
                     <div class="mb-5 form-group input-group input-group-lg">
-                        <input type="password" class="form-control form-control-lg" 
+                        <input type="password" class="form-control form-control-lg"
+                        required
                         [(ngModel)]="oldUser.password"
                         name="oldUser.password"
                         placeholder="Your password"
                         #password="ngModel"
                         >
                     </div>
-                    
+                    <p *ngFor="let error of errors" class="text-danger"><i class="fas fa-times"></i> {{error}}</p>      
                     <div class="text-centermb-3 form-group">
-                        <button type="submit" class="btn btn-signin rounded-pill p-3 text-uppercase font-weight-bold btn-block">Sign in</button>
+                        <button type="submit" class="btn btn-signin rounded-pill p-3 text-uppercase font-weight-bold btn-block" >Sign in</button>
                     </div>
 
                     <div class="m-2 form-group">
                         <p class="h3 text-center">OR</p>
                     </div>
                     
-                    <p class="font-small dark-grey-text text-right font-weight-bold d-flex justify-content-center mb-3 pt-2" onclick="$('.modal').modal('hide')">Sign in with:</p>
+                    <p class="font-small dark-grey-text text-right font-weight-bold d-flex justify-content-center mb-3 pt-2" >Sign in with:</p>
+                    <!-- <p class="font-small dark-grey-text text-right font-weight-bold d-flex justify-content-center mb-3 pt-2" onclick="$('.modal').modal('hide')">Sign in with:</p> -->
                     <div class="row my-3 d-flex justify-content-center">
                         <!--Facebook-->
                         <button type="button" class="btn btn-white btn-facebook m-3 rounded-circle shadow"><i class="fab fa-facebook-f"></i></button>
                         <!--Google +-->
-                        <button type="button" class="btn btn-white btn-google m-3 rounded-circle shadow"><i class="fab fa-google-plus-g"></i></button>
+                        <button [routerLink]="['/oauth/google']" type="button" class="btn btn-white btn-google m-3 rounded-circle shadow"><i class="fab fa-google-plus-g"></i></button>
                     </div>
                 </form>
             </div>

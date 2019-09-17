@@ -1,11 +1,14 @@
+const dotenv = require('dotenv').config();
 const express = require('express');
 const app = express();
+const morgan = require('morgan');
 const path = require('path');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const authRouter = require('./server/config/routes/auth');
 const userRouter = require('./server/config/routes/user');
-const dotenv = require('dotenv').config();
+const orderRouter = require('./server/config/routes/order');
+const passport = require('passport');
 
 app.use(express.static(__dirname + '/dist/eCommerce'));
 
@@ -17,10 +20,13 @@ mongoose.connection.on('error', (error) => console.log('Error, cannot connec to 
 //MIDDLEWARE
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true,}));
+app.use(morgan('dev'));
+app.use(passport.initialize());
 
 //ROUTERS
 app.use('/auth', authRouter);
 app.use('/user', userRouter);
+app.use('/order', orderRouter);
 
 app.all('*', (req, res, next) => {
     res.sendFile(path.resolve('./dist/eCommerce/index.html'));

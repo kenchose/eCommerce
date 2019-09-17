@@ -1,21 +1,24 @@
 <div class="row">
     <div class="col-lg-7">
-        <p>Email: {{email.errors | json }} | Is email valid? {{email.valid | json }}  {{email.required | json}}</p>
-        <p>Password: {{password.errors | json }} Valid? {{password.valid | json }}</p>
         <h1 class="font-weight-bold mb-4">Create a new Cartify online account</h1>
         <p class="form-header">* Required Information</p>
-        <form (submit)='register(formData)' #formData='ngForm' class="needs-validation" novalidate>
+        <form (ngSubmit)='register()' #formData='ngForm' class="needs-validation" novalidate>
             <div class="form-group">
                 <div class="row">
                     <div class="col-12">
                         <label for="email">Email address*</label>
-                        <input type="email" class="form-control mb-3" [class.is-valid]="email.valid"
+                        <input type="email" class="form-control mb-3" 
+                        [class.is-valid]="email.valid"
+                        [class.is-invalid]="email.dirty && email.invalid"
                         required
                         pattern='^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$'
                         name="newUser.email" 
                         [(ngModel)]="newUser.email"
                         #email="ngModel"
                         >
+                        <div class="invalid-feedback">
+                            Must be a valid email
+                        </div>
                         <div class="valid-feedback">
                             Looks good!
                         </div>
@@ -26,9 +29,11 @@
                 <div class="row">
                     <div class="col-12">
                         <label for="password">Password *</label>
-                        <input type="password" class="form-control" [class.is-valid]="password.valid"
+                        <input type="password" class="form-control" 
+                        [class.is-valid]="password.valid" 
+                        [class.is-invalid]="password.dirty && password.invalid"
                         required
-                        pattern='^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$'
+                        pattern='^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$'
                         name="newUser.password"
                         [(ngModel)]="newUser.password"
                         #password="ngModel"
@@ -49,16 +54,17 @@
     </div>
 </div>
 
-<div *ngFor='let error of errors'>
-    <p><i class="fas fa-times"></i> {{error}}</p>
-</div>  
-
+<div class="row mt-5">
+    <div class="col">
+        <p class="text-center">How are we doing? <span><a href="/feedback">Give us feedback</a></span> on this page.</p>
+    </div>
+</div>
 <hr class="my-5">
 
 <!-- <div class="row">
     <div class="col-12">
         <h2 class='text-center p-3'>Sign Up {{pattern}}</h2>
-        <form (submit)='register()' #formData='ngForm' class="needs-validation" novalidate>
+        <form (ngSubmit)='register()' #formData='ngForm' class="needs-validation" novalidate>
             <div class="form-group row justify-content-center">
                 <div  class="col-md-6 col-12">
                     <input type="email" class="form-control"  placeholder="Email" [class.is-valid]="email.valid"
