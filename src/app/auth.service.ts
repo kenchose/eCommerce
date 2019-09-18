@@ -15,4 +15,8 @@ export class AuthService {
   userLogin(user:Object){
     return this._http.post<any>('/auth/login', user);
   };
+
+  // loggingout(){
+  //   return this._http.post('/auth/logout');
+  // }
 }

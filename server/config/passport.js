@@ -7,14 +7,14 @@ const GooglePlusTokenStrategy = require('passport-google-plus-token');
 const dotenv = require('dotenv').config();
 
 
-//AUTHENTICATES ENDPOINTS OF JWT
+// JWT STRATEGY
 passport.use(new JwtStrategy({ 
-    jwtFromRequest: ExtractJwt.fromHeader('authorization'),
+    jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken('authorization'),
     secretOrKey: process.env.TOKEN_SECRET
 }, async (payload, done) => {
     try{
         //FIND THE USER SPECIFIED IN TOKEN
-        const user = User.findById(payload.sub);
+        const user = User.findById(payload.sub); //payload represents the signToken function
         if(!user){
             return done(null, false);
         }
@@ -24,9 +24,10 @@ passport.use(new JwtStrategy({
     }
 }));
 
-
-passport.use(new LocalStrategy({
-    usernameField:'email'
+// LOCAL STRATEGY
+passport.use('local', new LocalStrategy({
+    usernameField:'email',
+    passwordField:'password'
 }, async (email, password, done) => {
     try {
         const user = await User.findOne({"local.email":email});
@@ -35,9 +36,8 @@ passport.use(new LocalStrategy({
         }
         const isMatch = await user.isValidPassword(password);
         if(!isMatch) {
-            return done(null, false, { error: 'Incorrect password.' });
-            // return done(null, false)
-            // return done(new Error('wrong password'), false)
+            return done(null, false, {error:'Invalid email/password'});
+            // return done(null, false);
         }
         done(null, user);
     } catch(error) {

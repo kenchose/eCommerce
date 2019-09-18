@@ -28,6 +28,7 @@ export class NavbarComponent implements OnInit {
   login(){
     this._authService.userLogin(this.oldUser)
     .subscribe(user => {
+      console.log('you\'ve reached the comonpent afrte login', user)
       if(user.error) {
         console.log(user.error)
         for (let key in user) {
@@ -42,6 +43,10 @@ export class NavbarComponent implements OnInit {
     })
   }
 
+  // logout(){
+  //   this._authService.loggingout()
+  //   .subscribe(user => console.log(user))
+  // }
   resetLogin(){
     this.oldUser = {email:'', password:''};
   }

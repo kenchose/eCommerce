@@ -1,6 +1,7 @@
 const dotenv = require('dotenv').config();
 const express = require('express');
 const app = express();
+// const session = require('express-session')
 const morgan = require('morgan');
 const path = require('path');
 const bodyParser = require('body-parser');
@@ -9,6 +10,13 @@ const authRouter = require('./server/config/routes/auth');
 const userRouter = require('./server/config/routes/user');
 const orderRouter = require('./server/config/routes/order');
 const passport = require('passport');
+
+// app.use(session({
+//     secret:process.env.SECRET_SESSION_KEY,
+//     resave: false,
+//     saveUninitialized: true,
+//     cookie: {maxAge:6000}
+// }))
 
 app.use(express.static(__dirname + '/dist/eCommerce'));
 
@@ -22,6 +30,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true,}));
 app.use(morgan('dev'));
 app.use(passport.initialize());
+app.use(passport.session());
 
 //ROUTERS
 app.use('/auth', authRouter);

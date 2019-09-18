@@ -52,6 +52,9 @@
                     <!-- <a *ngIf="currUser.token == token"  class="nav-link navbar-item nav-item" data-toggle="collapse" href="#collapseLogReg" role="button" aria-expanded="false" aria-controls="collapseExample">SIGN IN<i class="fa fa-user ml-2"></i></a> -->
                 </li>          
                 <li class="nav-item">
+                    <button class="btn btn-secondary" (click)="logout()">LOGOUT</button>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link navbar-item nav-item" href="">STORES<i class="fas fa-map-marker-alt ml-2"></i></a>
                 </li>          
                 <li class="nav-item">
@@ -77,7 +80,7 @@
             <!--Body-->
             <div class="modal-body mx-4">
                 <!--Form-->
-                <form (ngSubmit)="login()" #formData="ngForm" class="needs-validation" novalidate>
+                <form (ngSubmit)="login(formData)" #formData="ngForm" class="needs-validation" novalidate>
                     <div class="mb-4 form-group input-group input-group-lg">
                         <input type="email" class=" mt-3 form-control form-control-lg"
                         [class.is-invalid]="email.dirty && email.invalid"

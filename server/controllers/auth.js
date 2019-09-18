@@ -16,7 +16,7 @@ module.exports = {
         const { email, password } = req.value.body;
         //CHECK IF USER ALREADY EXIST
         const emailExist = await User.findOne({"local.email":email});
-        if(emailExist) return res.status(400).json({error:'Email is already registered.'});
+        if(emailExist) return res.status(400).json({error:'Email isn\'t registered.'});
         
         // //CREATE USER
         const user = new User({
@@ -36,17 +36,26 @@ module.exports = {
         }
     },
 
-    login: async (req, res) => {
+    login: async (req, res, next) => {
+        // console.log('user controller', req.user)
         const { email } = req.body;
+        const { error } = req.user;
+        console.log('this is error', req.body)
+        console.log('this is error', req.user)
         const emailExist = await User.findOne({"local.email":email})
         if(!emailExist) return res.json({error:'Email isn\'t registered.'});
         //GENERATE AND SIGN TOKEN
         const token = signToken(req.user)
-        res.status(200).json({token})
+        res.status(200).json({token, error})
     },
 
     googleOAuth: async (req, res, next) => {
         const token = signToken(req.user);
         res.status(200).json({token});
     },
+
+    logout: (req, res) => {
+        req.logout();
+        res.redredirect('/');
+    }
 }

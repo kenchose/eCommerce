@@ -1,3 +1,5 @@
+$text-color: #CCC;
+
 #footer {
     background-color:#000;
 }
@@ -7,4 +9,16 @@
     &:last-child {
         border-bottom:none;
     }
+}
+
+.text-print {
+    color:$text-color;
+}
+
+ul {
+    list-style:none;
+}
+
+.list-header {
+    color:#a1c900;
 }

@@ -9,4 +9,16 @@
 .row:last-child {
   border-bottom: none;
 }
+
+.text-print {
+  color: #CCC;
+}
+
+ul {
+  list-style: none;
+}
+
+.list-header {
+  color: #a1c900;
+}
 /*# sourceMappingURL=footer.component.css.map */
