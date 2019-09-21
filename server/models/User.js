@@ -47,7 +47,6 @@ UserSchema.pre('save', async function(next) {
         if(this.method !== 'local'){
             next();
         }
-
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(this.local.password, salt);
         this.local.password = hashedPassword;

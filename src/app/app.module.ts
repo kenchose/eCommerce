@@ -17,10 +17,10 @@ import { FindstoreComponent } from './components/findstore/findstore.component';
 import { EmployyFavoritesComponent } from './components/employy-favorites/employy-favorites.component';
 import { EmployeeChoiceComponent } from './components/employee-choice/employee-choice.component';
 import { RegisterComponent } from './components/register/register.component';
-import { HomeComponent } from './components/home/home.component';
+import { HomeComponent } from './components/User_Component/home/home.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
-import { UserHomeComponent } from './components/user/user-home/user-home.component';
 import { WelcomeComponent } from './components/welcome/welcome.component';
+import { AuthGuard } from './auth.guard';
 
 @NgModule({
   declarations: [
@@ -36,7 +36,6 @@ import { WelcomeComponent } from './components/welcome/welcome.component';
     RegisterComponent,
     HomeComponent,
     PageNotFoundComponent,
-    UserHomeComponent,
     WelcomeComponent,
   ],
   imports: [
@@ -46,7 +45,7 @@ import { WelcomeComponent } from './components/welcome/welcome.component';
     FormsModule,
     FlashMessagesModule.forRoot(),
   ],
-  providers: [AuthService, HttpService],
+  providers: [AuthService, HttpService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

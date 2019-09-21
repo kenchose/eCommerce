@@ -16,7 +16,7 @@ export class AuthService {
     return this._http.post<any>('/auth/login', user);
   };
 
-  // loggingout(){
-  //   return this._http.post('/auth/logout');
-  // }
+  loggedIn(){
+    return !!localStorage.getItem('token');
+  }
 }

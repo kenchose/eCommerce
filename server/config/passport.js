@@ -6,10 +6,13 @@ const LocalStrategy = require('passport-local').Strategy;
 const GooglePlusTokenStrategy = require('passport-google-plus-token');
 const dotenv = require('dotenv').config();
 
+// passport.serializeUser(function(user, done) {
+//     done(null, user.email);
+// });
 
 // JWT STRATEGY
 passport.use(new JwtStrategy({ 
-    jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken('authorization'),
+    jwtFromRequest: ExtractJwt.fromHeader('authorization'),
     secretOrKey: process.env.TOKEN_SECRET
 }, async (payload, done) => {
     try{
@@ -25,23 +28,23 @@ passport.use(new JwtStrategy({
 }));
 
 // LOCAL STRATEGY
-passport.use('local', new LocalStrategy({
+passport.use(new LocalStrategy({
     usernameField:'email',
-    passwordField:'password'
+    passwordField:'password',
+    // passReqToCallBack: true
 }, async (email, password, done) => {
     try {
         const user = await User.findOne({"local.email":email});
         if(!user) {
-            return done(null, "Email isn't registered.")
+            return done(null, false, {message:'Email isn\'t registered.'})
         }
         const isMatch = await user.isValidPassword(password);
         if(!isMatch) {
-            return done(null, false, {error:'Invalid email/password'});
-            // return done(null, false);
+            return done(null, false, ({message:'Invalid email/password'}));
         }
-        done(null, user);
+        return done(null, user);
     } catch(error) {
-        done(error, false)
+        done(null, error)
     }
 }));
 

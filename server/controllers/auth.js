@@ -1,5 +1,7 @@
 const User = require('./../models/User');
 const jwt = require('jsonwebtoken');
+const passportAuth = '../config/passport.js';
+const passport = require('passport');
 
 const signToken = user => {
     return jwt.sign({
@@ -13,41 +15,54 @@ const signToken = user => {
 module.exports = {
     //REGISTER LOCALLY
     register: async (req, res) => { 
-        const { email, password } = req.value.body;
+        const { email, password } = req.body;
+
         //CHECK IF USER ALREADY EXIST
         const emailExist = await User.findOne({"local.email":email});
-        if(emailExist) return res.status(400).json({error:'Email isn\'t registered.'});
-        
+        if(emailExist) return res.status(200).json({error:'Email already registered.'}); 
+
         // //CREATE USER
-        const user = new User({
+        const newUser = new User({
             method:'local',
             local:{
-                email:email,
-                password:password  
+                email,
+                password
             }
         })
         try {
             //SAVE USER AND ASSIGN TOKEN
-            const newUser = await user.save();
-            const token = signToken(newUser);
-            res.status(200).json({newUser, token});
+            const user = await newUser.save();
+            const token = signToken(user);
+            const registeredUser = user._id
+            res.status(200).send({token, registeredUser});
         } catch(error) {
             res.status(400).send(error)
         }
     },
 
-    login: async (req, res, next) => {
-        // console.log('user controller', req.user)
-        const { email } = req.body;
-        const { error } = req.user;
-        console.log('this is error', req.body)
-        console.log('this is error', req.user)
-        const emailExist = await User.findOne({"local.email":email})
-        if(!emailExist) return res.json({error:'Email isn\'t registered.'});
-        //GENERATE AND SIGN TOKEN
-        const token = signToken(req.user)
-        res.status(200).json({token, error})
+    login:  (req, res, next) => {
+        passport.authenticate('local', {session:false},  (err, user, info) => {
+            if (err) return res.status(400).json(err)
+            
+            if (!user) {
+                res.status(200).send({errors:info})
+            } else {
+                const token = signToken(user);
+                user = user._id
+                res.status(200).send({user, token})
+            }
+        })(req, res);
     },
+    // login: async (req, res, next) => {
+    //     const { email } = req.body;
+    //     const user = req.user;
+    //     const emailExist = await User.findOne({"local.email":email})
+    //     if(!emailExist) return res.json({error:'Email isn\'t registered.'});
+    //     //GENERATE AND SIGN TOKEN
+        
+    //     const token = signToken(req.user)
+    //     res.status(200).json({user, token})
+    // },
 
     googleOAuth: async (req, res, next) => {
         const token = signToken(req.user);

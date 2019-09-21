@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from './../../auth.service';
-import { Router } from '@angular/router';
-import { FlashMessagesService } from 'angular2-flash-messages'
+import { Router, ActivatedRoute, Params } from '@angular/router';
+import { HttpService } from './../../http.service';
 
 @Component({
   selector: 'app-navbar',
@@ -11,13 +11,15 @@ import { FlashMessagesService } from 'angular2-flash-messages'
 export class NavbarComponent implements OnInit {
 
   oldUser:any;
-  user:Object
-  currUser:Object 
+  user:any
+  currUser:any 
   errors:String[]=[];
 
   constructor(
     private _authService:AuthService,
+    private _httpService:HttpService,
     private _router:Router,
+    private _route:ActivatedRoute,
   ) { 
     this.oldUser = {email:'', password:''}
   }
@@ -28,25 +30,25 @@ export class NavbarComponent implements OnInit {
   login(){
     this._authService.userLogin(this.oldUser)
     .subscribe(user => {
-      console.log('you\'ve reached the comonpent afrte login', user)
-      if(user.error) {
-        console.log(user.error)
-        for (let key in user) {
-          this.errors.push(user[key]);
-          console.log(this.errors)
-          this.oldUser ={email:'', password:''};
-          // this._router.navigate(['/']);
+      this._httpService.userData(user = this.user = user);
+      this.emptyArray();
+      if(user.errors) {
+        for (let key in user.errors) {
+          this.errors.push(user.errors[key]);
+          this.resetLogin();
+          this._router.navigate(['/']);
         }
       } else {
+        localStorage.setItem('token', user.token)
         this._router.navigate(['/user/home'])
       }
     })
   }
 
-  // logout(){
-  //   this._authService.loggingout()
-  //   .subscribe(user => console.log(user))
-  // }
+  emptyArray(){
+    this.errors.length = 0;
+  }
+
   resetLogin(){
     this.oldUser = {email:'', password:''};
   }
