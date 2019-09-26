@@ -2,16 +2,38 @@
   background-color: #000000;
 }
 
-.nav-item, .navbar-item {
-  color: #fff;
+#brand-logo {
+  width: 72px;
+  height: 72px;
 }
 
-.nav-item:hover, .navbar-item:hover {
+.nav-item,
+.navbar-item {
+  color: #fff;
+  cursor: pointer;
+}
+
+.nav-item:hover,
+.navbar-item:hover {
   color: #749102;
 }
 
-.nav-link {
+#login {
+  color: #fff;
   cursor: pointer;
+}
+
+#login:hover {
+  color: #749102;
+}
+
+.navbar-brand {
+  color: #fff;
+  cursor: pointer;
+}
+
+.navbar-brand:hover {
+  color: #749102;
 }
 
 .flex-center {
@@ -39,11 +61,15 @@
   background-image: linear-gradient(to right, #c1c161 0%, #c1c161 0%, #d4d4b1 100%);
 }
 
-.btn-google, .btn-facebook {
+.btn-google,
+.btn-facebook {
   border: lightblue 3px solid;
 }
 
-.btn-google .fa-google-plus-g, .btn-google .fa-facebook-f, .btn-facebook .fa-google-plus-g, .btn-facebook .fa-facebook-f {
+.btn-google .fa-google-plus-g,
+.btn-google .fa-facebook-f,
+.btn-facebook .fa-google-plus-g,
+.btn-facebook .fa-facebook-f {
   color: lightblue;
   padding: 1em;
 }

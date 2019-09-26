@@ -1,1 +1,8 @@
-/* No CSS *//*# sourceMappingURL=home.component.css.map */
+#home-component {
+  background-color: #FFFFFF;
+}
+
+#card-container {
+  background-color: #EFEEE2;
+}
+/*# sourceMappingURL=home.component.css.map */
