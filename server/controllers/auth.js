@@ -39,12 +39,13 @@ module.exports = {
     try {
       //SAVE USER AND ASSIGN TOKEN
       const user = await newUser.save();
-      const token = signToken(user);
+      let token = signToken(user);
 
       //SEND USER, HEADER, AND TOKEN VALUE
+      token = `Bearer ${token}`
       res.status(200).header('Authorization', token).json({
-        user,
-        token
+        token,
+        user
       });
     } catch (error) {
       res.status(400).json(error)
@@ -62,9 +63,10 @@ module.exports = {
           message: info
         })
       } else {
-        const token = signToken(user);
+        let token = signToken(user);
 
         //SEND SIGNED TOKEN, USER, AND SET HEADER VALUE
+        token = `Bearer ${token}`
         res.status(200).header('Authorization', token).json({
           user,
           token

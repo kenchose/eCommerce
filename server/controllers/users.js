@@ -2,36 +2,89 @@ const User = require('./../models/User');
 
 
 module.exports = {
-    okie: async (req, res) => {
-        console.log('id controller', req.body._id)
-        console.log('email controller', req.body.email)
-        // const currUser = await User.findOne
-        // console.log("asffafs")
-        // res.json({secret:'this is a secret'})
-    },
 
-    google: async (req, res) => {
-        
-    },
+  currUser: async (req, res, next) => {
+    let id = req.params.id
+    try {
+      const user = await User.findOne({
+        id: id
+      });
+      if (!user) {
+        res.status(400).json({
+          error: "No user is currently signed in"
+        });
+      } else {
+        res.status(200).json({
+          user
+        });
+      }
+    } catch (error) {
+      res.send(error)
+    }
+  },
 
-    deleteUser:  (req, res, next) => {
-        let id = req.params.id;
-        User.deleteOne({_id:id}, (err, user) => {
-            if(err){
-                res.status(400).json({error:"No user", err});
-            } else{
-                res.status(200).json({success:"User deleted", user});
-            }
+  account: async (req, res, next) => {
+    try {
+      let id = req.params.id
+      const user = await User.findById({
+        _id: id
+      })
+      if (!user) {
+        res.status(400).send({
+          success: false,
+          message: "User not found"
+        });
+      } else {
+        res.status(200).send({
+          success: true,
+          user
         })
-    },
+      }
+    } catch (error) {
+      res.json(error)
+    }
+  },
 
-    one:(req, res, next) => {
-        res.json({one: 'this is a secret for page 1'})
-    },
-    two:(req, res, next) => {
-        res.json({two: 'this is a secret for page 2'})
-    },
-    three:(req, res, next) => {
-        res.json({three: 'this is a secret for page 3'})
-    },
+  // google: async (req, res) => {
+
+  // },
+
+  deleteUser: (req, res, next) => {
+    let id = req.params.id;
+    User.deleteOne({
+      _id: id
+    }, (err, user) => {
+      if (err) {
+        res.status(400).json({
+          error: "No user",
+          err
+        });
+      } else {
+        res.status(200).json({
+          success: "User deleted",
+          user
+        });
+      }
+    })
+  },
+
+
+  //TESTING SECURE ROUTES WITH JWT 
+  one: (req, res, next) => { //testing routes
+    res.json({
+      ONE: 'Unauthorized'
+    })
+  },
+
+  two: (req, res, next) => {
+    res.json({
+      two: 'this is a secret for page 2'
+    })
+  },
+
+  three: (req, res, next) => {
+    res.json({
+      three: 'this is a secret for page 3'
+    })
+  }
 }

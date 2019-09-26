@@ -1,8 +1,11 @@
 import { Component, OnInit } from "@angular/core";
 import { AuthService } from "./../../auth.service";
-import { Router, ActivatedRoute, Params } from "@angular/router";
-import { HttpHeaders } from "@angular/common/http";
-import { HttpService } from "./../../http.service";
+import { Router, ActivatedRoute, Params, NavigationEnd } from "@angular/router";
+import {
+  HttpHeaders,
+  ɵangular_packages_common_http_http_a
+} from "@angular/common/http";
+import { UserService } from "./../../user.service";
 
 @Component({
   selector: "app-navbar",
@@ -11,46 +14,54 @@ import { HttpService } from "./../../http.service";
 })
 export class NavbarComponent implements OnInit {
   oldUser: any;
-  user: any;
   currUser: any;
   errors: String[] = [];
 
   constructor(
     private _authService: AuthService,
-    private _httpService: HttpService,
+    private _userService: UserService,
     private _router: Router,
     private _route: ActivatedRoute
   ) {
     this.oldUser = { email: "", password: "" };
   }
 
-  ngOnInit() {
-    // this._httpService.currentUser
-    // .subscribe(user => this.currUser = user['user']); //share data through service
-  }
+  ngOnInit() {}
 
   login() {
     this._authService.userLogin(this.oldUser).subscribe(user => {
-      const { token } = user;
-      this.currUser = user["user"];
-      // this._httpService.userData(user = this.user = user['user']);
-      this.emptyArray();
       if (user.message) {
+        this.emptyArray();
         for (let key in user.message) {
           this.errors.push(user.message[key]);
           this.resetLogin();
-          this._router.navigate(["/user/home"]);
+          this._router.navigate(["/cartify"]);
         }
       } else {
+        this._userService.userData((user = this.currUser = user));
+
         // store token
-        localStorage.setItem("token", token); //might not need if using verify method
-        this._router.navigate(["/user/home"]);
-        // this._router.navigate(['/user/home', this.currUser['_id']]);
+        const { token } = user;
+        localStorage.setItem("token", token);
+        this.redirectTo("cartify/home");
       }
     });
   }
 
+  redirectTo(url) {
+    this._router
+      .navigateByUrl("/", { skipLocationChange: true })
+      .then(() => this._router.navigate([url]));
+  }
+
+  selectAccount(id: number) {
+    this._userService.userAccount(id).subscribe(user => {
+      this.redirectTo("cartify/account/" + id);
+    });
+  }
+
   emptyArray() {
+    //empty error array on each submit
     this.errors.length = 0;
   }
 
