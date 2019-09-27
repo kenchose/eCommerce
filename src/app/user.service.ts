@@ -5,7 +5,7 @@ import { BehaviorSubject } from "rxjs";
 @Injectable({
   providedIn: "root"
 })
-export class HttpService {
+export class UserService {
   private _userSource = new BehaviorSubject<object>(Object);
   currentUser = this._userSource.asObservable();
 
@@ -15,7 +15,15 @@ export class HttpService {
     this._userSource.next(user);
   }
 
-  deleteUser(user: object) {
-    return this._http.post("/delete/", user);
+  currUser(id) {
+    return this._http.get("/api/home" + id);
+  }
+
+  deleteUser(user: Object) {
+    return this._http.post("/api/delete", user);
+  }
+
+  userAccount(id) {
+    return this._http.get("/api/account/" + id);
   }
 }

@@ -16,6 +16,8 @@ module.exports = {
   //REGISTER LOCALLY
   register: async (req, res) => {
     const {
+      first_name,
+      last_name,
       email,
       password
     } = req.body;
@@ -34,7 +36,9 @@ module.exports = {
       local: {
         email,
         password
-      }
+      },
+      first_name,
+      last_name
     })
     try {
       //SAVE USER AND ASSIGN TOKEN

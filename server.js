@@ -7,7 +7,6 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const authRouter = require('./server/config/routes/auth');
-const userRouter = require('./server/config/routes/user');
 const orderRouter = require('./server/config/routes/order');
 const apiRouter = require('./server/config/routes/api')
 const passport = require('passport');
@@ -48,7 +47,6 @@ app.use(passport.initialize());
 //ROUTERS
 app.use('/auth', authRouter);
 app.use('/api', apiRouter);
-app.use('/user', userRouter);
 app.use('/order', orderRouter);
 
 app.all('*', (req, res, next) => {

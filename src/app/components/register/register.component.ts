@@ -18,7 +18,7 @@ export class RegisterComponent implements OnInit {
     private _httpService: HttpService,
     private _router: Router
   ) {
-    this.newUser = { email: "", password: "" };
+    this.newUser = { first_name: "", last_name: "", email: "", password: "" };
   }
 
   ngOnInit() {}

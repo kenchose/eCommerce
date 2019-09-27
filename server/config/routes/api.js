@@ -15,4 +15,8 @@ router.get("/account/:id", passportJwt, (req, res, next) => {
   user.account(req, res, next);
 });
 
+router.post('/delete/:id', (req, res, next) => {
+  user.deleteUser(req, res, next);
+});
+
 module.exports = router;

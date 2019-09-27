@@ -1,14 +1,34 @@
-// #carouselSlides {
-//     height:345px;
-// }
+@import url('https://fonts.googleapis.com/css?family=Domine:700|Roboto|Roboto+Slab:300&display=swap');
+$font-nav:'Roboto Slab',
+serif;
+
+$font-h1:'Domine',
+serif;
+
+$font-generic:'Roboto',
+sans-serif;
+
+$font-h2:'Archivo Black',
+sans-serif;
+
+
 .peopleCarouselImg {
-    // width: auto;
-    // height: 472px;
-    // height: 146px;
-    // max-height: 472px;
-    // max-height: 146px;
-    object-fit: contain;
-  }
+  // width: auto;
+  // height: 472px;
+  // height: 146px;
+  // max-height: 472px;
+  // max-height: 146px;
+  object-fit: contain;
+}
+
 #feature {
   position: relative;
+}
+
+h2 {
+  font-family: $font-h2;
+}
+
+p {
+  font-family: $font-generic;
 }

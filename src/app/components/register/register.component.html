@@ -1,66 +1,121 @@
-<div class="row">
-    <div class="col-lg-7">
-        <h1 class="font-weight-bold mb-4">Create a new Cartify online account</h1>
-        <p class="form-header">* Required Information</p>
-        <form (ngSubmit)='register()' #formData='ngForm' class="needs-validation" novalidate>
-            <div class="form-group">
-                <div class="row">
-                    <div class="col-12">
-                        <label for="email">Email address*</label>
-                        <input type="email" class="form-control mb-3" 
-                        [class.is-valid]="email.valid"
-                        [class.is-invalid]="email.dirty && email.invalid"
-                        required
-                        pattern='^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$'
-                        name="newUser.email" 
-                        [(ngModel)]="newUser.email"
-                        #email="ngModel"
-                        >
-                        <div class="invalid-feedback">
-                            Must be a valid email
-                        </div>
-                        <div class="valid-feedback">
-                            Looks good!
-                        </div>
-                    </div>
-                </div>
+<div class="row pt-5">
+  <div class="col-lg-7">
+    <h1 class="mb-4">Create a new Cartify online account</h1>
+    <p class="form-header">* Required Information</p>
+    <form
+      (ngSubmit)="register()"
+      #formData="ngForm"
+      class="needs-validation"
+      novalidate
+    >
+      <div class="form-group">
+        <div class="row">
+          <div class="col-12">
+            <label for="first_name">First name*</label>
+            <input
+              type="text"
+              class="form-control mb-3"
+              [class.is-valid]="first_name.valid"
+              [class.is-invalid]="first_name.dirty && first_name.invalid"
+              required
+              name="newUser.first_name"
+              [(ngModel)]="newUser.first_name"
+              #first_name="ngModel"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="row">
+          <div class="col-12">
+            <label for="last_name">Last name*</label>
+            <input
+              type="text"
+              class="form-control mb-3"
+              [class.is-valid]="last_name.valid"
+              [class.is-invalid]="last_name.dirty && last_name.invalid"
+              required
+              name="newUser.last_name"
+              [(ngModel)]="newUser.last_name"
+              #last_name="ngModel"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="row">
+          <div class="col-12">
+            <label for="email">Email address*</label>
+            <input
+              type="email"
+              class="form-control mb-3"
+              [class.is-valid]="email.valid"
+              [class.is-invalid]="email.dirty && email.invalid"
+              required
+              pattern="^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$"
+              name="newUser.email"
+              [(ngModel)]="newUser.email"
+              #email="ngModel"
+            />
+            <div class="invalid-feedback">
+              Must be a valid email
             </div>
-            <div class="form-group">
-                <div class="row">
-                    <div class="col-12">
-                        <label for="password">Password *</label>
-                        <input type="password" class="form-control" 
-                        [class.is-valid]="password.valid" 
-                        [class.is-invalid]="password.dirty && password.invalid"
-                        required
-                        pattern='^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$'
-                        name="newUser.password"
-                        [(ngModel)]="newUser.password"
-                        #password="ngModel"
-                        >
-                        <small class="mb-3">Minimum of 8 characters containing one number and special character</small>
-                        <div class="valid-feedback">
-                            Perfect!
-                        </div>
-                    </div>
-                </div>
+            <div class="valid-feedback">
+              Looks good!
             </div>
-            <div class="row">
-                <div class="col">
-                    <button type="submit" class="btn btn-info mt-3" [disabled]='formData.invalid'>Create Account</button>
-                </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="row">
+          <div class="col-12">
+            <label for="password">Password *</label>
+            <input
+              type="password"
+              class="form-control"
+              [class.is-valid]="password.valid"
+              [class.is-invalid]="password.dirty && password.invalid"
+              required
+              pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$"
+              name="newUser.password"
+              [(ngModel)]="newUser.password"
+              #password="ngModel"
+            />
+            <small class="mb-3"
+              >Minimum of 8 characters containing one number and special
+              character</small
+            >
+            <div class="valid-feedback">
+              Perfect!
             </div>
-            <div class="row">
-                <div class="col" *ngFor="let error of errors">
-                    <p class="text-center text-danger">* {{error}} *</p>
-                </div>
-            </div>
-        </form>
-    </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <button
+            type="submit"
+            class="btn btn-info mt-3"
+            [disabled]="formData.invalid"
+          >
+            Create Account
+          </button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col" *ngFor="let error of errors">
+          <p class="text-center text-danger">* {{ error }} *</p>
+        </div>
+      </div>
+    </form>
+  </div>
 </div>
 
 <div class="row m-5">
-    <div class="col">
-        <p class="text-center">How are we doing? <span><a href="/feedback">Give us feedback</a></span> on this page.</p>
-    </div>
+  <div class="col">
+    <p class="text-center">
+      How are we doing? <span><a href="/feedback">Give us feedback</a></span> on
+      this page.
+    </p>
+  </div>
 </div>

@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css?family=Domine:700|Roboto|Roboto+Slab:300&display=swap");
 .peopleCarouselImg {
   -o-object-fit: contain;
      object-fit: contain;
@@ -5,5 +6,13 @@
 
 #feature {
   position: relative;
+}
+
+h2 {
+  font-family: "Archivo Black", sans-serif;
+}
+
+p {
+  font-family: "Roboto", sans-serif;
 }
 /*# sourceMappingURL=feature.component.css.map */
