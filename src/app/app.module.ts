@@ -3,6 +3,7 @@ import { NgModule } from "@angular/core";
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { AuthService } from "./auth.service";
 import { HttpService } from "./http.service";
+import { ProductService } from "./product.service";
 import { FormsModule } from "@angular/forms";
 
 import { AppRoutingModule } from "./app-routing.module";
@@ -51,7 +52,8 @@ export function tokenGetter() {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptorService,
       multi: true
-    }
+    },
+    ProductService
   ],
   bootstrap: [AppComponent]
 })

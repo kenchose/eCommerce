@@ -1,24 +1,31 @@
 $text-color: #CCC;
 
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 #footer {
-    background-color:#000;
+  background-color: #000;
 }
 
 .row {
-    border-bottom:solid 1px #666;
-    &:last-child {
-        border-bottom:none;
-    }
+  border-bottom: solid 1px #666;
+
+  &:last-child {
+    border-bottom: none;
+  }
 }
 
 .text-print {
-    color:$text-color;
+  color: $text-color;
 }
 
 ul {
-    list-style:none;
+  list-style: none;
 }
 
 .list-header {
-    color:#a1c900;
+  color: #a1c900;
 }

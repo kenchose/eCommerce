@@ -29,6 +29,16 @@ module.exports = {
         .required()
         .min(8)
         .regex(/(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/) //must contain one number and special character
-    })
+    }),
+
+    productSchema: Joi.object().keys({
+      name: Joi.string()
+        .required(),
+      price: Joi.number()
+        .positive()
+        .strict()
+        .precision(2) //limits number of decimals
+        .required()
+    }),
   }
 }

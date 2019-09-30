@@ -1,7 +1,5 @@
 const router = require('express').Router();
-const flash = require('connect-flash');
 const auth = require('./../../controllers/auth');
-const User = require('./../../models/User')
 const {
   validateBody,
   schemas
@@ -22,10 +20,6 @@ router.post('/login', (req, res, next) => { //no validation for better security
 
 router.get('/oauth/google', passportGoogle, (req, res, next) => {
   auth.googleOAuth(req, res);
-});
-
-router.post('/logout', (req, res, next) => {
-  auth.logout(req, res);
 });
 
 module.exports = router;

@@ -1,4 +1,13 @@
+@import url("https://fonts.googleapis.com/css?family=Domine:700|Roboto|Roboto+Slab:300&display=swap");
 #trending {
   background-color: #d8d8d8;
+}
+
+h2 {
+  font-family: "Archivo Black", sans-serif;
+}
+
+#rock-climber {
+  background: url("./../../../assets/img/rock_climber.jpg");
 }
 /*# sourceMappingURL=trending.component.css.map */

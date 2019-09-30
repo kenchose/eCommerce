@@ -8,7 +8,8 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const authRouter = require('./server/config/routes/auth');
 const orderRouter = require('./server/config/routes/order');
-const apiRouter = require('./server/config/routes/api')
+const apiRouter = require('./server/config/routes/api');
+const productRouter = require('./server/config/routes/product');
 const passport = require('passport');
 // const MongoStore = require('connect-mongo')(session);
 
@@ -48,6 +49,7 @@ app.use(passport.initialize());
 app.use('/auth', authRouter);
 app.use('/api', apiRouter);
 app.use('/order', orderRouter);
+app.use('/product', productRouter);
 
 app.all('*', (req, res, next) => {
   res.sendFile(path.resolve('./dist/eCommerce/index.html'));

@@ -6,6 +6,7 @@ import { PageNotFoundComponent } from "./components/page-not-found/page-not-foun
 import { WelcomeComponent } from "./components/welcome/welcome.component";
 import { AccountComponent } from "./components/User_Component/account/account.component";
 import { AuthGuard } from "./auth.guard";
+import { SliderComponent } from "./components/slider/slider.component";
 
 const routes: Routes = [
   { path: "cartify", component: WelcomeComponent },
@@ -24,6 +25,7 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     component: AccountComponent
   },
+  { path: "cartify/production", component: SliderComponent },
   { path: "**", pathMatch: "full", component: PageNotFoundComponent }
 ];
 

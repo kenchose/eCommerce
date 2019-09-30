@@ -1,2 +1,7 @@
 @import url("https://fonts.googleapis.com/css?family=Archivo+Black|Domine:700|Roboto|Roboto+Slab:700&display=swap");
+body,
+html {
+  margin: 0;
+  padding: 0;
+}
 /*# sourceMappingURL=app.component.css.map */
