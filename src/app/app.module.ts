@@ -23,6 +23,7 @@ import { PageNotFoundComponent } from "./components/page-not-found/page-not-foun
 import { WelcomeComponent } from "./components/welcome/welcome.component";
 import { AuthGuard } from "./auth.guard";
 import { AccountComponent } from "./components/User_Component/account/account.component";
+import { SignInComponent } from "./components/sign-in/sign-in.component";
 export function tokenGetter() {
   return localStorage.getItem("access_token");
 }
@@ -41,7 +42,8 @@ export function tokenGetter() {
     HomeComponent,
     PageNotFoundComponent,
     WelcomeComponent,
-    AccountComponent
+    AccountComponent,
+    SignInComponent
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [

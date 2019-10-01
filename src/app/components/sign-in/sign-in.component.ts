@@ -1,28 +1,22 @@
 import { Component, OnInit } from "@angular/core";
 import { AuthService } from "./../../auth.service";
-import { Router, ActivatedRoute, Params, NavigationEnd } from "@angular/router";
-import {
-  HttpHeaders,
-  ɵangular_packages_common_http_http_a
-} from "@angular/common/http";
 import { UserService } from "./../../user.service";
-import { userInfo } from "os";
+import { Router } from "@angular/router";
 
 @Component({
-  selector: "app-navbar",
-  templateUrl: "./navbar.component.html",
-  styleUrls: ["./navbar.component.scss"]
+  selector: "app-sign-in",
+  templateUrl: "./sign-in.component.html",
+  styleUrls: ["./sign-in.component.scss"]
 })
-export class NavbarComponent implements OnInit {
+export class SignInComponent implements OnInit {
   oldUser: any;
-  currUser: any;
   errors: String[] = [];
+  currUser: any;
 
   constructor(
     private _authService: AuthService,
-    private _userService: UserService,
     private _router: Router,
-    private _route: ActivatedRoute
+    private _userService: UserService
   ) {
     this.oldUser = { email: "", password: "" };
   }
@@ -32,11 +26,11 @@ export class NavbarComponent implements OnInit {
   login() {
     this._authService.userLogin(this.oldUser).subscribe(user => {
       if (user.message) {
-        this.errors.length = 0;
+        this.emptyArray();
         for (let key in user.message) {
           this.errors.push(user.message[key]);
           this.resetLogin();
-          this._router.navigate(["/cartify"]);
+          this._router.navigate(["/sign-in"]);
         }
       } else {
         this._userService.userData((user = this.currUser = user));
@@ -55,10 +49,8 @@ export class NavbarComponent implements OnInit {
       .then(() => this._router.navigate([url]));
   }
 
-  selectAccount(id: number) {
-    this._userService.userAccount(id).subscribe(user => {
-      this.redirectTo("cartify/account/" + id);
-    });
+  emptyArray() {
+    this.errors.length = 0;
   }
 
   resetLogin() {

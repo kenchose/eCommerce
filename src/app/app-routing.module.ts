@@ -7,10 +7,12 @@ import { WelcomeComponent } from "./components/welcome/welcome.component";
 import { AccountComponent } from "./components/User_Component/account/account.component";
 import { AuthGuard } from "./auth.guard";
 import { SliderComponent } from "./components/slider/slider.component";
+import { SignInComponent } from "./components/sign-in/sign-in.component";
 
 const routes: Routes = [
   { path: "cartify", component: WelcomeComponent },
   { path: "registration", component: RegisterComponent },
+  { path: "sign-in", component: SignInComponent },
   {
     path: "cartify/home",
     canActivate: [AuthGuard],

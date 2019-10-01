@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css?family=Domine:700|Roboto+Slab:700&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Archivo+Black|Domine:700|Roboto|Roboto+Slab:700&display=swap");
 h1 {
   font-family: "Domine", serif;
   font-size: 40px;
@@ -14,5 +14,10 @@ h1 {
 
 small {
   margin-left: 10px;
+}
+
+button {
+  background-color: #426C90;
+  color: #ffff;
 }
 /*# sourceMappingURL=register.component.css.map */

@@ -1,0 +1,67 @@
+<div class="row pt-5 justify-content-md-center">
+  <h1 class="col-12 pb-5 text-center">Your Cartify online account</h1>
+  <div class="row px-5">
+    <div class="col-md-6">
+      <form (ngSubmit)="login()">
+        <h5>Sign in or create an account below</h5>
+        <div class="form-group">
+          <div class="row">
+            <div class="col-12">
+              <label for="email">Email address*</label>
+              <input
+                type="email"
+                class="form-control mb-3"
+                required
+                pattern="^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$"
+                name="oldUser.email"
+                [(ngModel)]="oldUser.email"
+                #email="ngModel"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="row">
+            <div class="col-12">
+              <label for="password">Password *</label>
+              <input
+                type="password"
+                class="form-control"
+                required
+                name="oldUser.password"
+                [(ngModel)]="oldUser.password"
+                #password="ngModel"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <button type="submit" class="btn mt-3">
+              Sign in
+            </button>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col" *ngFor="let error of errors">
+            <p class="text-center text-danger">* {{ error }} *</p>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="col-md-6 mt-5">
+      <h4>Not a registered user?</h4>
+      <h5>
+        Use your Cartify Online Account to view your order status, contribute
+        product reviews and more.
+      </h5>
+      <div class="row">
+        <div class="col-12">
+          <button [routerLink]="['/registration']" class="btn mt-3">
+            Create an account
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
