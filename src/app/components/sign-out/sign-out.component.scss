@@ -16,20 +16,14 @@ sans-serif;
 $font-h2:'Archivo Black',
 sans-serif;
 
-#trending {
-  background-color: #fff;
-}
 
 h2 {
   font-family: $font-h2;
+  font-size: 40px;
+  font-weight: 100 !important
 }
 
-#rock-climber {
-  object-fit: scale-down;
-  width: auto;
-  height: auto;
+a {
+  font-family: $font-generic;
+  font-size: 20px;
 }
-
-// .row-full {
-//   width: 100vw;
-// }

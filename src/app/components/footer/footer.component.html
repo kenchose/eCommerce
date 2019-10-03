@@ -9,7 +9,9 @@
           Sign up now and recieve a 10% discount on your first purchase! Members
           also get a chance to win a $50 gift card every month.
           <span class="learn-more"
-            ><a [routerLink]="['info']">Learn more info and join us.</a></span
+            ><a [routerLink]="['cartify']"
+              >Learn more info and join us.</a
+            ></span
           >
         </p>
         <small class="text-print">* Only with purchasess more than $50</small>
@@ -31,7 +33,7 @@
   </div>
 </div>
 <div id="footer" class="row underline-row justify-content-around">
-  <div class="col-lg-4 my-auto">
+  <div class="col-lg-4 my-auto p-5">
     <div class="row contact-info py-2">
       <div class="col-12">
         <p>
@@ -44,14 +46,20 @@
     <div class="row contact-info py-2">
       <div class="col-12">
         <p>
-          <i class="fas fa-envelope"><span class="push-icon">Email Us</span></i>
+          <i class="fas fa-envelope"
+            ><span class="push-icon"
+              ><a href="mailto:useremail@email.com?subject=Cartify Help"
+                >Email Us</a
+              ></span
+            ></i
+          >
         </p>
       </div>
     </div>
     <div class="row contact-info py-1">
       <div class="col-12">
         <p>
-          <i class="fas fa-question-circle"
+          <i class="fas fa-question-circle" [routerLink]="['cartify']"
             ><span class="push-icon">Help Center</span></i
           >
         </p>
@@ -60,27 +68,32 @@
   </div>
   <div class="col-lg-4 col-12 p-5">
     <ul>
-      <li class="text-print py-2"><a [routerLink]="['info']">About Us</a></li>
-
       <li class="text-print py-2">
         <a [routerLink]="['sign-in']">Your online account</a>
       </li>
       <li class="text-print py-2">
-        <a [routerLink]="['info']">Return Policy </a>
+        <a [routerLink]="['cartify']">About Us</a>
       </li>
-      <li class="text-print py-2"><a [routerLink]="['info']">Membership</a></li>
+      <li class="text-print py-2">
+        <a [routerLink]="['cartify']">Return Policy </a>
+      </li>
+      <li class="text-print py-2">
+        <a [routerLink]="['cartify']">Membership</a>
+      </li>
     </ul>
   </div>
   <div class="col-lg-4 col-12 p-5">
     <ul>
       <li class="text-print py-2">
-        <a [routerLink]="['info']">Store Events</a>
+        <a [routerLink]="['cartify']">Store Events</a>
       </li>
-      <li class="text-print py-2"><a [routerLink]="['info']">Gift Cards</a></li>
       <li class="text-print py-2">
-        <a [routerLink]="['info']">Coupons and Discounts</a>
+        <a [routerLink]="['cartify']">Gift Cards</a>
       </li>
-      <li class="text-print py-2"><a [routerLink]="['info']">Jobs</a></li>
+      <li class="text-print py-2">
+        <a [routerLink]="['cartify']">Coupons and Discounts</a>
+      </li>
+      <li class="text-print py-2"><a [routerLink]="['cartify']">Jobs</a></li>
     </ul>
   </div>
 </div>
@@ -90,7 +103,7 @@
       ><span class="push-icon">2019 Cartify Inc.</span></i
     >
   </div>
-  <div class="col-md-6 p-5 justify-content-end">
+  <div class="col-md-6 p-5 mr-auto">
     <i class="fab fa-facebook-f"></i>
     <i class="fab fa-twitter"></i>
     <i class="fab fa-instagram"></i>

@@ -36,8 +36,8 @@ module.exports = {
         .required(),
       price: Joi.number()
         .positive()
-        .strict()
         .precision(2) //limits number of decimals
+        .min(0.01)
         .required()
     }),
   }

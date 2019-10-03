@@ -10,6 +10,7 @@ import { SliderComponent } from "./components/slider/slider.component";
 import { SignInComponent } from "./components/sign-in/sign-in.component";
 import { PaymentsComponent } from "./components/User_Component/account/payments/payments.component";
 import { PersonalComponent } from "./components/User_Component/account/personal/personal.component";
+import { SignOutComponent } from "./components/sign-out/sign-out.component";
 
 const routes: Routes = [
   { path: "cartify", component: WelcomeComponent },
@@ -42,6 +43,7 @@ const routes: Routes = [
     ]
   },
   { path: "cartify/production", component: SliderComponent },
+  { path: "cartify/logoff", component: SignOutComponent },
   { path: "**", pathMatch: "full", component: PageNotFoundComponent }
 ];
 

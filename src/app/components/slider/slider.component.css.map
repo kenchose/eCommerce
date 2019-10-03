@@ -1,6 +1,6 @@
 {
     "version": 3,
-    "mappings": "AAAA,OAAO,CAAC,2GAAI",
+    "mappings": "AAAA,OAAO,CAAC,4HAAI",
     "sources": [
         "slider.component.scss"
     ],
