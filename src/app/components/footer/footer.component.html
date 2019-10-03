@@ -1,4 +1,4 @@
-<div id="footer" class="row mt-5">
+<div id="footer" class="row mt-5 underline-row justify-content-around">
   <div class="col-lg-6 col-12 p-5">
     <ul>
       <li>
@@ -8,6 +8,9 @@
         <p class="text-print">
           Sign up now and recieve a 10% discount on your first purchase! Members
           also get a chance to win a $50 gift card every month.
+          <span class="learn-more"
+            ><a [routerLink]="['info']">Learn more info and join us.</a></span
+          >
         </p>
         <small class="text-print">* Only with purchasess more than $50</small>
       </li>
@@ -27,59 +30,69 @@
     </ul>
   </div>
 </div>
-<div id="footer" class="row">
-  <div class="col-lg-3 col-12 p-5">
+<div id="footer" class="row underline-row justify-content-around">
+  <div class="col-lg-4 my-auto">
+    <div class="row contact-info py-2">
+      <div class="col-12">
+        <p>
+          <i class="fas fa-phone-alt"
+            ><span class="push-icon">1-800-123-4567</span></i
+          >
+        </p>
+      </div>
+    </div>
+    <div class="row contact-info py-2">
+      <div class="col-12">
+        <p>
+          <i class="fas fa-envelope"><span class="push-icon">Email Us</span></i>
+        </p>
+      </div>
+    </div>
+    <div class="row contact-info py-1">
+      <div class="col-12">
+        <p>
+          <i class="fas fa-question-circle"
+            ><span class="push-icon">Help Center</span></i
+          >
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-4 col-12 p-5">
     <ul>
-      <li class="text-print">
+      <li class="text-print py-2"><a [routerLink]="['info']">About Us</a></li>
+
+      <li class="text-print py-2">
         <a [routerLink]="['sign-in']">Your online account</a>
       </li>
-      <li class="text-print">Lorem ipsum dolor sit amet.</li>
-      <li class="text-print">Lorem ipsum dolor sit amet.</li>
-      <li class="text-print">Lorem ipsum dolor sit amet.</li>
-      <li class="text-print">Lorem ipsum dolor sit amet.</li>
+      <li class="text-print py-2">
+        <a [routerLink]="['info']">Return Policy </a>
+      </li>
+      <li class="text-print py-2"><a [routerLink]="['info']">Membership</a></li>
     </ul>
   </div>
-  <div class="col-lg-3 col-12 p-5">
+  <div class="col-lg-4 col-12 p-5">
     <ul>
-      <li class="text-print">Lorem ipsum dolor sit amet.</li>
-      <li class="text-print">Lorem ipsum dolor sit amet.</li>
-      <li class="text-print">Lorem ipsum dolor sit amet.</li>
-      <li class="text-print">Lorem ipsum dolor sit amet.</li>
-      <li class="text-print">Lorem ipsum dolor sit amet.</li>
+      <li class="text-print py-2">
+        <a [routerLink]="['info']">Store Events</a>
+      </li>
+      <li class="text-print py-2"><a [routerLink]="['info']">Gift Cards</a></li>
+      <li class="text-print py-2">
+        <a [routerLink]="['info']">Coupons and Discounts</a>
+      </li>
+      <li class="text-print py-2"><a [routerLink]="['info']">Jobs</a></li>
     </ul>
-  </div>
-  <div class="col-lg-3 col-12 p-5">
-    <ul>
-      <li class="text-print">Lorem ipsum dolor sit amet.</li>
-      <li class="text-print">Lorem ipsum dolor sit amet.</li>
-      <li class="text-print">Lorem ipsum dolor sit amet.</li>
-      <li class="text-print">Lorem ipsum dolor sit amet.</li>
-      <li class="text-print">Lorem ipsum dolor sit amet.</li>
-    </ul>
-  </div>
-  <div class="col-lg-3 col-12 p-5">
-    <ul>
-      <li class="text-print">Lorem ipsum dolor sit amet.</li>
-      <li class="text-print">Lorem ipsum dolor sit amet.</li>
-      <li class="text-print">Lorem ipsum dolor sit amet.</li>
-      <li class="text-print">Lorem ipsum dolor sit amet.</li>
-      <li class="text-print">Lorem ipsum dolor sit amet.</li>
-    </ul>
-  </div>
-</div>
-<div id="footer" class="row">
-  <div class="col-12 p-5">
-    <p class="text-print">
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga delectus a
-      magni nam deserunt. Nemo voluptatibus id excepturi distinctio unde.
-    </p>
   </div>
 </div>
 <div id="footer" class="row footer-contact">
-  <div class="col-12 p-5">
-    <p class="text-print">
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo autem
-      corporis deserunt eaque delectus enim aut nesciunt rem repellat error.
-    </p>
+  <div class="col-md-6 p-5">
+    <i class="fas fa-copyright"
+      ><span class="push-icon">2019 Cartify Inc.</span></i
+    >
+  </div>
+  <div class="col-md-6 p-5 justify-content-end">
+    <i class="fab fa-facebook-f"></i>
+    <i class="fab fa-twitter"></i>
+    <i class="fab fa-instagram"></i>
   </div>
 </div>

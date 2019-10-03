@@ -1,8 +1,33 @@
+@import url("https://fonts.googleapis.com/css?family=Archivo+Black|Domine:700|Roboto|Roboto+Condensed|Roboto+Slab:700&display=swap");
+h1 {
+  font-family: "Domine", serif;
+}
+
+h5 {
+  font-family: "Roboto Condensed", sans-serif;
+}
+
+p {
+  font-family: "Roboto", sans-serif;
+}
+
+a {
+  font-family: "Roboto", sans-serif;
+}
+
+ul {
+  padding-left: 0px;
+}
+
 #home-component {
   background-color: #FFFFFF;
 }
 
 #card-container {
   background-color: #EFEEE2;
+}
+
+.account-info {
+  list-style-type: none;
 }
 /*# sourceMappingURL=home.component.css.map */

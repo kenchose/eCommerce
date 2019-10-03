@@ -1,97 +1,90 @@
-<div id="home-component" class="container">
-  <div id="card-container" class="row my-5">
-    <div class="col-lg-6 col-12">
-      <div class="card m-4">
-        <div class="card-header">
-          <h5>Purchase History</h5>
-        </div>
-        <div class="card-body">
-          <a href=""
-            >Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam,
-            alias!</a
-          >
-          <a href=""
-            >Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam,
-            alias!</a
-          >
-          <a href=""
-            >Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam,
-            alias!</a
-          >
-        </div>
-      </div>
-      <div class="card m-4">
-        <div class="card-header">
-          <h5>Billing & shipping addresses</h5>
-        </div>
-        <div class="card-body">
-          <a href=""
-            >Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam,
-            alias!</a
-          >
-          <a href=""
-            >Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam,
-            alias!</a
-          >
-        </div>
-      </div>
-      <div class="card m-4">
-        <div class="card-header">
-          <h5>Your list</h5>
-        </div>
-        <div class="card-body">
-          <a href=""
-            >Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam,
-            alias!</a
-          >
-          <a href=""
-            >Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam,
-            alias!</a
-          >
-          <a href=""
-            >Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam,
-            alias!</a
-          >
-        </div>
+<div id="home-component" class="row p-4">
+  <div class="col">
+    <h1 class="text-center">
+      Hello, {{ currUser.first_name }} {{ currUser.last_name }}
+    </h1>
+    <div class="row">
+      <div class="col text-center">
+        <h5 class="font-weight-bold">Not a member?</h5>
       </div>
     </div>
-    <div class="col-lg-6 col-12">
-      <div class="card m-4">
-        <div class="card-header">
-          <h5>Account information</h5>
+    <div id="card-container" class="row my-5">
+      <div class="col-lg-6 col-12">
+        <div class="card m-4">
+          <div class="card-header">
+            <h5>Purchase History</h5>
+          </div>
+          <div class="card-body">
+            <ul class="col-12 account-info">
+              <li>
+                <a href="/cartify/home">View your purchase history</a>
+              </li>
+            </ul>
+          </div>
         </div>
-        <div class="card-body">
-          <a href=""
-            >Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam,
-            alias!</a
-          >
-          <a href=""
-            >Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam,
-            alias!</a
-          >
-          <a href=""
-            >Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam,
-            alias!</a
-          >
-          <a href=""
-            >Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam,
-            alias!</a
-          >
-          <a href=""
-            >Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam,
-            alias!</a
-          >
+        <div class="card m-4">
+          <div class="card-header">
+            <h5>Billing & shipping addresses</h5>
+          </div>
+          <div class="card-body">
+            <ul class="col-12 account-info">
+              <li>
+                <a>Manage your address information</a>
+              </li>
+              <li>
+                <a>Add a new address</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="card m-4">
+          <div class="card-header">
+            <h5>Membership information</h5>
+          </div>
+          <div class="card-body">
+            <ul class="col-12 account-info">
+              <li>
+                <a>Member lookup information</a>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
-      <div class="card m-4">
-        <div class="card-header">
-          <h5>Need help?</h5>
+      <div class="col-lg-6 col-12">
+        <div class="card m-4">
+          <div class="card-header">
+            <h5>Account information</h5>
+          </div>
+          <div class="card-body">
+            <ul class="col-12 account-info">
+              <li>
+                <a [routerLink]="['/cartify/account/personal/:id']"
+                  >Personal details</a
+                >
+              </li>
+              <li>
+                <a>Manage payments</a>
+              </li>
+              <li>
+                <a>Login with you Google account</a>
+              </li>
+              <li>
+                <a>Login with your Facebook account</a>
+              </li>
+            </ul>
+          </div>
         </div>
-        <div class="card-body">
-          <a href=""
-            >Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam,
-            alias!</a
-          >
+        <div class="card m-4">
+          <div class="card-header">
+            <h5>Need help?</h5>
+          </div>
+          <div class="card-body">
+            <ul class="col-12 account-info">
+              <li>
+                <a>Contact us</a>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>

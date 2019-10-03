@@ -8,6 +8,8 @@ import { AccountComponent } from "./components/User_Component/account/account.co
 import { AuthGuard } from "./auth.guard";
 import { SliderComponent } from "./components/slider/slider.component";
 import { SignInComponent } from "./components/sign-in/sign-in.component";
+import { PaymentsComponent } from "./components/User_Component/account/payments/payments.component";
+import { PersonalComponent } from "./components/User_Component/account/personal/personal.component";
 
 const routes: Routes = [
   { path: "cartify", component: WelcomeComponent },
@@ -23,9 +25,21 @@ const routes: Routes = [
     // ]
   },
   {
-    path: "cartify/account/:id",
+    path: "cartify/account",
     canActivate: [AuthGuard],
-    component: AccountComponent
+    component: AccountComponent,
+    children: [
+      {
+        path: "personal/:id",
+        canActivate: [AuthGuard],
+        component: PersonalComponent
+      },
+      {
+        path: "payments/:id",
+        canActivate: [AuthGuard],
+        component: PaymentsComponent
+      }
+    ]
   },
   { path: "cartify/production", component: SliderComponent },
   { path: "**", pathMatch: "full", component: PageNotFoundComponent }

@@ -24,6 +24,8 @@ import { WelcomeComponent } from "./components/welcome/welcome.component";
 import { AuthGuard } from "./auth.guard";
 import { AccountComponent } from "./components/User_Component/account/account.component";
 import { SignInComponent } from "./components/sign-in/sign-in.component";
+import { PaymentsComponent } from "./components/User_Component/account/payments/payments.component";
+import { PersonalComponent } from "./components/User_Component/account/personal/personal.component";
 export function tokenGetter() {
   return localStorage.getItem("access_token");
 }
@@ -43,7 +45,9 @@ export function tokenGetter() {
     PageNotFoundComponent,
     WelcomeComponent,
     AccountComponent,
-    SignInComponent
+    SignInComponent,
+    PaymentsComponent,
+    PersonalComponent
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [

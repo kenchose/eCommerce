@@ -9,16 +9,21 @@
   background-color: #000;
 }
 
-.row {
+.underline-row {
   border-bottom: solid 1px #666;
 }
 
-.row:last-child {
+.underline-row:last-child {
   border-bottom: none;
 }
 
 .text-print {
   color: #CCC;
+}
+
+p {
+  padding-top: 10px;
+  line-height: 1.5;
 }
 
 ul {
@@ -27,5 +32,28 @@ ul {
 
 .list-header {
   color: #a1c900;
+}
+
+a,
+i {
+  color: #CCC;
+}
+
+.contact-info {
+  text-decoration: none;
+}
+
+.contact-info p {
+  font-size: 20px;
+}
+
+.learn-more {
+  text-decoration: underline;
+}
+
+.push-icon {
+  color: #ffff;
+  padding-left: 10px;
+  color: #CCC;
 }
 /*# sourceMappingURL=footer.component.css.map */

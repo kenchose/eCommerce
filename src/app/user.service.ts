@@ -15,8 +15,8 @@ export class UserService {
     this._userSource.next(user);
   }
 
-  currUser(id) {
-    return this._http.get("/api/home" + id);
+  currUser(id: string) {
+    return this._http.get("/api/user/" + id);
   }
 
   deleteUser(user: Object) {

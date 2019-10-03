@@ -7,7 +7,7 @@ const passportJwt = passport.authenticate('jwt', {
   session: false
 }); //used for secret routes
 
-router.get('/home', (req, res, next) => {
+router.get('/user/:id', (req, res, next) => {
   user.currUser(req, res, next);
 });
 

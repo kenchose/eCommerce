@@ -6,7 +6,6 @@ import {
   ɵangular_packages_common_http_http_a
 } from "@angular/common/http";
 import { UserService } from "./../../user.service";
-import { userInfo } from "os";
 
 @Component({
   selector: "app-navbar",
@@ -30,36 +29,40 @@ export class NavbarComponent implements OnInit {
   ngOnInit() {}
 
   login() {
-    this._authService.userLogin(this.oldUser).subscribe(user => {
-      if (user.message) {
+    this._authService.userLogin(this.oldUser).subscribe(userLogged => {
+      if (userLogged.message) {
         this.errors.length = 0;
-        for (let key in user.message) {
-          this.errors.push(user.message[key]);
+        for (let key in userLogged.message) {
+          this.errors.push(userLogged.message[key]);
           this.resetLogin();
           this._router.navigate(["/cartify"]);
         }
       } else {
-        this._userService.userData((user = this.currUser = user));
+        // this._userService.userData((user = this.currUser = user));
 
         // store token
-        const { token } = user;
+        console.log("user after login", userLogged);
+        const { token, user } = userLogged;
+        console.log("token", token);
+        console.log("user", user);
         localStorage.setItem("token", token);
-        this.redirectTo("cartify/home");
+        localStorage.setItem("userId", user["_id"]);
+        this._router.navigate(["cartify/home"]);
       }
     });
   }
 
-  redirectTo(url) {
-    this._router
-      .navigateByUrl("/", { skipLocationChange: true })
-      .then(() => this._router.navigate([url]));
-  }
+  // redirectTo(url) {
+  //   this._router
+  //     .navigateByUrl("/", { skipLocationChange: true })
+  //     .then(() => this._router.navigate([url]));
+  // }
 
-  selectAccount(id: number) {
-    this._userService.userAccount(id).subscribe(user => {
-      this.redirectTo("cartify/account/" + id);
-    });
-  }
+  // selectAccount(id: number) {
+  //   this._userService.userAccount(id).subscribe(user => {
+  //     this.redirectTo("cartify/account/" + id);
+  //   });
+  // }
 
   resetLogin() {
     this.oldUser = { email: "", password: "" };

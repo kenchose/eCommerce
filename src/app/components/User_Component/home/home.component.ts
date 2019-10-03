@@ -10,7 +10,6 @@ import { HttpHeaders } from "@angular/common/http";
   styleUrls: ["./home.component.scss"]
 })
 export class HomeComponent implements OnInit {
-  user: any;
   id: any;
   currUser: any;
 
@@ -22,12 +21,16 @@ export class HomeComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    let httpOptions = {
-      headers: new HttpHeaders({ Authorization: localStorage.getItem("token") })
-    };
-    this._userService.currentUser.subscribe(user => {
-      console.log("before setting value to user", user);
-      this.user = user;
-    });
+    const userId = this._authService.getUser();
+    this._userService
+      .currUser(userId)
+      .subscribe(user => (this.currUser = user["user"]));
+    const token = this._authService.getToken();
+    // console.log("token", token);
+    // const userToken = token.split(".")[1];
+    // console.log("userToken", userToken);
+    // this._userService.currUser(userToken).subscribe(user => {
+    //   console.log("this worked", user);
+    // });
   }
 }

@@ -37,7 +37,7 @@ export class RegisterComponent implements OnInit {
 
         const { token } = user;
         //store token in localStorage
-        localStorage.setItem("token", token);
+        this._authService.setToken(user["token"]);
         this._router.navigate(["/cartify/home"]);
       }
     });

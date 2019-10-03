@@ -6,21 +6,23 @@ module.exports = {
   currUser: async (req, res, next) => {
     let id = req.params.id
     try {
-      const user = await User.findOne({
-        id: id
-      });
+      const user = await User.findById({
+        _id: id
+      })
       if (!user) {
-        res.status(400).json({
-          error: "No user is currently signed in"
+        res.status(400).send({
+          success: false,
+          message: "User not found"
         });
       } else {
         res.status(200).json({
           user
-        });
+        })
       }
     } catch (error) {
-      res.send(error)
+      res.json(error)
     }
+
   },
 
   account: async (req, res, next) => {

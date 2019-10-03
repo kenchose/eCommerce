@@ -38,6 +38,7 @@ export class SignInComponent implements OnInit {
         // store token
         const { token } = user;
         localStorage.setItem("token", token);
+        this._router.navigate(["/cartify/home"]);
         this.redirectTo("cartify/home");
       }
     });
