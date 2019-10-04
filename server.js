@@ -49,7 +49,7 @@ app.use(passport.initialize());
 app.use('/auth', authRouter);
 app.use('/api', apiRouter);
 app.use('/order', orderRouter);
-app.use('/product', productRouter);
+app.use('/api/product', productRouter);
 
 app.all('*', (req, res, next) => {
   res.sendFile(path.resolve('./dist/eCommerce/index.html'));

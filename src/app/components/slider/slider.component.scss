@@ -15,3 +15,11 @@ serif;
 
 $font-generic:'Roboto',
 sans-serif;
+
+h2 {
+  font-family: $font-h2;
+}
+
+p {
+  font-family: $font-generic;
+}

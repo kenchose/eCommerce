@@ -47,22 +47,11 @@ export class NavbarComponent implements OnInit {
         console.log("user", user);
         localStorage.setItem("token", token);
         localStorage.setItem("userId", user["_id"]);
+        document.getElementById("closeModal").click();
         this._router.navigate(["cartify/home"]);
       }
     });
   }
-
-  // redirectTo(url) {
-  //   this._router
-  //     .navigateByUrl("/", { skipLocationChange: true })
-  //     .then(() => this._router.navigate([url]));
-  // }
-
-  // selectAccount(id: number) {
-  //   this._userService.userAccount(id).subscribe(user => {
-  //     this.redirectTo("cartify/account/" + id);
-  //   });
-  // }
 
   resetLogin() {
     this.oldUser = { email: "", password: "" };

@@ -20,8 +20,8 @@ sans-serif;
   background-color: #fff;
 }
 
-h2 {
-  font-family: $font-h2;
+h1 {
+  font-family: $font-h1;
 }
 
 #rock-climber {
@@ -30,6 +30,17 @@ h2 {
   height: auto;
 }
 
-// .row-full {
-//   width: 100vw;
-// }
+p {
+  font-family: $font-generic;
+  font-size: 18px;
+}
+
+.online-detail {
+  padding: 40px 0px;
+}
+
+hr {
+  border: none;
+  background-color: #dcdcdc;
+  height: 3px;
+}

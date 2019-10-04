@@ -27,6 +27,7 @@ import { SignInComponent } from "./components/sign-in/sign-in.component";
 import { PaymentsComponent } from "./components/User_Component/account/payments/payments.component";
 import { PersonalComponent } from "./components/User_Component/account/personal/personal.component";
 import { SignOutComponent } from './components/sign-out/sign-out.component';
+import { ProductsComponent } from './components/Product_Component/products/products.component';
 export function tokenGetter() {
   return localStorage.getItem("access_token");
 }
@@ -49,7 +50,8 @@ export function tokenGetter() {
     SignInComponent,
     PaymentsComponent,
     PersonalComponent,
-    SignOutComponent
+    SignOutComponent,
+    ProductsComponent
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [

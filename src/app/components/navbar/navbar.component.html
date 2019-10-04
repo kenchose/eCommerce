@@ -114,7 +114,6 @@
   tabindex="-1"
   role="dialog"
   aria-labelledby="myModalLabel"
-  aria-hidden="true"
 >
   <div class="modal-dialog" role="document">
     <!--Content-->
@@ -131,20 +130,16 @@
           type="button"
           class="close"
           data-dismiss="modal"
-          aria-label="Close"
+          id="closeModal"
+          (click)="openmodel(id)"
         >
-          <span (click)="resetLogin()" aria-hidden="true">&times;</span>
+          <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <!--Body-->
       <div class="modal-body mx-4">
         <!--Form-->
-        <form
-          (ngSubmit)="login(formData)"
-          #formData="ngForm"
-          class="needs-validation"
-          novalidate
-        >
+        <form #formData="ngForm" class="needs-validation" novalidate>
           <div class="mb-4 form-group input-group input-group-lg">
             <input
               type="email"
@@ -175,8 +170,9 @@
           <div class="text-centermb-3 form-group">
             <button
               id="sign-in-btn"
-              type="submit"
+              type="button"
               class="btn btn-signin rounded-pill p-3 text-uppercase font-weight-bold btn-block"
+              (click)="login(formData)"
             >
               <i class="fas fa-power-off pr-1"></i>Sign in
             </button>

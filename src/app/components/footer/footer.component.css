@@ -53,8 +53,15 @@ i {
 }
 
 .push-icon {
-  color: #ffff;
   padding-left: 10px;
   color: #CCC;
+}
+
+.copyright {
+  font-size: 22px;
+}
+
+.social-media {
+  font-size: 28px;
 }
 /*# sourceMappingURL=footer.component.css.map */

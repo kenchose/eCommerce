@@ -1,2 +1,9 @@
 @import url("https://fonts.googleapis.com/css?family=Archivo+Black|Domine:700|Roboto|Roboto+Condensed|Roboto+Slab:700&display=swap");
+h2 {
+  font-family: "Archivo Black", sans-serif;
+}
+
+p {
+  font-family: "Roboto", sans-serif;
+}
 /*# sourceMappingURL=slider.component.css.map */

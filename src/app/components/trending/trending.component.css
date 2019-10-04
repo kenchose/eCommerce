@@ -3,8 +3,8 @@
   background-color: #fff;
 }
 
-h2 {
-  font-family: "Archivo Black", sans-serif;
+h1 {
+  font-family: "Domine", serif;
 }
 
 #rock-climber {
@@ -12,5 +12,20 @@ h2 {
      object-fit: scale-down;
   width: auto;
   height: auto;
+}
+
+p {
+  font-family: "Roboto", sans-serif;
+  font-size: 18px;
+}
+
+.online-detail {
+  padding: 40px 0px;
+}
+
+hr {
+  border: none;
+  background-color: #dcdcdc;
+  height: 3px;
 }
 /*# sourceMappingURL=trending.component.css.map */
