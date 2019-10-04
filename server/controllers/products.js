@@ -41,5 +41,34 @@ module.exports = {
     } catch (error) {
       res.status(400).send(error)
     }
+  },
+
+  onlyOne: async (req, res, next) => {
+    const id = req.params._id
+    const product = await Product.findById({
+      _id: id
+    });
+    try {
+      if (!product) return res.status(400).json({
+        success: false,
+        message: "No product found"
+      });
+      if (product) return res.status(200).json({
+        product
+      });
+    } catch (error) {
+      res.status(400).send(error);
+    };
+  },
+
+  editProduct: async (req, res, next) => {
+    const id = req.params._id
+    const {
+      category,
+      name,
+      pricce
+    } = Product.findById({
+      _id: id
+    });
   }
 }

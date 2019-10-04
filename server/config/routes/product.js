@@ -14,4 +14,16 @@ router.get('/products', (req, res, next) => {
   product.getAll(req, res, next);
 });
 
+router.get('/:id', (req, res, next) => {
+  product.getOnew(req, res, next);
+});
+
+router.post('/add-to-cart/:id', (req, res, next) => {
+  product.addToCart(req, res, next);
+});
+
+router.put('/product/edit/:id', (req, res, next) => {
+  product.editProduct(req, res, next);
+});
+
 module.exports = router;

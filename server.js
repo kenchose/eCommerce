@@ -10,20 +10,21 @@ const authRouter = require('./server/config/routes/auth');
 const orderRouter = require('./server/config/routes/order');
 const apiRouter = require('./server/config/routes/api');
 const productRouter = require('./server/config/routes/product');
+const seederRouter = require('./server/config/routes/seeder');
 const passport = require('passport');
-// const MongoStore = require('connect-mongo')(session);
+const MongoStore = require('connect-mongo')(session);
 
-// app.use(session({
-//   secret: process.env.SECRET_SESSION_KEY,
-//   resave: false,
-//   saveUninitialized: true,
-//   store: new MongoStore({
-//     mongooseConnection: mongoose.connection
-//   }),
-//   cookie: {
-//     maxAge: 180 * 60 * 1000
-//   }
-// }))
+app.use(session({
+  secret: process.env.SECRET_SESSION_KEY,
+  resave: false,
+  saveUninitialized: true,
+  store: new MongoStore({
+    mongooseConnection: mongoose.connection
+  }),
+  cookie: {
+    maxAge: 180 * 60 * 1000
+  }
+}))
 
 app.use(express.static(__dirname + '/dist/eCommerce'));
 
@@ -50,6 +51,7 @@ app.use('/auth', authRouter);
 app.use('/api', apiRouter);
 app.use('/order', orderRouter);
 app.use('/api/product', productRouter);
+app.use('/seeder', seederRouter);
 
 app.all('*', (req, res, next) => {
   res.sendFile(path.resolve('./dist/eCommerce/index.html'));
