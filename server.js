@@ -22,7 +22,7 @@ app.use(session({
     mongooseConnection: mongoose.connection
   }),
   cookie: {
-    maxAge: 180 * 60 * 1000
+    maxAge: 30 * 30 * 100 //1.5 mins
   }
 }))
 

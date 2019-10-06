@@ -16,4 +16,8 @@ export class ProductService {
   createProduct(newUser: object) {
     return this._http.post(this.serviceUrl + "/create", newUser);
   }
+
+  oneProduct(productId) {
+    return this._http.get(this.serviceUrl + productId);
+  }
 }

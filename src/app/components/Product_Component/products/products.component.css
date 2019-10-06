@@ -1,1 +1,30 @@
-/* No CSS *//*# sourceMappingURL=products.component.css.map */
+@import url("https://fonts.googleapis.com/css?family=Archivo+Black|Domine:700|Roboto|Roboto+Condensed|Roboto+Slab:700&display=swap");
+h5 {
+  font-family: "Roboto Condensed", sans-serif;
+}
+
+p {
+  font-family: "Roboto", sans-serif;
+}
+
+.search-bar {
+  position: relative;
+}
+
+.search-icon {
+  position: absolute;
+  right: 8px;
+  top: 8px;
+}
+
+.ellipsis {
+  text-overflow: ellipsis;
+  /* Required for text-overflow to do anything */
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.card {
+  max-height: 100%;
+}
+/*# sourceMappingURL=products.component.css.map */

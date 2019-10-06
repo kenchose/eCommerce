@@ -1,5 +1,48 @@
+  <div class="row">
+      <div class="col-md-5 px-0 mt-4">
+        <input
+          class="form-control search-bar"
+          type="text"
+          name="search"
+          placeholder="Search for something great!"
+          [(ngModel)]="filter"
+        />
+        <span class="search-icon"><i class="fas fa-search"></i></span>
+      </div>
 <div class="row">
-  <div class="col" *ngFor="let product of products">
-    name:{{ product.name }} price:{{ product.price }}
+  <div class="card-deck col-md-4" *ngFor="let product of products | filter: filter
+  | paginate: { itemsPerPage: 20, currentPage: p }">
+    <div class="card my-5">
+        <a [routerLink]="['details, product._id']" class="stretched-link"
+        ><img src="{{ product.imagePath }}" class="card-img-top"
+      /></a>
+      <div class="card-body">
+        <h5 class="card-title">{{ product.name }}</h5>
+        <p class="card-text ellipsis">
+          {{ product.description }}
+        </p>
+        <p class="card-text">
+          <small class="text-muted">${{ product.price }}</small>
+        </p>
+      </div>
+      <div class="card-footer">
+          <small class="text-muted">${{ product.price }}</small>
+          <form (ngSubmit)="addToCart(product._id)">
+            <button class="btn btn-info">
+                <i class="fas fa-cart-plus"></i> Add to cart
+            </button>
+          </form>
+        </div>
+    </div>
   </div>
 </div>
+<div class="row align-items-center">
+    <div class="col">
+      <pagination-controls
+        (pageChange)="p = $event"
+        responsive="true"
+      ></pagination-controls>
+    </div>
+  </div> -->
+
+<router-outlet></router-outlet>

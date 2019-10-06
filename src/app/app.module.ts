@@ -5,6 +5,8 @@ import { AuthService } from "./auth.service";
 import { HttpService } from "./http.service";
 import { ProductService } from "./product.service";
 import { FormsModule } from "@angular/forms";
+import { Ng2SearchPipeModule } from "ng2-search-filter"; //serach module
+import { NgxPaginationModule } from "ngx-pagination"; //pagination module github:https://github.com/michaelbromley/ngx-pagination
 
 import { AppRoutingModule } from "./app-routing.module";
 import { TokenInterceptorService } from "./token-interceptor.service";
@@ -15,7 +17,6 @@ import { TrendingComponent } from "./components/trending/trending.component";
 import { SliderComponent } from "./components/slider/slider.component";
 import { FeatureComponent } from "./components/feature/feature.component";
 import { FindstoreComponent } from "./components/findstore/findstore.component";
-import { EmployyFavoritesComponent } from "./components/employy-favorites/employy-favorites.component";
 import { EmployeeChoiceComponent } from "./components/employee-choice/employee-choice.component";
 import { RegisterComponent } from "./components/register/register.component";
 import { HomeComponent } from "./components/User_Component/home/home.component";
@@ -26,8 +27,9 @@ import { AccountComponent } from "./components/User_Component/account/account.co
 import { SignInComponent } from "./components/sign-in/sign-in.component";
 import { PaymentsComponent } from "./components/User_Component/account/payments/payments.component";
 import { PersonalComponent } from "./components/User_Component/account/personal/personal.component";
-import { SignOutComponent } from './components/sign-out/sign-out.component';
-import { ProductsComponent } from './components/Product_Component/products/products.component';
+import { SignOutComponent } from "./components/sign-out/sign-out.component";
+import { ProductsComponent } from "./components/Product_Component/products/products.component";
+import { DetailsComponent } from './components/Product_Component/details/details.component';
 export function tokenGetter() {
   return localStorage.getItem("access_token");
 }
@@ -40,7 +42,6 @@ export function tokenGetter() {
     SliderComponent,
     FeatureComponent,
     FindstoreComponent,
-    EmployyFavoritesComponent,
     EmployeeChoiceComponent,
     RegisterComponent,
     HomeComponent,
@@ -51,9 +52,17 @@ export function tokenGetter() {
     PaymentsComponent,
     PersonalComponent,
     SignOutComponent,
-    ProductsComponent
+    ProductsComponent,
+    DetailsComponent
   ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
+    Ng2SearchPipeModule,
+    NgxPaginationModule
+  ],
   providers: [
     AuthService,
     HttpService,

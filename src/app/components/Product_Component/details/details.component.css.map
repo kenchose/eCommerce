@@ -2,8 +2,8 @@
     "version": 3,
     "mappings": "AAAA,OAAO,CAAC,4HAAI",
     "sources": [
-        "employy-favorites.component.scss"
+        "details.component.scss"
     ],
     "names": [],
-    "file": "employy-favorites.component.css"
+    "file": "details.component.css"
 }

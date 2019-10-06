@@ -10,6 +10,7 @@ import { Router, ActivatedRoute, Params } from "@angular/router";
 export class ProductsComponent implements OnInit {
   products: object[];
   newProduct: any;
+  p: number = 1;
   constructor(
     private _productService: ProductService,
     private _router: Router,
@@ -25,9 +26,10 @@ export class ProductsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this._productService
-      .allProducts()
-      .subscribe(product => (this.products = product["products"]));
+    this._productService.allProducts().subscribe(product => {
+      console.log("products", product);
+      this.products = product["products"];
+    });
   }
 
   createProduct() {
@@ -35,4 +37,6 @@ export class ProductsComponent implements OnInit {
       console.log("new user craeted", newUser);
     });
   }
+
+  addToCart() {}
 }

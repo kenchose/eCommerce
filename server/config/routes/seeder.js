@@ -4,13 +4,13 @@ const Product = require('./../../models/Product');
 const Category = require('./../../models/Category');
 
 router.get('/', function (req, res, next) {
-  const categories = ["Baby", "Men", "Womaen", "Movies", "Shoes", "Books", "Electronics", "Computers", "Kids", "Sports"];
+  const categories = ["Outdoor Gear", "Men", "Womaen", "Shoes", "Kids", "Sportswear", "Tops", "Bottoms", "Accessories"];
   for (let i = 0; i < 100; i++) {
     let product = new Product({
-      imagePath: "https://images-na.ssl-images-amazon.com/images/I/4196ru-rkjL.jpg",
+      imagePath: faker.image.image(),
       name: faker.commerce.productName(),
       price: faker.commerce.price(),
-      description: faker.lorem.paragraph(),
+      description: faker.lorem.sentence(),
       category: categories[Math.floor(Math.random() * categories.length)]
     });
 
