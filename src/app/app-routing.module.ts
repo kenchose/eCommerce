@@ -46,11 +46,8 @@ const routes: Routes = [
   },
   { path: "cartify/production", component: SliderComponent },
   { path: "cartify/logoff", component: SignOutComponent },
-  {
-    path: "cartify/products",
-    component: ProductsComponent,
-    children: [{ path: "detail/:id", component: DetailsComponent }]
-  },
+  { path: "cartify/products", component: ProductsComponent },
+  { path: "cartify/products/details/:id", component: DetailsComponent },
   { path: "**", pathMatch: "full", component: PageNotFoundComponent }
 ];
 

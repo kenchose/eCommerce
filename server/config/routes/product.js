@@ -15,7 +15,7 @@ router.get('/products', (req, res, next) => {
 });
 
 router.get('/:id', (req, res, next) => {
-  product.getOnew(req, res, next);
+  product.onlyOne(req, res, next);
 });
 
 router.post('/add-to-cart/:id', (req, res, next) => {

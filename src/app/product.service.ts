@@ -7,17 +7,24 @@ import { HttpClient } from "@angular/common/http";
 export class ProductService {
   constructor(private _http: HttpClient) {}
 
-  private serviceUrl = "http://localhost:8000/api/product";
+  private serviceUrl = "http://localhost:8000/api/product/";
 
   allProducts() {
-    return this._http.get(this.serviceUrl + "/products");
+    return this._http.get(this.serviceUrl + "products");
   }
 
   createProduct(newUser: object) {
-    return this._http.post(this.serviceUrl + "/create", newUser);
+    return this._http.post(this.serviceUrl + "create", newUser);
   }
 
   oneProduct(productId) {
     return this._http.get(this.serviceUrl + productId);
+  }
+
+  addCart(productId) {
+    return this._http.get(
+      this.serviceUrl + "add-to-cart/" + productId,
+      productId
+    );
   }
 }

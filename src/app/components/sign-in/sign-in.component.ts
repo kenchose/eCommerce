@@ -24,20 +24,21 @@ export class SignInComponent implements OnInit {
   ngOnInit() {}
 
   login() {
-    this._authService.userLogin(this.oldUser).subscribe(user => {
-      if (user.message) {
+    this._authService.userLogin(this.oldUser).subscribe(userLogged => {
+      if (userLogged.message) {
         this.emptyArray();
-        for (let key in user.message) {
-          this.errors.push(user.message[key]);
+        for (let key in userLogged.message) {
+          this.errors.push(userLogged.message[key]);
           this.resetLogin();
           this._router.navigate(["/sign-in"]);
         }
       } else {
-        this._userService.userData((user = this.currUser = user));
+        // this._userService.userData((user = this.currUser = user));
 
         // store token
-        const { token } = user;
+        const { token, user } = userLogged;
         localStorage.setItem("token", token);
+        localStorage.setItem("userId", user["_id"]);
         this._router.navigate(["/cartify/home"]);
         this.redirectTo("cartify/home");
       }

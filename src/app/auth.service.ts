@@ -8,12 +8,14 @@ import { Router } from "@angular/router";
 export class AuthService {
   constructor(private _http: HttpClient, private _router: Router) {}
 
+  private serviceUrl = "http://localhost:8000/auth/";
+
   registerUser(user: Object) {
-    return this._http.post<any>("/auth/register", user);
+    return this._http.post<any>(this.serviceUrl + "register", user);
   }
 
   userLogin(user: Object) {
-    return this._http.post<any>("/auth/login", user);
+    return this._http.post<any>(this.serviceUrl + "login", user);
   }
 
   setToken(token: string) {
@@ -26,7 +28,7 @@ export class AuthService {
 
   logoutUser() {
     localStorage.removeItem("token");
-    localStorage.removeItem("user");
+    localStorage.removeItem("userId");
     this._router.navigate(["/cartify/logoff"]);
   }
 

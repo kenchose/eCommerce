@@ -5,6 +5,7 @@ module.exports = {
 
   currUser: async (req, res, next) => {
     let id = req.params.id
+    console.log('id', id)
     try {
       const user = await User.findById({
         _id: id
@@ -67,20 +68,6 @@ module.exports = {
           user
         });
       }
-    })
-  },
-
-
-  //TESTING SECURE ROUTES WITH JWT 
-  one: (req, res, next) => { //testing routes
-    res.json({
-      ONE: 'Authorized!'
-    })
-  },
-
-  two: (req, res, next) => {
-    res.json({
-      two: 'this is a secret for page 2 using verify method'
     })
   },
 }

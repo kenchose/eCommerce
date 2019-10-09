@@ -43,10 +43,7 @@ export class NavbarComponent implements OnInit {
       } else {
         // this._userService.userData((user = this.currUser = user));
         // store token
-        console.log("user after login", userLogged);
         const { token, user } = userLogged;
-        console.log("token", token);
-        console.log("user", user);
         localStorage.setItem("token", token);
         localStorage.setItem("userId", user["_id"]);
         document.getElementById("closeModal").click();

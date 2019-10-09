@@ -32,12 +32,17 @@ module.exports = {
     }),
 
     productSchema: Joi.object().keys({
+      imagePath: Joi.string(),
       name: Joi.string()
         .required(),
       price: Joi.number()
         .positive()
         .precision(2) //limits number of decimals
         .min(0.01)
+        .required(),
+      description: Joi.string()
+        .required(),
+      category: Joi.string()
         .required()
     }),
   }

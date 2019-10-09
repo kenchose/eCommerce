@@ -69,7 +69,12 @@
   <div class="col-lg-4 col-12 p-5">
     <ul>
       <li class="text-print py-2">
-        <a [routerLink]="['sign-in']">Your online account</a>
+        <a *ngIf="!_authService.loggedIn()" [routerLink]="['sign-in']"
+          >Your online account</a
+        >
+        <a *ngIf="_authService.loggedIn()" [routerLink]="['cartify/home']"
+          >Your online account</a
+        >
       </li>
       <li class="text-print py-2">
         <a [routerLink]="['cartify']">About Us</a>

@@ -27,17 +27,26 @@ p {
 
 .search-icon {
   position: absolute;
-  right: 8px;
+  right: 30px;
   top: 8px;
-}
-
-.ellipsis {
-  text-overflow: ellipsis;
-  /* Required for text-overflow to do anything */
-  white-space: nowrap;
-  overflow: hidden;
 }
 
 .card {
   max-height: 100%;
+}
+
+
+::ng-deep .ngx-pagination {
+  align-content: center !important;
+
+  .current {
+    background: #17a2b8 !important;
+  }
+}
+
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .btn-with-text {
+    display: none;
+  }
 }
