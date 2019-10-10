@@ -1,5 +1,4 @@
 const Product = require('./../models/Product');
-const Cart = require('./../models/Cart').default
 
 module.exports = {
   create: async (req, res, next) => {
@@ -81,34 +80,20 @@ module.exports = {
 
   addToCart: async (req, res, next) => {
     const productId = req.params.id;
-    console.log('sessions', req.session)
     const product = await Product.findById({
       _id: productId
     });
     if (!product) return res.status(400).send("No product found");
     try {
       let cart = new Cart(req.session.cart ? req.session.cart : {});
-      console.log('cart', cart);
-      console.log('this is product', product)
       cart.add(product, product.id)
       req.session.cart = cart;
-      console.log('ccart session', cart);
+      res.json({
+        cart
+      })
     } catch (error) {
       res.status(400).send(error);
     };
   }
-  // addToCart: (req, res, next) => {
-  //   let productId = req.params.id;
-  //   console.log('sessions', req.session)
 
-  //   let cart = new Cart(req.session.cart ? req.session.cart : {});
-  //   Product.findById(
-  //     productId, (err, product) => {
-  //       console.log('this is product', product)
-  //       if (err) return res.send("Product not found");
-  //       cart.add(product, product.id);
-  //       req.session.cart = cart;
-  //       console.log('cart session', req.session.cart);
-  //     })
-  // }
 }

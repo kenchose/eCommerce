@@ -14,6 +14,7 @@ const seederRouter = require('./server/config/routes/seeder');
 const passport = require('passport');
 const MongoStore = require('connect-mongo')(session);
 
+app.set('trust proxy', 1);
 app.use(session({
   secret: process.env.SECRET_SESSION_KEY,
   resave: false,
@@ -22,18 +23,23 @@ app.use(session({
     mongooseConnection: mongoose.connection
   }),
   cookie: {
-    maxAge: 30 * 30 * 100 //1.5 mins
+    maxAge: 2 * 60 * 1000 //2 mins
   }
 }))
-
 app.use(express.static(__dirname + '/dist/eCommerce'));
 
 //DB_CONNECTION
+// mongoose.connect("mongodb://localhost/eCommerce", {
+//   useNewUrlParser: true,
+//   useCreateIndex: true,
+//   useFindAndModify: false
+// });
 mongoose.connect(process.env.DB_CONNECT, {
   useNewUrlParser: true,
   useCreateIndex: true,
   useFindAndModify: false
 });
+// mongoose.connection.on('connected', () => console.log('Successfully connected to mongodb://localhost/eCommerce'));
 mongoose.connection.on('connected', () => console.log('Successfully connected to ' + process.env.DB_CONNECT));
 mongoose.connection.on('error', (error) => console.log('Error, cannot connec to DB ' + error));
 
@@ -43,16 +49,21 @@ app.use(bodyParser.urlencoded({
   extended: true,
 }));
 app.use(morgan('dev'));
-app.use(passport.initialize());
+// app.use(passport.initialize());
 // app.use(passport.session());
+// app.use((req, res, next) => {
+//   res.locals.session = req.session
+//   next();
+// })
+
+
 
 //ROUTERS
 app.use('/auth', authRouter);
+app.use('/api/product', productRouter);
 app.use('/api', apiRouter);
 app.use('/order', orderRouter);
-app.use('/api/product', productRouter);
 app.use('/seeder', seederRouter);
-
 app.all('*', (req, res, next) => {
   res.sendFile(path.resolve('./dist/eCommerce/index.html'));
 })

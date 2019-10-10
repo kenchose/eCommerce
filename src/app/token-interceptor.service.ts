@@ -22,20 +22,9 @@ export class TokenInterceptorService implements HttpInterceptor {
       return next.handle(req.clone());
     } else {
       const tokenizedReq = req.clone({
-        headers: req.headers.set(
-          "Authorization",
-          `Bearer ${_authService.getToken()}`
-        )
+        headers: req.headers.set("Authorization", `${_authService.getToken()}`)
       });
       return next.handle(tokenizedReq);
-      // const tokenizedReq = req.clone({
-      //   setHeaders: {
-      //     "Content-Type": "application/json; charset=utcf-8",
-      //     Accept: "application/json",
-      //     Authorization: ` ${_authService.getToken()}`
-      //   }
-      // });
-      // return next.handle(tokenizedReq);
     }
   }
 }

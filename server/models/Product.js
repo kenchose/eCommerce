@@ -2,8 +2,7 @@ const mongoose = require('mongoose');
 
 const ProductSchema = new mongoose.Schema({
   imagePath: {
-    type: String,
-    requirued: true
+    type: String
   },
   name: {
     type: String,

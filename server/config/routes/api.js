@@ -7,7 +7,7 @@ const passportJwt = passport.authenticate('jwt', {
   session: false
 }); //used for secret routes
 
-router.get('/user/:id', (req, res, next) => {
+router.get('/user/:id', passportJwt, (req, res, next) => {
   user.currUser(req, res, next);
 });
 
@@ -15,7 +15,7 @@ router.get("/account/:id", passportJwt, (req, res, next) => {
   user.account(req, res, next);
 });
 
-router.post('/delete/:id', (req, res, next) => {
+router.post('/delete/:id', passportJwt, (req, res, next) => {
   user.deleteUser(req, res, next);
 });
 

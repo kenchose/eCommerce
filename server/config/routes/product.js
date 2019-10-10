@@ -4,9 +4,13 @@ const {
   validateBody,
   schemas
 } = require('../../models/validation');
+const passport = require('passport');
+const passportAuth = require('./../passport');
+const passportJwt = passport.authenticate('jwt', {
+  session: false
+})
 
-
-router.post('/create', validateBody(schemas.productSchema), (req, res, next) => {
+router.post('/create', validateBody(schemas.productSchema), passportJwt, (req, res, next) => {
   product.create(req, res, next);
 });
 
@@ -18,11 +22,11 @@ router.get('/:id', (req, res, next) => {
   product.onlyOne(req, res, next);
 });
 
-router.post('/add-to-cart/:id', (req, res, next) => {
+router.get('/add-to-cart/:id', passportJwt, (req, res, next) => {
   product.addToCart(req, res, next);
 });
 
-router.put('/product/edit/:id', (req, res, next) => {
+router.put('/product/edit/:id', passportJwt, (req, res, next) => {
   product.editProduct(req, res, next);
 });
 

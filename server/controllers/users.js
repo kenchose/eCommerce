@@ -5,7 +5,6 @@ module.exports = {
 
   currUser: async (req, res, next) => {
     let id = req.params.id
-    console.log('id', id)
     try {
       const user = await User.findById({
         _id: id
