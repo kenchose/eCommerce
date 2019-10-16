@@ -20,7 +20,6 @@ const routes: Routes = [
   { path: "sign-in", component: SignInComponent },
   {
     path: "cartify/home",
-    canActivate: [AuthGuard],
     component: HomeComponent
     // children: [
     //   // {path:"user/home/:id", canActivate:[AuthGuard], component:HomeComponent, children:[
@@ -47,7 +46,11 @@ const routes: Routes = [
   { path: "cartify/production", component: SliderComponent },
   { path: "cartify/logoff", component: SignOutComponent },
   { path: "cartify/products", component: ProductsComponent },
-  { path: "cartify/products/details/:id", component: DetailsComponent },
+  {
+    path: "cartify/products/details/:id",
+    canActivate: [AuthGuard],
+    component: DetailsComponent
+  },
   { path: "**", pathMatch: "full", component: PageNotFoundComponent }
 ];
 

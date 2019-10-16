@@ -22,11 +22,7 @@ router.get('/:id', (req, res, next) => {
   product.onlyOne(req, res, next);
 });
 
-router.get('/add-to-cart/:id', passportJwt, (req, res, next) => {
-  product.addToCart(req, res, next);
-});
-
-router.put('/product/edit/:id', passportJwt, (req, res, next) => {
+router.patch('/edit/:id', passportJwt, (req, res, next) => {
   product.editProduct(req, res, next);
 });
 

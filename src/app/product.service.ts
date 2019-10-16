@@ -17,14 +17,7 @@ export class ProductService {
     return this._http.post(this.serviceUrl + "create", newUser);
   }
 
-  oneProduct(productId) {
+  oneProduct(productId: string) {
     return this._http.get(this.serviceUrl + productId);
-  }
-
-  addCart(productId) {
-    return this._http.get(
-      this.serviceUrl + "add-to-cart/" + productId,
-      productId
-    );
   }
 }

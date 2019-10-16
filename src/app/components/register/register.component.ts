@@ -24,27 +24,26 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {}
 
   register() {
-    this._authService.registerUser(this.newUser).subscribe(user => {
+    this._authService.registerUser(this.newUser).subscribe(newUser => {
       this.emptyArray();
-      if (user.errors) {
-        for (let key in user.errors) {
-          this.errors.push(user.errors[key]);
+      if (newUser.errors) {
+        for (let key in newUser.errors) {
+          this.errors.push(newUser.errors[key]);
           this.resetRegistration();
           this._router.navigate(["/registration"]);
         }
       } else {
-        this._httpService.userData((user = this.currUser = user)); //share data through service
-
-        const { token } = user;
-        //store token in localStorage
-        this._authService.setToken(user["token"]);
+        const { token, user } = newUser;
+        //store token and userID in localStorage
+        this._authService.setToken(token);
+        this._authService.setUser(user["_id"]);
         this._router.navigate(["/cartify/home"]);
       }
     });
   }
 
   resetRegistration() {
-    this.newUser = { email: "", password: "" };
+    this.newUser = { first_name: "", last_name: "", email: "", password: "" };
   }
 
   emptyArray() {

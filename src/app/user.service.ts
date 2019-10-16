@@ -1,12 +1,12 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { BehaviorSubject } from "rxjs";
+import { Subject } from "rxjs";
 
 @Injectable({
   providedIn: "root"
 })
 export class UserService {
-  private _userSource = new BehaviorSubject<object>(Object);
+  private _userSource = new Subject<any>();
   currentUser = this._userSource.asObservable();
 
   constructor(private _http: HttpClient) {}

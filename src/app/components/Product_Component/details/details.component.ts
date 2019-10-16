@@ -8,6 +8,7 @@ import { ProductService } from "./../../../product.service";
   styleUrls: ["./details.component.scss"]
 })
 export class DetailsComponent implements OnInit {
+  oneProduct: any;
   constructor(
     private _router: Router,
     private _route: ActivatedRoute,
@@ -16,9 +17,9 @@ export class DetailsComponent implements OnInit {
 
   ngOnInit() {
     this._route.params.subscribe((params: Params) => {
-      this._productService
-        .oneProduct(params["id"])
-        .subscribe(product => console.log("one product", product));
+      this._productService.oneProduct(params["id"]).subscribe(product => {
+        this.oneProduct = product["product"];
+      });
     });
   }
 }

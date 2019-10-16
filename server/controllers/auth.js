@@ -1,16 +1,18 @@
-const User = require('./../models/User');
-const jwt = require('jsonwebtoken');
-const passportAuth = '../config/passport.js';
-const passport = require('passport');
+const User = require("./../models/User");
+const jwt = require("jsonwebtoken");
+const passportAuth = "../config/passport.js";
+const passport = require("passport");
 
 const signToken = user => {
   return jwt.sign({
-    // iss:'issuer',
-    sub: user._id,
-    iat: new Date().getTime(),
-    exp: new Date().getTime(new Date() + 10)
-  }, process.env.TOKEN_SECRET);
-}
+      // iss:'issuer',
+      sub: user._id,
+      iat: new Date().getTime(),
+      exp: new Date().getTime(new Date() + 10)
+    },
+    process.env.TOKEN_SECRET
+  );
+};
 
 module.exports = {
   //REGISTER LOCALLY
@@ -19,64 +21,75 @@ module.exports = {
       first_name,
       last_name,
       email,
-      password
+      password,
     } = req.body;
 
     //CHECK IF USER ALREADY EXIST
     const emailExist = await User.findOne({
       "local.email": email
     });
-    if (emailExist) return res.status(200).json({
-      error: 'Email already registered.'
-    });
+    if (emailExist)
+      return res.status(200).json({
+        error: "Email already registered."
+      });
 
-    // //CREATE USER
+    //CREATE USER
     const newUser = new User({
-      method: 'local',
+      method: "local",
       local: {
         email,
         password
       },
       first_name,
-      last_name
-    })
+      last_name,
+    });
+
     try {
       //SAVE USER AND ASSIGN TOKEN
       const user = await newUser.save();
       let token = signToken(user);
 
       //SEND USER, HEADER, AND TOKEN VALUE
-      token = `Bearer ${token}`
-      res.status(200).header('Authorization', token).json({
-        token,
-        user
-      });
+      token = `Bearer ${token}`;
+      res
+        .status(200)
+        .header("Authorization", token)
+        .json({
+          token,
+          user
+        });
     } catch (error) {
-      res.status(400).json(error)
+      res.status(400).json(error);
     }
   },
 
   login: (req, res, next) => {
-    passport.authenticate('local', {
-      session: false
-    }, (err, user, info) => {
-      if (err) return res.status(400).json(err)
-      if (!user) {
-        res.status(200).json({
-          success: false,
-          message: info
-        })
-      } else {
-        let token = signToken(user);
+    passport.authenticate(
+      "local", {
+        session: false
+      },
+      (err, user, info) => {
+        if (err) return res.status(400).json(err);
+        if (!user) {
+          res.status(200).json({
+            success: false,
+            message: info
+          });
+        } else {
+          let token = signToken(user);
 
-        //SEND SIGNED TOKEN, USER, AND SET HEADER VALUE
-        token = `Bearer ${token}`
-        res.status(200).header('Authorization', token).json({
-          user,
-          token
-        });
+          //SEND SIGNED TOKEN, USER, AND SET HEADER VALUE
+          token = `Bearer ${token}`;
+          res
+            .status(200)
+            .header("Authorization", token)
+            .json({
+              user,
+              token
+            });
+        }
       }
-    })(req, res);
+    )(req, res);
   },
 
   googleOAuth: async (req, res, next) => {
@@ -88,6 +101,6 @@ module.exports = {
 
   logout: (req, res) => {
     req.logout();
-    res.redredirect('/cartify');
+    res.redredirect("/cartify");
   }
-}
+};

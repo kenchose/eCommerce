@@ -2,7 +2,7 @@
   <h1 class="col-12 pb-5 text-center">Your Cartify online account</h1>
   <div class="row px-5">
     <div class="col-md-6">
-      <form (ngSubmit)="login()">
+      <form formData="ngForm" (ngSubmit)="login(formData)">
         <h5>Sign in or create an account below</h5>
         <div class="form-group">
           <div class="row">

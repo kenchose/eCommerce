@@ -14,21 +14,21 @@ const seederRouter = require('./server/config/routes/seeder');
 const passport = require('passport');
 const MongoStore = require('connect-mongo')(session);
 
-app.set('trust proxy', 1);
-app.use(session({
-  secret: process.env.SECRET_SESSION_KEY,
-  resave: false,
-  saveUninitialized: true,
-  store: new MongoStore({
-    mongooseConnection: mongoose.connection
-  }),
-  cookie: {
-    maxAge: 2 * 60 * 1000 //2 mins
-  }
-}))
+// app.set('trust proxy', 1);
+// app.use(session({
+//   secret: process.env.SECRET_SESSION_KEY,
+//   resave: false,
+//   saveUninitialized: true,
+//   store: new MongoStore({
+//     mongooseConnection: mongoose.connection
+//   }),
+//   cookie: {
+//     maxAge: 2 * 60 * 1000 //2 mins
+//   }
+// }))
 app.use(express.static(__dirname + '/dist/eCommerce'));
 
-//DB_CONNECTION
+// DB_CONNECTION
 // mongoose.connect("mongodb://localhost/eCommerce", {
 //   useNewUrlParser: true,
 //   useCreateIndex: true,
@@ -62,7 +62,7 @@ app.use(morgan('dev'));
 app.use('/auth', authRouter);
 app.use('/api/product', productRouter);
 app.use('/api', apiRouter);
-app.use('/order', orderRouter);
+app.use('/api/order', orderRouter);
 app.use('/seeder', seederRouter);
 app.all('*', (req, res, next) => {
   res.sendFile(path.resolve('./dist/eCommerce/index.html'));

@@ -6,7 +6,11 @@ const passportJwt = passport.authenticate('jwt', {
   session: false
 });
 
-router.post('/add-to-cart/:id', passportJwt, (req, res, next) => {
+router.get('/orders', (req, res, next) => {
+  order.allOrders(req, res, next);
+});
+
+router.post('/add-to-cart/:productId', (req, res, next) => {
   order.addToCart(req, res, next);
 });
 

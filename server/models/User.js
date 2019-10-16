@@ -1,10 +1,11 @@
 const bcrypt = require('bcryptjs');
 const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 let passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/
 let emailRegex = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
 
 
-const UserSchema = new mongoose.Schema({
+const UserSchema = new Schema({
   first_name: {
     type: String,
     required: true
@@ -51,6 +52,8 @@ const UserSchema = new mongoose.Schema({
 }, {
   timestamps: true
 });
+
+module.exports = mongoose.model('User', UserSchema);
 
 UserSchema.pre('save', async function (next) {
   try {
