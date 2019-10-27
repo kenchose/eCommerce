@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { UserService } from "../../../user.service";
 import { AuthService } from "../../../auth.service";
 import { Router, ActivatedRoute, Params } from "@angular/router";
-import { HttpHeaders } from "@angular/common/http";
+// import { HttpHeaders } from "@angular/common/http";
 
 @Component({
   selector: "app-home",
@@ -12,6 +12,7 @@ import { HttpHeaders } from "@angular/common/http";
 export class HomeComponent implements OnInit {
   id: any;
   currUser: any;
+  loggedUser: any;
 
   constructor(
     private _userService: UserService,
@@ -21,16 +22,24 @@ export class HomeComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    const userId = this._authService.getUser();
-    this._userService
-      .currUser(userId)
-      .subscribe(user => (this.currUser = user["user"]));
-    const token = this._authService.getToken();
-    // console.log("token", token);
-    // const userToken = token.split(".")[1];
-    // console.log("userToken", userToken);
-    // this._userService.currUser(userToken).subscribe(user => {
-    //   console.log("this worked", user);
-    // });
+    this.getUserData();
+    this.currUserData();
+
+    this._userService.currentUser.subscribe(user => {
+      this.loggedUser = user["user"];
+    });
+  }
+
+  getUserData() {
+    const id = this._authService.getUser();
+    this._userService.currUser(id).subscribe(user => {
+      this.loggedUser = user["user"];
+      console.log("logged in user", this.loggedUser);
+      this._userService.userData(this.loggedUser);
+    });
+  }
+
+  currUserData() {
+    this._userService.userData(this.getUserData());
   }
 }

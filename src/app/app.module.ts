@@ -4,6 +4,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { AuthService } from "./auth.service";
 import { HttpService } from "./http.service";
 import { ProductService } from "./product.service";
+import { CartService } from "./cart.service";
 import { FormsModule } from "@angular/forms";
 import { Ng2SearchPipeModule } from "ng2-search-filter"; //serach module
 import { NgxPaginationModule } from "ngx-pagination"; //pagination module github:https://github.com/michaelbromley/ngx-pagination
@@ -29,7 +30,7 @@ import { PaymentsComponent } from "./components/User_Component/account/payments/
 import { PersonalComponent } from "./components/User_Component/account/personal/personal.component";
 import { SignOutComponent } from "./components/sign-out/sign-out.component";
 import { ProductsComponent } from "./components/Product_Component/products/products.component";
-import { DetailsComponent } from './components/Product_Component/details/details.component';
+import { DetailsComponent } from "./components/Product_Component/details/details.component";
 export function tokenGetter() {
   return localStorage.getItem("access_token");
 }
@@ -66,6 +67,7 @@ export function tokenGetter() {
   providers: [
     AuthService,
     HttpService,
+    CartService,
     AuthGuard,
     {
       provide: HTTP_INTERCEPTORS,

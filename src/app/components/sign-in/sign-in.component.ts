@@ -12,6 +12,7 @@ export class SignInComponent implements OnInit {
   oldUser: any;
   errors: String[] = [];
   currUser: any;
+  loggedUser: any;
 
   constructor(
     private _authService: AuthService,
@@ -21,7 +22,19 @@ export class SignInComponent implements OnInit {
     this.oldUser = { email: "", password: "" };
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this._userService.currentUser.subscribe(user => {
+      this.loggedUser = user;
+    });
+  }
+
+  getUserData() {
+    const id = this._authService.getUser();
+    this._userService.currUser(id).subscribe(user => {
+      this.currUser = user;
+      this._userService.userData(this.currUser);
+    });
+  }
 
   login() {
     this._authService.userLogin(this.oldUser).subscribe(userLogged => {
@@ -33,12 +46,13 @@ export class SignInComponent implements OnInit {
           this._router.navigate(["/sign-in"]);
         }
       } else {
-        // this._userService.userData((user = this.currUser = user));
+        this._userService.userData(user => (this.currUser = user));
 
         // store token
         const { token, user } = userLogged;
-        localStorage.setItem("token", token);
-        localStorage.setItem("userId", user["_id"]);
+        this._authService.setUser(user["_id"]);
+        this._authService.setToken(token);
+        this.getUserData();
         this._router.navigate(["/cartify/home"]);
         this.redirectTo("cartify/home");
       }

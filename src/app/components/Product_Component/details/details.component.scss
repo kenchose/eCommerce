@@ -30,6 +30,10 @@ p {
   font-family: $font-generic;
 }
 
-button {
-  background-color: #00485B;
+.add-btn {
+  margin-left: 10px;
+}
+
+.minus-btn {
+  margin-right: 10px;
 }
