@@ -1,10 +1,9 @@
 <div class="row">
-  <div class="col-md-5 mt-4">
+  <div class="col-5 mt-4">
     <input
       class="form-control search-bar"
       type="text"
       name="search"
-      placeholder="Search for something great!"
       [(ngModel)]="filter"
     />
     <span class="search-icon"><i class="fas fa-search"></i></span>
@@ -12,7 +11,7 @@
 </div>
 <div class="row">
   <div
-    class="card-deck col-md-4"
+    class="card-deck col-md-3"
     *ngFor="
       let product of products
         | filter: filter
@@ -20,21 +19,16 @@
     "
   >
     <div class="card my-5">
-      <!-- <a [routerLink]="['details', product._id]"
+      <a [routerLink]="['details', product._id]"
         ><img src="{{ product.imagePath }}" class="card-img-top"
-      /></a> -->
+      /></a>
       <div class="card-body d-flex flex-column">
         <h5 class="card-title">{{ product.name }}</h5>
         <p class="card-text">
           {{ product.description }}
         </p>
-        <div class="d-flex justify-content-between mt-auto">
-          <p class="text-muted my-auto">${{ product.price }}</p>
-          <button (click)="addToCart(product._id)" class="btn btn-info">
-            <i class="fas fa-cart-plus"></i
-            ><span class="btn-with-text"> Add to cart</span>
-          </button>
-        </div>
+        <p><small>In Stock</small></p>
+        <p class="product-price my-auto">${{ product.price }}</p>
       </div>
     </div>
   </div>

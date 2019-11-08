@@ -5,6 +5,10 @@ const ProductSchema = new Schema({
   imagePath: {
     type: String
   },
+  brand: {
+    type: String,
+    required: true
+  },
   name: {
     type: String,
     required: true

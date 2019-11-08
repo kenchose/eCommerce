@@ -19,6 +19,14 @@ h5 {
 
 p {
   font-family: $font-generic;
+
+  small {
+    color: green;
+  }
+}
+
+.product-price {
+  color: red;
 }
 
 .search-bar {
@@ -29,6 +37,11 @@ p {
   position: absolute;
   right: 30px;
   top: 8px;
+}
+
+.card-deck {
+  margin-left: 0px;
+  margin-right: 0px;
 }
 
 .card {
@@ -48,5 +61,17 @@ p {
 @media (min-width: 768px) and (max-width: 991.98px) {
   .btn-with-text {
     display: none;
+  }
+}
+
+.number {
+  display: block
+}
+
+input {
+  text-align: center;
+
+  @media screen and (min-width:575.98px) {
+    margin-left: 15px;
   }
 }

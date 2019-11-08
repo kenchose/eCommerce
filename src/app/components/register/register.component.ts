@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { AuthService } from "./../../auth.service";
-import { HttpService } from "./../../http.service";
+import { CartService } from "./../../cart.service";
 import { Router } from "@angular/router";
 
 @Component({
@@ -12,16 +12,20 @@ export class RegisterComponent implements OnInit {
   currUser: Object;
   newUser: Object;
   errors: String[] = [];
-
+  cart: any;
   constructor(
     private _authService: AuthService,
-    private _httpService: HttpService,
+    private _cartService: CartService,
     private _router: Router
   ) {
     this.newUser = { first_name: "", last_name: "", email: "", password: "" };
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this._cartService.currentCart.subscribe(updatedCart => {
+      this.cart = updatedCart;
+    });
+  }
 
   register() {
     this._authService.registerUser(this.newUser).subscribe(newUser => {

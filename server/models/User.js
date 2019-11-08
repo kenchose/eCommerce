@@ -1,22 +1,19 @@
-const bcrypt = require('bcryptjs');
-const mongoose = require('mongoose');
+const bcrypt = require("bcryptjs");
+const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-let passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/
+let passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
 let emailRegex = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
-
 
 const UserSchema = new Schema({
   first_name: {
     type: String,
-    required: true
   },
   last_name: {
     type: String,
-    required: true
   },
   method: {
     type: String,
-    enum: ['local', 'google', 'facebook'],
+    enum: ["local", "google", "facebook"],
     required: true
   },
   local: {
@@ -28,7 +25,10 @@ const UserSchema = new Schema({
     password: {
       type: String,
       min: [8, "Password must be at least 8 characters"],
-      match: [passwordRegex, "Password must contain one number and special character"],
+      match: [
+        passwordRegex,
+        "Password must contain one number and special character"
+      ]
     }
   },
   google: {
@@ -38,6 +38,12 @@ const UserSchema = new Schema({
     email: {
       type: String,
       lowercase: true
+    },
+    first_name: {
+      type: String,
+    },
+    last_name: {
+      type: String,
     }
   },
   facebook: {
@@ -53,11 +59,10 @@ const UserSchema = new Schema({
   timestamps: true
 });
 
-module.exports = mongoose.model('User', UserSchema);
 
-UserSchema.pre('save', async function (next) {
+UserSchema.pre("save", async function (next) {
   try {
-    if (this.method !== 'local') {
+    if (this.method !== "local") {
       next();
     }
     const salt = await bcrypt.genSalt(10);
@@ -67,15 +72,14 @@ UserSchema.pre('save', async function (next) {
   } catch (error) {
     next(error);
   }
-})
+});
 
 UserSchema.methods.isValidPassword = async function (newPassword) {
   try {
     return await bcrypt.compare(newPassword, this.local.password);
   } catch (error) {
-    throw new Error('Comparing failed', error)
+    throw new Error("Comparing failed", error);
   }
 };
 
-
-module.exports = mongoose.model('User', UserSchema);
+module.exports = mongoose.model("User", UserSchema);

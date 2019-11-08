@@ -100,9 +100,11 @@
           ></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link navbar-item"
+          <a [routerLink]="['cartify/cart']" class="nav-link navbar-item"
             >CART<i class="fas fa-shopping-cart ml-2"
-              ><span class="badge badge-pill badge-info">10</span></i
+              ><span *ngIf="cart" class="badge badge-pill badge-info">{{
+                cart.totalQty
+              }}</span></i
             ></a
           >
         </li>
@@ -185,13 +187,11 @@
           <div class="m-2 form-group">
             <p class="h3 text-center">OR</p>
           </div>
-
           <p
             class="font-small dark-grey-text text-right font-weight-bold d-flex justify-content-center mb-3 pt-2"
           >
             Sign in with:
           </p>
-          <!-- <p class="font-small dark-grey-text text-right font-weight-bold d-flex justify-content-center mb-3 pt-2" onclick="$('.modal').modal('hide')">Sign in with:</p> -->
           <div class="row my-3 d-flex justify-content-center">
             <!--Facebook-->
             <button
@@ -199,15 +199,22 @@
               class="btn btn-white btn-facebook m-3 rounded-circle shadow"
             >
               <i class="fab fa-facebook-f"></i>
+              <!-- Google -->
             </button>
-            <!--Google +-->
             <button
-              [routerLink]="['/oauth/google']"
+              (click)="googleLogin()"
               type="button"
               class="btn btn-white btn-google m-3 rounded-circle shadow"
             >
               <i class="fab fa-google-plus-g"></i>
             </button>
+            <!-- <button
+              [routerLink]="['googleLogin']"
+              type="button"
+              class="btn btn-white btn-google m-3 rounded-circle shadow"
+            >
+              <i class="fab fa-google-plus-g"></i>
+            </button> -->
           </div>
         </form>
       </div>

@@ -1,6 +1,6 @@
 <div id="home-component" class="row p-4">
   <div class="col">
-    <h1 class="text-center">
+    <h1 *ngIf="loggedUser" class="text-center">
       Hello, {{ loggedUser.first_name }} {{ loggedUser.last_name }}
     </h1>
     <div class="row">

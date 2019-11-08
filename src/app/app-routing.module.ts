@@ -6,6 +6,7 @@ import { PageNotFoundComponent } from "./components/page-not-found/page-not-foun
 import { WelcomeComponent } from "./components/welcome/welcome.component";
 import { AccountComponent } from "./components/User_Component/account/account.component";
 import { AuthGuard } from "./auth.guard";
+import { RedirectGuard } from "./redirect.guard";
 import { SliderComponent } from "./components/slider/slider.component";
 import { SignInComponent } from "./components/sign-in/sign-in.component";
 import { PaymentsComponent } from "./components/User_Component/account/payments/payments.component";
@@ -13,13 +14,23 @@ import { PersonalComponent } from "./components/User_Component/account/personal/
 import { SignOutComponent } from "./components/sign-out/sign-out.component";
 import { ProductsComponent } from "./components/Product_Component/products/products.component";
 import { DetailsComponent } from "./components/Product_Component/details/details.component";
+import { CartComponent } from "./components/User_Component/cart/cart.component";
 
 const routes: Routes = [
   { path: "cartify", component: WelcomeComponent },
   { path: "registration", component: RegisterComponent },
   { path: "sign-in", component: SignInComponent },
   {
+    path: "googleLogin",
+    canActivate: [RedirectGuard],
+    component: RedirectGuard,
+    data: {
+      externalUrl: "/auth/google"
+    }
+  },
+  {
     path: "cartify/home",
+    canActivate: [AuthGuard],
     component: HomeComponent
     // children: [
     //   // {path:"user/home/:id", canActivate:[AuthGuard], component:HomeComponent, children:[
@@ -51,6 +62,7 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     component: DetailsComponent
   },
+  { path: "cartify/cart", component: CartComponent },
   { path: "**", pathMatch: "full", component: PageNotFoundComponent }
 ];
 

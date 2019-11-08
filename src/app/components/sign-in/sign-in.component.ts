@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { AuthService } from "./../../auth.service";
 import { UserService } from "./../../user.service";
+import { CartService } from "./../../cart.service";
 import { Router } from "@angular/router";
 
 @Component({
@@ -13,11 +14,15 @@ export class SignInComponent implements OnInit {
   errors: String[] = [];
   currUser: any;
   loggedUser: any;
+  cart: any;
+  cartItems: any;
+  currentCart: any;
 
   constructor(
     private _authService: AuthService,
     private _router: Router,
-    private _userService: UserService
+    private _userService: UserService,
+    private _cartService: CartService
   ) {
     this.oldUser = { email: "", password: "" };
   }
@@ -25,6 +30,9 @@ export class SignInComponent implements OnInit {
   ngOnInit() {
     this._userService.currentUser.subscribe(user => {
       this.loggedUser = user;
+    });
+    this._cartService.currentCart.subscribe(updatedCart => {
+      this.cart = updatedCart;
     });
   }
 
@@ -34,6 +42,10 @@ export class SignInComponent implements OnInit {
       this.currUser = user;
       this._userService.userData(this.currUser);
     });
+
+    if (this._authService.getUser()) {
+      this.getCurrentCart(); //updated totalQty count withou having to add to cart to see change
+    }
   }
 
   login() {
@@ -49,20 +61,25 @@ export class SignInComponent implements OnInit {
         this._userService.userData(user => (this.currUser = user));
 
         // store token
-        const { token, user } = userLogged;
+        const { token, user, cart } = userLogged;
+        this._cartService.cartData(cart);
         this._authService.setUser(user["_id"]);
         this._authService.setToken(token);
+        this.getCurrentCart();
         this.getUserData();
         this._router.navigate(["/cartify/home"]);
-        this.redirectTo("cartify/home");
       }
     });
   }
 
-  redirectTo(url) {
-    this._router
-      .navigateByUrl("/", { skipLocationChange: true })
-      .then(() => this._router.navigate([url]));
+  getCurrentCart() {
+    this._cartService.getCart().subscribe(cartUpdate => {
+      console.log("now the session is in the house");
+      console.log("now sessio", cartUpdate);
+      this.cartItems = cartUpdate["cart"];
+      this.currentCart = cartUpdate["fullCart"];
+      this._cartService.cartData(this.currentCart); //get cartdata to update totalQty
+    });
   }
 
   emptyArray() {

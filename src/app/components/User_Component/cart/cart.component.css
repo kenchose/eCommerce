@@ -1,0 +1,46 @@
+@import url("https://fonts.googleapis.com/css?family=Archivo+Black|Domine:700|Roboto|Roboto+Condensed|Roboto+Slab:700&display=swap");
+h1 {
+  font-family: "Domine", serif;
+}
+
+h5 {
+  font-family: "Roboto Condensed", sans-serif;
+  display: inline;
+  font-weight: 700;
+}
+
+p {
+  font-family: "Roboto", sans-serif;
+}
+
+.product-price {
+  float: right;
+  font-weight: 900;
+  color: red;
+}
+
+.media {
+  position: relative;
+}
+
+.media:last-child {
+  border: none;
+}
+
+.media .media-pic img {
+  height: 190px;
+  width: 200px;
+}
+
+.media .media-pic img:hover {
+  cursor: pointer;
+}
+
+.media small {
+  color: green;
+}
+
+.card {
+  width: 18rem;
+}
+/*# sourceMappingURL=cart.component.css.map */

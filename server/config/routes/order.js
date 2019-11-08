@@ -10,16 +10,17 @@ router.get('/orders', (req, res, next) => {
   order.allOrders(req, res, next);
 });
 
-router.get('/:orderId', (req, res, next) => {
-  order.singleOrder(req, res, next);
-});
-
-router.get('/add-to-cart/:productId', (req, res, next) => {
+router.get('/add-to-cart/:productId', passportJwt, (req, res, next) => {
   order.addToCart(req, res, next);
 });
 
-router.delete('/delete/:orderId', (req, res, next) => {
-  order.deleteOrder(req, res, next);
+router.get('/cart', passportJwt, (req, res, next) => {
+  order.getCart(req, res, next);
+});
+
+
+router.get('/remove-from-cart/:productId', passportJwt, (req, res, next) => {
+  order.removeItem(req, res, next);
 });
 
 module.exports = router;
