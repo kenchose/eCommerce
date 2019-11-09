@@ -4,26 +4,34 @@ module.exports = function Cart(oldCart) {
   this.totalPrice = oldCart.totalPrice || 0;
 
   //add item to existing cart
-  this.add = function (item, id) {
+  this.add = function (item, id, qty) {
+    // change data type of qty string to number
+    let itemQty = Number(qty)
     let storedItem = this.items[id]; //check if object item, by using its id, already exist
     //checks if item has already been added to cart and if not then create new producted added
     if (!storedItem) {
-      storedItem = this.items[id] = {
+      let newItem = this.items[id] = {
         item: item,
-        qty: 0,
+        qty: itemQty,
         price: 0
-      };
+      }
+      newItem.price = newItem.item.price * newItem.qty;
+      this.totalQty += newItem.qty;
+      this.totalPrice += newItem.price;
     }
-    //if item is already added then only need to update new qty and price
-    storedItem.qty++;
-    storedItem.price = storedItem.item.price * storedItem.qty
-    this.totalQty++;
-    this.totalPrice += storedItem.item.price;
+    if (storedItem) {
+      storedItem.price += (storedItem.item.price * itemQty);
+      storedItem.qty += itemQty
+      this.totalQty += itemQty;
+      this.totalPrice += storedItem.price;
+    }
   };
 
-  this.remove = function (id) {
-    this.totalQty -= this.items[id].qty;
-    this.totalPrice -= this.items[id].price;
+  this.remove = function (id, qty) {
+    this.totalQty = this.items[id].qty * qty;
+    this.totalPrice -= this.items[id].price * qty;
+    // this.totalQty -= this.items[id].qty;
+    // this.totalPrice -= this.items[id].price;
     delete this.items[id];
   };
 

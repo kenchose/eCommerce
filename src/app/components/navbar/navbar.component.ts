@@ -39,14 +39,9 @@ export class NavbarComponent implements OnInit {
 
     this._cartService.currentCart.subscribe(updatedCart => {
       //shared data //this is a keeper!!!! cart totalQty updates using this method
-      console.log("updatedCarttttt", updatedCart);
       this.cart = updatedCart;
       console.log("cart navbar component", this.cart);
     });
-
-    if (this._authService.getUser()) {
-      this.getCurrentCart(); //updated totalQty count withou having to add to cart to see change
-    }
   }
 
   login(myData: NgForm) {
@@ -69,12 +64,6 @@ export class NavbarComponent implements OnInit {
         myData.resetForm();
         this._router.navigate(["cartify/home"]);
       }
-    });
-  }
-
-  currCart() {
-    this._cartService.getCart().subscribe(currCart => {
-      console.log("current cart nav", currCart);
     });
   }
 

@@ -14,9 +14,12 @@ p {
 }
 
 .product-price {
-  float: right;
   font-weight: 900;
   color: red;
+}
+
+.close {
+  color: #000;
 }
 
 .media {

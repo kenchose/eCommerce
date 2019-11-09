@@ -38,7 +38,8 @@ module.exports = {
       _id: req.params.productId
     });
     try {
-      cart.add(product, product._id);
+      let qty = req.params.qty;
+      cart.add(product, product._id, qty);
       req.session.cart = cart;
       res.status(200).json({
         cart: cart

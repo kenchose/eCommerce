@@ -31,7 +31,7 @@ import { PersonalComponent } from "./components/User_Component/account/personal/
 import { SignOutComponent } from "./components/sign-out/sign-out.component";
 import { ProductsComponent } from "./components/Product_Component/products/products.component";
 import { DetailsComponent } from "./components/Product_Component/details/details.component";
-import { CartComponent } from "./components/User_Component/cart/cart.component";
+import { CartComponent } from "./components/cart/cart.component";
 export function tokenGetter() {
   return localStorage.getItem("access_token");
 }

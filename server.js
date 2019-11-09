@@ -29,23 +29,23 @@ app.use(
 );
 app.use(express.static(__dirname + "/dist/eCommerce"));
 
-// DB_CONNECTION
-mongoose.connect("mongodb://localhost/eCommerce", {
-  useNewUrlParser: true,
-  useCreateIndex: true,
-  useFindAndModify: false
-});
-mongoose.connection.on("connected", () =>
-  console.log("Successfully connected to mongodb://localhost/eCommerce")
-);
-// mongoose.connect(process.env.DB_CONNECT, {
+// // DB_CONNECTION
+// mongoose.connect("mongodb://localhost/eCommerce", {
 //   useNewUrlParser: true,
 //   useCreateIndex: true,
 //   useFindAndModify: false
 // });
 // mongoose.connection.on("connected", () =>
-//   console.log("Successfully connected to " + process.env.DB_CONNECT)
+//   console.log("Successfully connected to mongodb://localhost/eCommerce")
 // );
+mongoose.connect(process.env.DB_CONNECT, {
+  useNewUrlParser: true,
+  useCreateIndex: true,
+  useFindAndModify: false
+});
+mongoose.connection.on("connected", () =>
+  console.log("Successfully connected to " + process.env.DB_CONNECT)
+);
 mongoose.connection.on("error", error =>
   console.log("Error, cannot connec to DB ===> " + error)
 );
@@ -58,8 +58,6 @@ app.use(
   })
 );
 app.use(morgan("dev"));
-// app.use(passport.initialize());
-// app.use(passport.session());
 
 //ROUTERS
 app.use("/auth", authRouter);

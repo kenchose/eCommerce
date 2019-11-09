@@ -10,7 +10,7 @@ router.get('/orders', (req, res, next) => {
   order.allOrders(req, res, next);
 });
 
-router.get('/add-to-cart/:productId', passportJwt, (req, res, next) => {
+router.get('/add-to-cart/:productId/:qty', passportJwt, (req, res, next) => {
   order.addToCart(req, res, next);
 });
 
