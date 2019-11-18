@@ -9,8 +9,8 @@ export class OrderService {
 
   private serviceUrl = "http://localhost:8000/api/order";
 
-  addToCart(productId: string, qty: number) {
-    return this._http.get(`${this.serviceUrl}/add-to-cart/${productId}/${qty}`);
+  addToCart(productId: string) {
+    return this._http.get(`${this.serviceUrl}/add-to-cart/${productId}`);
   }
 
   removeFromCart(productId: string) {

@@ -14,4 +14,18 @@ p {
 .minus-btn {
   margin-right: 10px;
 }
+
+.fa-check-circle {
+  color: #a1c900;
+}
+
+.img-fluid {
+  max-width: 100%;
+  height: auto;
+}
+
+.btn-checkout:hover {
+  color: #5bc0de !important;
+  background-color: transparent !important;
+}
 /*# sourceMappingURL=details.component.css.map */

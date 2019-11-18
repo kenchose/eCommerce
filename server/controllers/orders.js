@@ -18,12 +18,16 @@ module.exports = {
   },
 
   getCart: (req, res, next) => {
-    const cart = new Cart(req.session.cart);
-    const currCart = cart.generateArray()
-    const fullCart = req.session.cart;
+    let cart = new Cart(req.session.cart ? req.session.cart : {
+      items: {},
+      totalQty: 0,
+      totalPrice: 0
+    });
+    const items = cart.generateArray();
+    req.session.cart = cart;
     res.status(200).json({
-      cart: currCart,
-      fullCart: fullCart
+      cartItems: items,
+      cart: cart
     })
   },
 
@@ -38,11 +42,12 @@ module.exports = {
       _id: req.params.productId
     });
     try {
-      let qty = req.params.qty;
-      cart.add(product, product._id, qty);
+      cart.add(product, product._id);
+      const items = cart.generateArray();
       req.session.cart = cart;
       res.status(200).json({
-        cart: cart
+        cart: cart,
+        cartItems: items,
       })
     } catch (err) {
       res.status(400).json({
@@ -59,7 +64,7 @@ module.exports = {
       req.session.cart = cart;
       res.status(200).json({
         message: 'Successfully removed item',
-        cart: cart
+        removedCart: cart
       })
     } catch (err) {
       res.status(400).json({

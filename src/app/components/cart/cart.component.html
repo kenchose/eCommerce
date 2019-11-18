@@ -1,0 +1,109 @@
+<div class="row">
+  <div *ngIf="cart" class="container">
+    <div class="row mt-5">
+      <div class="col-auto mr-auto">
+        <h1>Shopping cart</h1>
+      </div>
+      <div class="col-auto">
+        <h2>$ {{ cart.totalPrice }}.00</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-auto mr-auto">
+        <h5>{{ cart.totalQty }} item(s)</h5>
+      </div>
+      <div class="col-auto">
+        <h5>Subtotal</h5>
+      </div>
+    </div>
+    <div class="row mt-3">
+      <div class="col-auto">
+        <button
+          [routerLink]="['/cartify/products']"
+          class="btn btn-outline-secondary btn-lg"
+        >
+          Keep shopping
+        </button>
+      </div>
+      <div class="col-auto ml-auto">
+        <button
+          [routerLink]="['/cartify/products']"
+          class="btn btn-info btn-lg"
+        >
+          Proceed to checkout
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row mt-5">
+  <div class="container" *ngIf="cartItems?.length > 0">
+    <div class="row">
+      <div class="col-md-7 col-sm-6">
+        <h4>Product</h4>
+      </div>
+      <div class="col-sm-2">
+        <h4>Quantity</h4>
+      </div>
+      <div class="col-sm-2">
+        <h4>Item price</h4>
+      </div>
+      <div class="col-md-1">
+        <h4>Total</h4>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <ul class="list-unstyled" *ngFor="let cart of cartItems">
+          <li class="media py-4">
+            <div class="col-md-7 col-sm-6">
+              <div class="row">
+                <div class="media-pic img-fluid">
+                  <img
+                    [routerLink]="['/cartify/products/details', cart.item._id]"
+                    src="{{ cart.item.imagePath }}"
+                  />
+                </div>
+                <div class="col-sm-7">
+                  <h5>{{ cart.item.brand }}</h5>
+                  <p>
+                    <a
+                      [routerLink]="[
+                        '/cartify/products/details',
+                        cart.item._id
+                      ]"
+                    >
+                      <h5>
+                        {{ cart.item.name }}
+                      </h5>
+                    </a>
+                  </p>
+                  <p>Description: {{ cart.item.description }}</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-2 pl-5">
+              <h5>{{ cart.qty }}</h5>
+            </div>
+            <div class="col-sm-2 pl-5">
+              <h5>${{ cart.item.price }}</h5>
+            </div>
+            <div class="col-auto">
+              <h5 class="product-price pl-4">${{ cart.price }}</h5>
+            </div>
+            <div class="media-body pl-3">
+              <button
+                (click)="removeItem(cart.item._id)"
+                type="button"
+                class="close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
