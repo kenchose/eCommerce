@@ -25,6 +25,23 @@ module.exports = {
 
   },
 
+  editUser: (req, res, next) => {
+    User.findByIdAndUpdate({
+      _id: req.params.userId
+    }, req.body, (err, user) => {
+      if (err) {
+        res.status(400).json({
+          errorMessage: err
+        });
+      } else {
+        res.status(200).json({
+          message: "Edit successful",
+          user: user
+        })
+      }
+    })
+  },
+
   account: async (req, res, next) => {
     try {
       let id = req.params.id

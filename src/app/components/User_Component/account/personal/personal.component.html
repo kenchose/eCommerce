@@ -1,1 +1,95 @@
-<p>personal works!</p>
+  <div class="row">
+    <div class="col">
+      <div class="alert alert-success" role="alert">
+        User information edit was successfull!
+      </div>
+    </div>
+  </div>
+</ng-container>
+<div class="row pt-5">
+  <div *ngIf="user" class="container">
+    <div class="row">
+      <div class="col-lg-7">
+        <h1 class="mb-4">Your personal details</h1>
+        <h2>About you</h2>
+
+        <p class="form-header">* Required Information</p>
+        <form
+          (ngSubmit)="userEdit()"
+          #formData="ngForm"
+          class="needs-validation"
+          novalidate
+        >
+          <div class="form-group">
+            <div class="row">
+              <div class="col-12">
+                <label for="first_name">First name*</label>
+                <input
+                  type="text"
+                  class="form-control mb-3"
+                  required
+                  name="user.first_name"
+                  [(ngModel)]="user.first_name"
+                  #first_name="ngModel"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="row">
+              <div class="col-12">
+                <label for="last_name">Last name*</label>
+                <input
+                  type="text"
+                  class="form-control mb-3"
+                  required
+                  name="user.last_name"
+                  [(ngModel)]="user.last_name"
+                  #last_name="ngModel"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="row">
+              <div class="col-12">
+                <label for="email"
+                  >Email address* {{ user.local.email | json }}</label
+                >
+                <input
+                  type="email"
+                  class="form-control mb-3"
+                  [class.is-invalid]="email.dirty && email.invalid"
+                  required
+                  pattern="^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$"
+                  name="user.email"
+                  [(ngModel)]="user.local.email"
+                  #email="ngModel"
+                />
+                <div class="invalid-feedback">
+                  Must be a valid email
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <button
+                type="submit"
+                class="btn mt-3"
+                [disabled]="formData.invalid"
+              >
+                Save changes
+              </button>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col" *ngFor="let error of errors">
+              <p class="text-center text-danger">* {{ error }} *</p>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

@@ -15,6 +15,7 @@ import { SignOutComponent } from "./components/sign-out/sign-out.component";
 import { ProductsComponent } from "./components/Product_Component/products/products.component";
 import { DetailsComponent } from "./components/Product_Component/details/details.component";
 import { CartComponent } from "./components/cart/cart.component";
+// import { NewProductComponent } from "./components/Product_Component/new-product/new-product.component";
 
 const routes: Routes = [
   { path: "cartify", component: WelcomeComponent },
@@ -32,10 +33,6 @@ const routes: Routes = [
     path: "cartify/home",
     canActivate: [AuthGuard],
     component: HomeComponent
-    // children: [
-    //   // {path:"user/home/:id", canActivate:[AuthGuard], component:HomeComponent, children:[
-    //   { path: "account", component: AccountComponent }
-    // ]
   },
   {
     path: "cartify/account",
@@ -43,20 +40,23 @@ const routes: Routes = [
     component: AccountComponent,
     children: [
       {
-        path: "personal/:id",
-        canActivate: [AuthGuard],
-        component: PersonalComponent
-      },
-      {
         path: "payments/:id",
         canActivate: [AuthGuard],
         component: PaymentsComponent
       }
     ]
   },
+  {
+    path: "personal/:userId",
+    canActivate: [AuthGuard],
+    component: PersonalComponent
+  },
   { path: "cartify/production", component: SliderComponent },
   { path: "cartify/logoff", component: SignOutComponent },
-  { path: "cartify/products", component: ProductsComponent },
+  {
+    path: "cartify/products",
+    component: ProductsComponent
+  },
   {
     path: "cartify/products/details/:id",
     canActivate: [AuthGuard],

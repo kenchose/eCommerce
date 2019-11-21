@@ -11,21 +11,24 @@ export class UserService {
 
   constructor(private _http: HttpClient) {}
 
-  private serviceUrl = "http://localhost:8000/api/user/";
+  private serviceUrl = "http://localhost:8000/api/user";
 
   userData(user: any) {
     this._userSource.next(user);
   }
 
   currUser(id: string) {
-    return this._http.get(this.serviceUrl + id);
+    return this._http.get(`${this.serviceUrl}/${id}`);
+  }
+
+  editUser(newUserData: any) {
+    return this._http.put(
+      `${this.serviceUrl}/edit/${newUserData._id}`,
+      newUserData
+    );
   }
 
   deleteUser(user: Object) {
-    return this._http.post(this.serviceUrl + "delete", user);
-  }
-
-  userAccount(id) {
-    return this._http.get(this.serviceUrl + "account/" + id);
+    return this._http.post(`${this.serviceUrl}/delete`, user);
   }
 }
