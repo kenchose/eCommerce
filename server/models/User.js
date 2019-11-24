@@ -54,6 +54,29 @@ const UserSchema = new Schema({
       type: String,
       lowercase: true
     }
+  },
+  address: {
+    street1: {
+      type: String,
+      default: ''
+    },
+    street2: {
+      type: String,
+      default: ''
+    },
+    city: {
+      type: String,
+      default: ''
+    },
+    state: {
+      type: String,
+      uppercase: true,
+      default: ''
+    },
+    zip: {
+      type: Number,
+      default: ''
+    }
   }
 }, {
   timestamps: true

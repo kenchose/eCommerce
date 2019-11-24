@@ -23,6 +23,7 @@ module.exports = {
       last_name,
       email,
       password,
+      address
     } = req.body;
 
     //CHECK IF USER ALREADY EXIST
@@ -42,7 +43,8 @@ module.exports = {
         password
       },
       first_name,
-      last_name
+      last_name,
+      address
     });
 
     try {

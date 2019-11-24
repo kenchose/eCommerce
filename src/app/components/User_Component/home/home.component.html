@@ -57,10 +57,10 @@
           <div class="card-header">
             <h5>Account information</h5>
           </div>
-          <div class="card-body">
+          <div class="card-body" *ngIf="loggedUser">
             <ul class="col-12 account-info">
               <li>
-                <a [routerLink]="['/cartify/account/personal/:id']"
+                <a [routerLink]="['/personal', loggedUser._id]"
                   >Personal details</a
                 >
               </li>

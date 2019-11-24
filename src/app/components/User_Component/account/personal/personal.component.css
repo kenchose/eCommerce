@@ -1,5 +1,4 @@
 @import url("https://fonts.googleapis.com/css?family=Archivo|Domine:700|Roboto|Roboto+Condensed|Roboto+Slab:700&display=swap");
-
 h1 {
   font-family: "Domine", serif;
   font-size: 40px;
@@ -26,4 +25,12 @@ button {
   color: #ffff;
 }
 
+.alert {
+  margin: 0 -15px;
+}
+
+.btn-close {
+  background-color: #D4EDDA;
+  color: #000;
+}
 /*# sourceMappingURL=personal.component.css.map */
