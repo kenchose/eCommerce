@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
 import { AuthService } from "./../../auth.service";
 import { CartService } from "./../../cart.service";
-import { Router, ActivatedRoute, Params, NavigationEnd } from "@angular/router";
+import { Router, NavigationEnd } from "@angular/router";
 import { UserService } from "./../../user.service";
 import { NgForm } from "@angular/forms";
 
@@ -16,31 +16,34 @@ export class NavbarComponent implements OnInit {
   oldUser: any;
   currentUser: any;
   errors: String[] = [];
-  loggedUser: any;
+  loggedUser: object;
   cart: any;
-  currentCart: any;
   cartItems: any;
 
   constructor(
     private _authService: AuthService,
     private _userService: UserService,
     private _cartService: CartService,
-    private _router: Router,
-    private _route: ActivatedRoute
+    private _router: Router
   ) {
     this.oldUser = { email: "", password: "" };
   }
 
   ngOnInit() {
+    if (this._authService.loggedIn()) {
+      //added for errors; no more 401
+      this.getUserData();
+      this.getCurrentCart();
+    }
     this._userService.currentUser.subscribe(user => {
+      //shared user data
       this.loggedUser = user;
-      console.log("loggedUser", this.loggedUser);
+      console.log("this new loggeduser", this.loggedUser);
     });
-
     this._cartService.currentCart.subscribe(updatedCart => {
-      //shared data //this is a keeper!!!! cart totalQty updates using this method
-      this.cart = updatedCart;
-      console.log("cart navbar component", this.cart);
+      //shared data
+      this.cartItems = updatedCart["cartItems"];
+      this.cart = updatedCart["cart"];
     });
   }
 
@@ -55,10 +58,11 @@ export class NavbarComponent implements OnInit {
         }
       } else {
         // store token and userID in localStorage
-        const { token, user, cart } = userLogged;
-        console.log("full cart", cart);
+        const { token, user } = userLogged;
         this._authService.setToken(token);
         this._authService.setUser(user["_id"]);
+        this._authService.setTimeoutStorage();
+        this.getUserData();
         this.getCurrentCart();
         document.getElementById("closeModal").click();
         myData.resetForm();
@@ -69,10 +73,9 @@ export class NavbarComponent implements OnInit {
 
   getCurrentCart() {
     this._cartService.getCart().subscribe(cartUpdate => {
-      console.log("session cart", cartUpdate);
-      this.cartItems = cartUpdate["cart"];
-      this.currentCart = cartUpdate["fullCart"];
-      this._cartService.cartData(this.currentCart); //get cartdata to update totalQty
+      this.cartItems = cartUpdate["cartItems"];
+      this.cart = cartUpdate["cart"];
+      this._cartService.cartData(cartUpdate); //get cartdata to update totalQty
     });
   }
 
@@ -87,4 +90,10 @@ export class NavbarComponent implements OnInit {
   googleLogin() {
     this._authService.google().subscribe(user => console.log(user));
   }
+
+  // userAccount(userId) {
+  //   this._userService.userAccount(userId).subscribe(user => {
+  //     console.log(user);
+  //   });
+  // }
 }

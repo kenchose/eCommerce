@@ -27,7 +27,7 @@
         >
           <div class="form-row">
             <div class="form-group col-md-6">
-              <label for="first_name">First name*</label>
+              <label for="first_name" class="asterisk-label">First name</label>
               <input
                 type="text"
                 class="form-control mb-3"
@@ -38,7 +38,7 @@
               />
             </div>
             <div class="form-group col-md-6">
-              <label for="last_name">Last name*</label>
+              <label for="last_name" class="asterisk-label">Last name</label>
               <input
                 type="text"
                 class="form-control mb-3"
@@ -51,7 +51,9 @@
           </div>
           <div class="form-row">
             <div class="form-group col">
-              <label for="address_line_1">Address line 1*</label>
+              <label for="address_line_1" class="asterisk-label"
+                >Address line 1</label
+              >
               <input
                 type="text"
                 class="form-control mb-3"
@@ -77,7 +79,7 @@
           </div>
           <div class="form-row">
             <div class="form-group col-sm-4">
-              <label for="city">City*</label>
+              <label for="city" class="asterisk-label">City</label>
               <input
                 type="text"
                 class="form-control mb-3"
@@ -88,7 +90,7 @@
               />
             </div>
             <div class="form-group col-sm-4">
-              <label for="state">State*</label>
+              <label for="state" class="asterisk-label">State</label>
               <select
                 class="form-control"
                 id="state"
@@ -151,7 +153,7 @@
               </select>
             </div>
             <div class="form-group col-sm-4">
-              <label for="zip">Zip code*</label>
+              <label for="zip" class="asterisk-label">Zip code</label>
               <input
                 type="text"
                 class="form-control"
@@ -168,7 +170,7 @@
           </div>
           <div class="form-row">
             <div class="form-group col">
-              <label for="email">Email address*</label>
+              <label for="email" class="asterisk-label">Email address</label>
               <input
                 type="email"
                 class="form-control mb-3"
@@ -185,17 +187,22 @@
             </div>
           </div>
           <div class="row">
-            <div class="col">
+            <div class="col-md-2">
               <button type="submit" class="btn" [disabled]="formData.invalid">
                 Save changes
               </button>
             </div>
+            <div class="col-md-2">
+              <button type="text" class="btn" [routerLink]="['/cartify/home']">
+                Cancel
+              </button>
+            </div>
           </div>
-          <div class="row">
+          <!-- <div class="row">
             <div class="col" *ngFor="let error of errors">
               <p class="text-center text-danger">* {{ error }} *</p>
             </div>
-          </div>
+          </div> -->
         </form>
       </div>
     </div>

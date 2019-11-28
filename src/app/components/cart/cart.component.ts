@@ -23,7 +23,6 @@ export class CartComponent implements OnInit {
 
   ngOnInit() {
     this.getCurrentCart();
-
     this._cartService.currentCart.subscribe(updatedCart => {
       //shared data
       this.cartItems = updatedCart["cartItems"];

@@ -8,18 +8,33 @@ import { Router } from "@angular/router";
 export class AuthService {
   constructor(private _http: HttpClient, private _router: Router) {}
 
-  private serviceUrl = "http://localhost:8000/auth/";
+  private serviceUrl = "http://localhost:8000/auth";
 
   registerUser(user: Object) {
-    return this._http.post<any>(this.serviceUrl + "register", user);
+    return this._http.post<any>(`${this.serviceUrl}/register`, user);
   }
 
   userLogin(user: Object) {
-    return this._http.post<any>(this.serviceUrl + "login", user);
+    return this._http.post<any>(`${this.serviceUrl}/login`, user);
+  }
+
+  google() {
+    return this._http.get(`${this.serviceUrl}/google`);
   }
 
   setToken(token: string) {
     localStorage.setItem("token", token);
+  }
+
+  setUser(userId: string) {
+    localStorage.setItem("userId", userId);
+  }
+
+  setTimeoutStorage() {
+    setTimeout(() => {
+      localStorage.clear();
+      this._router.navigate(["/cartify"]);
+    }, 60 * 60 * 1000); //60 mins
   }
 
   loggedIn() {

@@ -25,11 +25,8 @@
           Keep shopping
         </button>
       </div>
-      <div class="col-auto ml-auto">
-        <button
-          [routerLink]="['/cartify/products']"
-          class="btn btn-info btn-lg"
-        >
+      <div *ngIf="cart.totalQty > 0" class="col-auto ml-auto">
+        <button [routerLink]="['/checkout']" class="btn btn-info btn-lg">
           Proceed to checkout
         </button>
       </div>

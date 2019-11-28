@@ -15,6 +15,10 @@ router.put('/user/edit/:userId', passportJwt, (req, res, next) => {
   user.editUser(req, res, next);
 });
 
+// router.get("/account/:id", passportJwt, (req, res, next) => {
+//   user.account(req, res, next);
+// });
+
 router.post('/delete/:id', passportJwt, (req, res, next) => {
   user.deleteUser(req, res, next);
 });

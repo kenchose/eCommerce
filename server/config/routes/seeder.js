@@ -3,7 +3,7 @@ const faker = require('faker');
 const Product = require('./../../models/Product');
 
 router.get('/', function (req, res, next) {
-  const categories = ["Outdoor Gear", "Men", "Womaen", "Shoes", "Kids", "Sportswear", "Tops", "Bottoms", "Accessories"];
+  const categories = ["outdoorgear", "mens", "womens", "shoes", "kids", "sportswear", "tops", "bottoms", "accessories"];
   const brands = ["Nike", "Adidas", "H&M", "Patagonia", "LA Sportiva", "Gucci"];
   for (let i = 0; i < 100; i++) {
     let product = new Product({

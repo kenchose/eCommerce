@@ -30,10 +30,35 @@
             Collections
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="#">Men</a>
-            <a class="dropdown-item" href="#">Women</a>
+            <a [routerLink]="['products', 'mens']" class="dropdown-item">Men</a>
+            <a [routerLink]="['products', 'womens']" class="dropdown-item"
+              >Women</a
+            >
+            <a [routerLink]="['products', 'kids']" class="dropdown-item"
+              >Kids</a
+            >
+            <a [routerLink]="['products', 'outdoorgear']" class="dropdown-item"
+              >Outdoor Gear</a
+            >
+            <a [routerLink]="['products', 'sportswear']" class="dropdown-item"
+              >Sportswear</a
+            >
+            <a [routerLink]="['products', 'tops']" class="dropdown-item"
+              >Tops</a
+            >
+            <a [routerLink]="['products', 'bottoms']" class="dropdown-item"
+              >Bottoms</a
+            >
+            <a [routerLink]="['products', 'shoes']" class="dropdown-item"
+              >Shoes</a
+            >
+            <a [routerLink]="['products', 'accessories']" class="dropdown-item"
+              >Accessories</a
+            >
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">On sale</a>
+            <a [routerLink]="['products/sale']" class="dropdown-item"
+              >On sale</a
+            >
           </div>
         </li>
         <li class="nav-item">
@@ -81,13 +106,13 @@
             ></a>
             <div class="dropdown-menu" aria-labelledby="rightDropdown">
               <button
-                [routerLink]="['personal', loggedUser._id]"
+                [routerLink]="['personal', loggedUser?._id]"
                 class="dropdown-item"
               >
                 Account
               </button>
               <a
-                [routerLink]="['cartify']"
+                [routerLink]="['/cart']"
                 class="dropdown-item"
                 (click)="_authService.logoutUser()"
                 >Logout</a

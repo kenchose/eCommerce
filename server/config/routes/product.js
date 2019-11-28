@@ -10,12 +10,16 @@ const passportJwt = passport.authenticate('jwt', {
   session: false
 })
 
-router.post('/create', validateBody(schemas.productSchema), passportJwt, (req, res, next) => {
-  product.create(req, res, next);
-});
+// router.post('/create', validateBody(schemas.productSchema), passportJwt, (req, res, next) => {
+//   product.create(req, res, next);
+// });
 
 router.get('/products', (req, res, next) => {
   product.getAll(req, res, next);
+});
+
+router.get('/category/:category', (req, res, next) => {
+  product.getCategory(req, res, next);
 });
 
 router.get('/:id', (req, res, next) => {

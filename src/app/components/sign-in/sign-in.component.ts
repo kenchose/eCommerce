@@ -14,9 +14,7 @@ export class SignInComponent implements OnInit {
   errors: String[] = [];
   currUser: any;
   loggedUser: any;
-  cart: any;
-  cartItems: any;
-  currentCart: any;
+  sharedCart: any;
 
   constructor(
     private _authService: AuthService,
@@ -31,8 +29,10 @@ export class SignInComponent implements OnInit {
     this._userService.currentUser.subscribe(user => {
       this.loggedUser = user;
     });
+
     this._cartService.currentCart.subscribe(updatedCart => {
-      this.cart = updatedCart;
+      //shared data
+      this.sharedCart = updatedCart;
     });
   }
 
@@ -42,10 +42,6 @@ export class SignInComponent implements OnInit {
       this.currUser = user;
       this._userService.userData(this.currUser);
     });
-
-    if (this._authService.getUser()) {
-      this.getCurrentCart(); //updated totalQty count withou having to add to cart to see change
-    }
   }
 
   login() {
@@ -61,10 +57,10 @@ export class SignInComponent implements OnInit {
         this._userService.userData(user => (this.currUser = user));
 
         // store token
-        const { token, user, cart } = userLogged;
-        this._cartService.cartData(cart);
+        const { token, user } = userLogged;
         this._authService.setUser(user["_id"]);
         this._authService.setToken(token);
+        this._authService.setTimeoutStorage();
         this.getCurrentCart();
         this.getUserData();
         this._router.navigate(["/cartify/home"]);
@@ -74,11 +70,7 @@ export class SignInComponent implements OnInit {
 
   getCurrentCart() {
     this._cartService.getCart().subscribe(cartUpdate => {
-      console.log("now the session is in the house");
-      console.log("now sessio", cartUpdate);
-      this.cartItems = cartUpdate["cart"];
-      this.currentCart = cartUpdate["fullCart"];
-      this._cartService.cartData(this.currentCart); //get cartdata to update totalQty
+      this._cartService.cartData(cartUpdate); //get cartdata to update totalQty
     });
   }
 
