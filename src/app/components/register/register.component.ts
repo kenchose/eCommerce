@@ -12,7 +12,6 @@ export class RegisterComponent implements OnInit {
   currUser: Object;
   newUser: Object;
   errors: String[] = [];
-  cart: any;
   constructor(
     private _authService: AuthService,
     private _cartService: CartService,
@@ -21,11 +20,7 @@ export class RegisterComponent implements OnInit {
     this.newUser = { first_name: "", last_name: "", email: "", password: "" };
   }
 
-  ngOnInit() {
-    this._cartService.currentCart.subscribe(updatedCart => {
-      this.cart = updatedCart;
-    });
-  }
+  ngOnInit() {}
 
   register() {
     this._authService.registerUser(this.newUser).subscribe(newUser => {
@@ -41,6 +36,7 @@ export class RegisterComponent implements OnInit {
         //store token and userID in localStorage
         this._authService.setToken(token);
         this._authService.setUser(user["_id"]);
+        this.getCurrentCart();
         this._router.navigate(["/cartify/home"]);
       }
     });
@@ -52,5 +48,11 @@ export class RegisterComponent implements OnInit {
 
   emptyArray() {
     this.errors.length = 0;
+  }
+
+  getCurrentCart() {
+    this._cartService.getCart().subscribe(cartUpdate => {
+      this._cartService.cartData(cartUpdate); //get cartdata to update totalQty
+    });
   }
 }
