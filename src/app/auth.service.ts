@@ -32,7 +32,8 @@ export class AuthService {
 
   setTimeoutStorage() {
     setTimeout(() => {
-      localStorage.clear();
+      localStorage.removeItem("token");
+      localStorage.removeItem("userId");
       this._router.navigate(["/cartify"]);
     }, 60 * 60 * 1000); //60 mins
   }
