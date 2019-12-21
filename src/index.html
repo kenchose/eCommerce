@@ -7,11 +7,16 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/x-icon" href="favicon.png" />
-    <script src="https://checkout.stripe.com/checkout.js"></script>
-    <script type="text/javascript" src="https://js.stripe.com/v3/"></script>
-    <script type="text/javascript">
+    <script src="https://checkout.stripe.com/checkout.js" defer></script>
+    <!-- <script src="https://checkout.stripe.com/checkout.js"></script> -->
+    <script src="https://js.stripe.com/v3/"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css"
+    />
+    <!-- <script type="text/javascript"> Used for Custom stripe forms
       Stripe.setPublishableKey("pk_test_oi0sKPJYLGjdvOXOM8tE8cMa");
-    </script>
+    </script>  https://blog.mgechev.com/2016/07/05/using-stripe-payment-with-angular-2/-->
   </head>
   <body>
     <app-root></app-root>

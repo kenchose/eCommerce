@@ -50,14 +50,6 @@ button:hover {
   color: #000;
 }
 
-.modal-title {
-  margin: 0 auto;
-}
-
-.modal-header .close {
-  margin-left: 0 !important;
-}
-
 #close-btn {
   background-color: transparent !important;
 }
@@ -78,4 +70,4 @@ button:hover {
   background-color: transparent !important;
   color: #000;
 }
-/*# sourceMappingURL=checkout.component.css.map */
+/*# sourceMappingURL=custom-form.component.css.map */

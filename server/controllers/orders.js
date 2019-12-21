@@ -1,9 +1,72 @@
 const mongoose = require('mongoose');
+const dotenv = require('dotenv').config();
+const stripePubKey = process.env.STRIPE_PUBLISHABLE_KEY;
+const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
 const Order = require('./../models/Order');
 const Cart = require('./../models/Cart');
 const Product = require('./../models/Product');
+const stripe = require("stripe")(stripeSecretKey);
+
+
 
 module.exports = {
+
+  charge: async (req, res, next) => {
+    const {
+      stripeToken,
+      user,
+      email,
+      order,
+    } = req.body
+    let totalAmount = Number(req.body.totalPayment) * 100
+    try {
+      const customer = await stripe.customers.create({
+        email,
+        source: stripeToken,
+        shipping: {
+          name: `${user.first_name} ${user.last_name}`,
+          address: {
+            line1: user.address['street1'],
+            line2: user.address['street2'],
+            city: user.address['city'],
+            state: user.address['state'],
+            country: 'USA',
+            postal_code: user.address['zip']
+          }
+        }
+      })
+      if (customer) {
+        const amount = parseFloat(totalAmount.toFixed(0))
+        const charge = await stripe.charges.create({
+          amount: amount,
+          currency: 'usd',
+          description: `Charge for ${customer.email}`,
+          customer: customer.id
+        })
+        if (charge) {
+          req.session.cart = null;
+          res.status(200).json({
+            message: 'Successful purchase',
+            charge: charge,
+            order: order,
+          })
+        }
+      }
+    } catch (err) {
+      res.status(500).send(err)
+    }
+  },
+
+  checkout: async (req, res, next) => {
+    try {
+      res.json({
+        stripePubKey: stripePubKey,
+        stripeSecretkey: stripeSecretKey
+      })
+    } catch (err) {
+      res.status(400).send(err)
+    }
+  },
 
   allOrders: async (req, res, next) => {
     const order = await Order.find({})

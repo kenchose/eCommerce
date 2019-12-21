@@ -78,24 +78,6 @@ button {
   color: #000;
 }
 
-.modal-title {
-  margin: 0 auto;
-}
-
-.modal-header {
-  .close {
-    margin-left: 0 !important;
-  }
-}
-
-#close-btn {
-  background-color: transparent !important;
-}
-
-#close-icon {
-  color: #000;
-}
-
 #card-header-summary {
   border-bottom: 1px solid #426c90;
 }
@@ -104,9 +86,29 @@ button {
   border-top: 1px solid #426c90;
 }
 
-#close-btn {
-  background-color: transparent !important;
-  color: #000;
+
+.media {
+  position: relative;
+
+  &:last-child {
+    border: none;
+  }
+
+
+  .media-pic {
+    img {
+      height: 190px;
+      width: 200px;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+
+  small {
+    color: green;
+  }
 }
 
 // xs = Extra small <576px

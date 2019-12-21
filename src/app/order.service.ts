@@ -20,4 +20,12 @@ export class OrderService {
   currentCart() {
     return this._http.get(`${this.serviceUrl}/cart`);
   }
+
+  stripeCharge(tokenInfo) {
+    return this._http.post(`${this.serviceUrl}/charge`, tokenInfo);
+  }
+
+  stripGetKeys() {
+    return this._http.get(`${this.serviceUrl}/checkout`);
+  }
 }

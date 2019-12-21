@@ -78,16 +78,6 @@ button {
   color: #000;
 }
 
-.modal-title {
-  margin: 0 auto;
-}
-
-.modal-header {
-  .close {
-    margin-left: 0 !important;
-  }
-}
-
 #close-btn {
   background-color: transparent !important;
 }
@@ -108,24 +98,3 @@ button {
   background-color: transparent !important;
   color: #000;
 }
-
-// xs = Extra small <576px
-// Max container width None (auto)
-
-// sm = Small ≥576px
-// Max container width 540px
-
-// md = Medium ≥768px
-// Max container width 720px
-
-// lg = Large ≥992px
-// Max container width 960px
-
-// xl = Extra large ≥1200px
-// Max container width 1140px
-
-
-// .col-sm for larger mobile phones (devices with resolutions ≥ 576px);
-// .col-md for tablets (≥768px);
-// .col-lg for laptops (≥992px);
-// .col-xl for desktops (≥1200px)
