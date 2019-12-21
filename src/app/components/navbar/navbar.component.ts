@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
 import { AuthService } from "./../../auth.service";
 import { CartService } from "./../../cart.service";
-import { Router, NavigationEnd } from "@angular/router";
+import { Router } from "@angular/router";
 import { UserService } from "./../../user.service";
 import { NgForm } from "@angular/forms";
 
@@ -11,7 +11,7 @@ import { NgForm } from "@angular/forms";
   styleUrls: ["./navbar.component.scss"]
 })
 export class NavbarComponent implements OnInit {
-  @ViewChild("formData", { static: false })
+  // @ViewChild("formData", { static: false })
   formData: NgForm;
   oldUser: any;
   currentUser: any;
@@ -62,7 +62,6 @@ export class NavbarComponent implements OnInit {
         this._authService.setToken(token);
         this._authService.setUser(user["_id"]);
         this._authService.setTimeoutStorage();
-        this.getUserData();
         this.getCurrentCart();
         document.getElementById("closeModal").click();
         myData.resetForm();
@@ -82,7 +81,7 @@ export class NavbarComponent implements OnInit {
   getUserData() {
     const id = this._authService.getUser();
     this._userService.currUser(id).subscribe(user => {
-      this.currentUser = user;
+      this.currentUser = user["user"];
       this._userService.userData(this.currentUser);
     });
   }
@@ -90,10 +89,4 @@ export class NavbarComponent implements OnInit {
   googleLogin() {
     this._authService.google().subscribe(user => console.log(user));
   }
-
-  // userAccount(userId) {
-  //   this._userService.userAccount(userId).subscribe(user => {
-  //     console.log(user);
-  //   });
-  // }
 }
