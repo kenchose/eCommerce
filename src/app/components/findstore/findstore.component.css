@@ -20,4 +20,9 @@ h5 {
 p {
   font-family: "Roboto", sans-serif;
 }
+
+#maps {
+  height: 400px;
+  width: 100%;
+}
 /*# sourceMappingURL=findstore.component.css.map */
