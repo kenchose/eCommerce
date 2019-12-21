@@ -3,7 +3,6 @@ import { ProductService } from "./../../../product.service";
 import { CartService } from "./../../../cart.service";
 import { AuthService } from "./../../../auth.service";
 import { UserService } from "./../../../user.service";
-import { Router, ActivatedRoute, Params } from "@angular/router";
 
 @Component({
   selector: "app-products",
@@ -15,46 +14,38 @@ export class ProductsComponent implements OnInit {
 
   cart: any;
   products: object[] = [];
-  newProduct: any;
   loggedUser: any;
   product: object;
   addProduct: any;
   cartItems: any;
-  categoryProduct: string;
   up: any;
+  capp: any;
 
   constructor(
     private _productService: ProductService,
     private _authService: AuthService,
     private _userService: UserService,
-    private _cartService: CartService,
-    private _router: Router,
-    private _route: ActivatedRoute
-  ) {
-    this.newProduct = {
-      imagePath: "",
-      name: "",
-      price: "",
-      description: "",
-      category: ""
-    };
-  }
+    private _cartService: CartService
+  ) {}
 
   ngOnInit() {
-    this.getUserData();
+    if (this._authService.loggedIn()) {
+      this.getUserData();
 
-    this.getCurrentCart();
+      this.getCurrentCart();
 
-    this._cartService.currentCart.subscribe(updatedCart => {
-      //shared data
-      this.cart = updatedCart["cart"];
-      this.cartItems = updatedCart["cartItems"];
-      console.log("caritems", this.cartItems);
-    });
+      this._cartService.currentCart.subscribe(updatedCart => {
+        // Shared cart data
+        this.cart = updatedCart["cart"];
+        this.cartItems = updatedCart["cartItems"];
+        console.log("caritems", this.cartItems);
+      });
 
-    this._userService.currentUser.subscribe(user => {
-      this.loggedUser = user;
-    });
+      this._userService.currentUser.subscribe(user => {
+        // Shared user data
+        this.loggedUser = user;
+      });
+    }
 
     this._productService.allProducts().subscribe(product => {
       this.products = product["products"];
@@ -78,10 +69,4 @@ export class ProductsComponent implements OnInit {
   currUserData(currentUser) {
     this._userService.userData(currentUser);
   }
-
-  // createProduct() {
-  //   this._productService.createProduct(this.newProduct).subscribe(newUser => {
-  //     console.log("new user craeted", newUser);
-  //   });
-  // }
 }

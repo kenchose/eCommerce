@@ -38,6 +38,10 @@ p small {
   margin-left: 15px;
 }
 
+#category {
+  text-transform: capitalize;
+}
+
 ::ng-deep .ngx-pagination {
   -ms-flex-line-pack: center !important;
       align-content: center !important;

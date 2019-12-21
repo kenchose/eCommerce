@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { UserService } from "./../../user.service";
 import { AuthService } from "./../../auth.service";
 
 @Component({
@@ -7,7 +8,18 @@ import { AuthService } from "./../../auth.service";
   styleUrls: ["./footer.component.scss"]
 })
 export class FooterComponent implements OnInit {
-  constructor(private _authService: AuthService) {}
+  constructor(
+    private _userService: UserService,
+    public _authService: AuthService
+  ) {}
 
-  ngOnInit() {}
+  loggedUser: object;
+
+  ngOnInit() {
+    if (this._authService.loggedIn()) {
+      this._userService.currentUser.subscribe(user => {
+        this.loggedUser = user;
+      });
+    }
+  }
 }

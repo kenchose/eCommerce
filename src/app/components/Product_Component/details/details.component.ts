@@ -11,8 +11,8 @@ import { CartService } from "./../../../cart.service";
 })
 export class DetailsComponent implements OnInit {
   oneProduct: any;
-  cart: any;
-  cartItems: any;
+  cart: object;
+  cartItems: object;
   fullCart: boolean = false;
 
   constructor(
@@ -23,11 +23,10 @@ export class DetailsComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    //this._route.parent.params.subscribe(params = console.log(`This parant params ${params})) NOTE THE .PARENT
     this._route.params.subscribe((params: Params) => {
-      console.log("params", params);
       this._productService.oneProduct(params["id"]).subscribe(product => {
         this.oneProduct = product["product"];
-        console.log("oneProduct", this.oneProduct);
       });
 
       this._cartService.currentCart.subscribe(updatedCart => {
@@ -56,12 +55,4 @@ export class DetailsComponent implements OnInit {
       this._cartService.cartData(cartUpdate); //get cartdata to update
     });
   }
-
-  // getUserData() {
-  //   const id = this._authService.getUser();
-  //   this._userService.currUser(id).subscribe(user => {
-  //     this.currentUser = user;
-  //     this._userService.userData(this.currentUser);
-  //   });
-  // }
 }

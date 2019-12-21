@@ -1,43 +1,53 @@
-<div class="row">
-  <div class="col-5 mt-4">
-    <input
-      class="form-control search-bar"
-      type="text"
-      name="search"
-      [(ngModel)]="filter"
-    />
-    <span class="search-icon"><i class="fas fa-search"></i></span>
+<div *ngIf="_route.children.length === 0">
+  <div class="row">
+    <div class="col-md-5 mt-4">
+      <input
+        class="form-control search-bar"
+        type="text"
+        name="search"
+        placeholder="Search..."
+        [(ngModel)]="filter"
+      />
+      <span class="search-icon"><i class="fas fa-search"></i></span>
+    </div>
   </div>
-</div>
-<div class="row">
-  <div
-    class="card-deck col-md-3"
-    *ngFor="
-      let product of products
-        | filter: filter
-        | paginate: { itemsPerPage: 20, currentPage: p }
-    "
-  >
-    <div class="card my-5">
-      <a [routerLink]="['details', product._id]"
-        ><img src="{{ product.imagePath }}" class="card-img-top"
-      /></a>
-      <div class="card-body d-flex flex-column">
-        <h5 class="card-title">{{ product.name }}</h5>
-        <p class="card-text">
-          {{ product.description }}
-        </p>
-        <p><small>In Stock</small></p>
-        <p class="product-price my-auto">${{ product.price }}</p>
+  <div class="row">
+    <div
+      class="card-deck col-md-3"
+      *ngFor="
+        let product of products
+          | filter: filter
+          | paginate: { itemsPerPage: 20, currentPage: p }
+      "
+    >
+      <div [routerLink]="['details', product._id]" class="card my-5">
+        <a [routerLink]="['details', product._id]"
+          ><img
+            src="{{ product.imagePath }}"
+            class="card-img-top"
+            alt="Image not found"
+            onerror="this.onerror=null; this.src='./../../../../assets/img/no_exisint_image.png'"
+        /></a>
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">{{ product.name }}</h5>
+          <p id="category" class="card-text">{{ product.category }}</p>
+          <p class="card-text">
+            {{ product.description }}
+          </p>
+          <p><small>In Stock</small></p>
+          <p class="product-price my-auto">${{ product.price }}</p>
+        </div>
       </div>
     </div>
   </div>
-</div>
-<div class="row align-items-center">
-  <div class="col d-flex justify-content-center">
-    <pagination-controls
-      (pageChange)="p = $event"
-      responsive="true"
-    ></pagination-controls>
+  <div class="row align-items-center">
+    <div class="col d-flex justify-content-center">
+      <pagination-controls
+        (pageChange)="p = $event"
+        responsive="true"
+      ></pagination-controls>
+    </div>
   </div>
 </div>
+
+<router-outlet></router-outlet>

@@ -53,13 +53,15 @@
     <div class="row">
       <div class="col">
         <ul class="list-unstyled" *ngFor="let cart of cartItems">
-          <li class="media py-4">
+          <li class="media py-4" data-item-id="cart.item._id">
             <div class="col-md-7 col-sm-6">
               <div class="row">
                 <div class="media-pic img-fluid">
                   <img
                     [routerLink]="['/cartify/products/details', cart.item._id]"
                     src="{{ cart.item.imagePath }}"
+                    alt="Image not found"
+                    onerror="this.onerror=null; this.src='./../../../assets/img/no_exisint_image.png'"
                   />
                 </div>
                 <div class="col-sm-7">
@@ -104,3 +106,6 @@
     </div>
   </div>
 </div>
+<!-- <router-outlet>
+  <app-custom-form></app-custom-form>
+</router-outlet> -->

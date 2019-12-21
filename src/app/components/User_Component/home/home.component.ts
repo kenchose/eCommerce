@@ -2,7 +2,6 @@ import { Component, OnInit } from "@angular/core";
 import { UserService } from "../../../user.service";
 import { AuthService } from "../../../auth.service";
 import { CartService } from "./../../../cart.service";
-// import { HttpHeaders } from "@angular/common/http";
 
 @Component({
   selector: "app-home",

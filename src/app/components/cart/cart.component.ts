@@ -1,6 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { OrderService } from "../../order.service";
 import { CartService } from "../../cart.service";
+import { UserService } from "./../../user.service";
+import { AuthService } from "./../../auth.service";
 import { NumberValueAccessor } from "@angular/forms";
 
 @Component({
@@ -9,6 +11,7 @@ import { NumberValueAccessor } from "@angular/forms";
   styleUrls: ["./cart.component.scss"]
 })
 export class CartComponent implements OnInit {
+  loggedUser: any;
   cart: any;
   tax: any;
   qty: number;
@@ -18,10 +21,16 @@ export class CartComponent implements OnInit {
 
   constructor(
     private _orderService: OrderService,
-    private _cartService: CartService
+    private _cartService: CartService,
+    private _userService: UserService,
+    private _authService: AuthService
   ) {}
 
   ngOnInit() {
+    this.getUserData();
+    this._userService.currentUser.subscribe(user => {
+      this.loggedUser = user;
+    });
     this.getCurrentCart();
     this._cartService.currentCart.subscribe(updatedCart => {
       //shared data
@@ -45,6 +54,14 @@ export class CartComponent implements OnInit {
   getCurrentCart() {
     this._cartService.getCart().subscribe(cartUpdate => {
       this._cartService.cartData(cartUpdate); //get cartdata to update totalQty
+    });
+  }
+
+  getUserData() {
+    const id = this._authService.getUser();
+    this._userService.currUser(id).subscribe(user => {
+      this.loggedUser = user["user"];
+      this._userService.userData(this.loggedUser);
     });
   }
 }

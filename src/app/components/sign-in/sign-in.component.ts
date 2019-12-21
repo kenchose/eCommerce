@@ -12,7 +12,7 @@ import { Router } from "@angular/router";
 export class SignInComponent implements OnInit {
   oldUser: any;
   errors: String[] = [];
-  currUser: any;
+  currUser: object;
   loggedUser: any;
   sharedCart: any;
 
@@ -56,7 +56,7 @@ export class SignInComponent implements OnInit {
       } else {
         this._userService.userData(user => (this.currUser = user));
 
-        // store token
+        // store token and userID in localStorage
         const { token, user } = userLogged;
         this._authService.setUser(user["_id"]);
         this._authService.setToken(token);

@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { UserService } from "./../../../user.service";
+import { ActivatedRoute, Params } from "@angular/router";
 
 @Component({
   selector: "app-account",
@@ -7,15 +8,32 @@ import { UserService } from "./../../../user.service";
   styleUrls: ["./account.component.scss"]
 })
 export class AccountComponent implements OnInit {
-  loggedUser: object;
-
-  constructor(private _userService: UserService) {}
+  user: object;
+  success: boolean = false;
+  constructor(
+    private _userService: UserService,
+    private _router: ActivatedRoute
+  ) {}
 
   ngOnInit() {
-    this._userService.currentUser.subscribe(user => {
-      //shared user data
-      console.log("user", user);
-      this.loggedUser = user;
+    this._router.params.subscribe((params: Params) => {
+      this._userService.currUser(params["userId"]).subscribe(user => {
+        this.user = user["user"];
+      });
+    });
+  }
+
+  userEdit() {
+    this._userService.editUser(this.user).subscribe(editUser => {
+      this.user = editUser["user"];
+      this._userService.userData(editUser);
+      this.success = true;
+      setTimeout(() => {
+        this.success = false;
+      }, 3000);
+      this._userService.currUser(this.user["_id"]).subscribe(user => {
+        this.user = user["user"];
+      });
     });
   }
 }

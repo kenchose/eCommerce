@@ -1,28 +1,16 @@
 <div id="details" *ngIf="oneProduct" class="row mt-5">
   <div class="col-md-6 py-auto">
-    <img class="img-fluid" src="{{ oneProduct.imagePath }}" />
+    <img
+      class="img-fluid"
+      src="{{ oneProduct.imagePath }}"
+      alt="Image not found"
+      onerror="this.onerror=null; this.src='./../../../../assets/img/no_exisint_image.png'"
+    />
   </div>
   <div class="col-md-6 my-auto">
     <h1>{{ oneProduct.name }}</h1>
     <h2 class="text-info">{{ oneProduct.description }}</h2>
     <h4 class="text-info">${{ oneProduct.price }}</h4>
-    <!-- <div class="form-row">
-      <div class="input-group col-md-6 offset-md-4">
-        <button (click)="minusCount()" class="btn minus-btn" type="button">
-          <i class="fas fa-minus"></i>
-        </button>
-        <input
-          type="text"
-          [(ngModel)]="qty"
-          name="qty"
-          class="form-control col-2 text-center"
-          id="inlineFormInputGroupUsername"
-        />
-        <button (click)="addCount()" class="btn add-btn" type="button">
-          <i class="fas fa-plus"></i>
-        </button>
-      </div>
-    </div> -->
     <div class="col mt-4">
       <button
         (click)="addToOrder(oneProduct._id)"
@@ -66,7 +54,12 @@
           <div class="container">
             <div class="row">
               <div class="col-md-6">
-                <img class="img-fluid" src="{{ oneProduct.imagePath }}" />
+                <img
+                  class="img-fluid"
+                  src="{{ oneProduct.imagePath }}"
+                  alt="Image not found"
+                  onerror="this.onerror=null; this.src='./../../../../assets/img/no_exisint_image.png'"
+                />
               </div>
               <div class="col-md-4">
                 <p>{{ oneProduct.brand }}</p>
