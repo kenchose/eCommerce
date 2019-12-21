@@ -1,7 +1,8 @@
-<router-outlet>
+<ng-container class="container" *ngIf="_route.children.length === 0">
   <app-feature></app-feature>
   <app-trending></app-trending>
   <app-slider></app-slider>
   <app-employee-choice></app-employee-choice>
-  <app-findstore></app-findstore>
-</router-outlet>
+</ng-container>
+
+<router-outlet></router-outlet>

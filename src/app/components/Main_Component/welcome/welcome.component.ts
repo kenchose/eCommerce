@@ -1,7 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { UserService } from "./../../../user.service";
-import { HttpService } from "./../../../http.service";
-// import { ENGINE_METHOD_DIGESTS } from "constants";
+import { ActivatedRoute } from "@angular/router";
 
 @Component({
   selector: "app-welcome",
@@ -9,14 +7,7 @@ import { HttpService } from "./../../../http.service";
   styleUrls: ["./welcome.component.scss"]
 })
 export class WelcomeComponent implements OnInit {
-  currUser: any;
+  constructor(public _route: ActivatedRoute) {}
 
-  constructor(
-    private _userService: UserService,
-    private _httpService: HttpService
-  ) {}
-
-  ngOnInit() {
-    // this._userService.userData(currUser = this.currUser = currUser)
-  }
+  ngOnInit() {}
 }

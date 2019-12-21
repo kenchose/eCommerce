@@ -4,8 +4,10 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { AuthService } from "./auth.service";
 import { HttpService } from "./http.service";
 import { ProductService } from "./product.service";
+import { MapsService } from "./maps.service";
 import { CartService } from "./cart.service";
 import { FormsModule } from "@angular/forms";
+// import { AgmCoreModule } from "@agm/core";
 import { Ng2SearchPipeModule } from "ng2-search-filter"; //serach module
 import { NgxPaginationModule } from "ngx-pagination"; //pagination module github:https://github.com/michaelbromley/ngx-pagination
 
@@ -26,14 +28,15 @@ import { WelcomeComponent } from "./components/Main_Component/welcome/welcome.co
 import { AuthGuard } from "./auth.guard";
 import { AccountComponent } from "./components/User_Component/account/account.component";
 import { SignInComponent } from "./components/sign-in/sign-in.component";
-import { PaymentsComponent } from "./components/User_Component/account/payments/payments.component";
-import { PersonalComponent } from "./components/User_Component/account/personal/personal.component";
+import { PaymentsComponent } from "./components/User_Component/payments/payments.component";
 import { SignOutComponent } from "./components/sign-out/sign-out.component";
 import { ProductsComponent } from "./components/Product_Component/products/products.component";
 import { DetailsComponent } from "./components/Product_Component/details/details.component";
 import { CartComponent } from "./components/cart/cart.component";
 import { CheckoutComponent } from "./components/checkout/checkout.component";
 import { CategoryComponent } from "./components/Product_Component/category/category.component";
+import { CustomFormComponent } from "./components/custom-form/custom-form.component";
+import { SuccessPurchaseComponent } from "./components/User_Component/success-purchase/success-purchase.component";
 // import { NewProductComponent } from './components/Product_Component/new-product/new-product.component';
 export function tokenGetter() {
   return localStorage.getItem("access_token");
@@ -55,13 +58,14 @@ export function tokenGetter() {
     AccountComponent,
     SignInComponent,
     PaymentsComponent,
-    PersonalComponent,
     SignOutComponent,
     ProductsComponent,
     DetailsComponent,
     CartComponent,
     CheckoutComponent,
-    CategoryComponent
+    CategoryComponent,
+    CustomFormComponent,
+    SuccessPurchaseComponent
     // NewProductComponent
   ],
   imports: [
@@ -71,6 +75,9 @@ export function tokenGetter() {
     FormsModule,
     Ng2SearchPipeModule,
     NgxPaginationModule
+    // AgmCoreModule.forRoot({
+    //   apiKey: "AIzaSyDP0qix8TUVIvQmlBwvR0-uGfQyVwHuxQs"
+    // })
   ],
   providers: [
     AuthService,

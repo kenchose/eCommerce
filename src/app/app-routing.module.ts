@@ -9,18 +9,24 @@ import { AuthGuard } from "./auth.guard";
 import { RedirectGuard } from "./redirect.guard";
 import { SliderComponent } from "./components/Main_Component/slider/slider.component";
 import { SignInComponent } from "./components/sign-in/sign-in.component";
-import { PaymentsComponent } from "./components/User_Component/account/payments/payments.component";
-import { PersonalComponent } from "./components/User_Component/account/personal/personal.component";
+import { PaymentsComponent } from "./components/User_Component/payments/payments.component";
 import { SignOutComponent } from "./components/sign-out/sign-out.component";
 import { ProductsComponent } from "./components/Product_Component/products/products.component";
 import { DetailsComponent } from "./components/Product_Component/details/details.component";
 import { CartComponent } from "./components/cart/cart.component";
 import { CheckoutComponent } from "./components/checkout/checkout.component";
 import { CategoryComponent } from "./components/Product_Component/category/category.component";
+import { FindstoreComponent } from "./components/findstore/findstore.component";
+import { CustomFormComponent } from "./components/custom-form/custom-form.component";
+import { SuccessPurchaseComponent } from "./components/User_Component/success-purchase/success-purchase.component";
 // import { NewProductComponent } from "./components/Product_Component/new-product/new-product.component";
 
 const routes: Routes = [
-  { path: "cartify", component: WelcomeComponent },
+  {
+    path: "cartify",
+    component: WelcomeComponent,
+    children: [{ path: "stores", component: FindstoreComponent }]
+  },
   { path: "registration", component: RegisterComponent },
   { path: "sign-in", component: SignInComponent },
   {
@@ -35,21 +41,12 @@ const routes: Routes = [
     path: "cartify/home",
     canActivate: [AuthGuard],
     component: HomeComponent
-    // children: [
-    //   // {path:"user/home/:id", canActivate:[AuthGuard], component:HomeComponent, children:[
-    //   { path: "account", component: AccountComponent }
-    // ]
   },
   {
-    path: "cartify/account",
+    path: "account/:userId",
     canActivate: [AuthGuard],
     component: AccountComponent,
     children: [
-      // {
-      //   path: "personal/:id",
-      //   canActivate: [AuthGuard],
-      //   component: PersonalComponent
-      // },
       {
         path: "payments/:id",
         canActivate: [AuthGuard],
@@ -57,35 +54,36 @@ const routes: Routes = [
       }
     ]
   },
-  {
-    path: "personal/:userId",
-    canActivate: [AuthGuard],
-    component: PersonalComponent
-  },
   { path: "cartify/production", component: SliderComponent },
   { path: "cartify/logoff", component: SignOutComponent },
   {
     path: "cartify/products",
-    component: ProductsComponent
-    // children: [
-    //   {
-    //     path: "details/:id",
-    //     component: DetailsComponent
-    //   }
-    // {
-    //   path: "new-product",
-    //   canActivate: [AuthGuard],
-    //   component: NewProductComponent
-    // }
-    // ]
-  },
-  {
-    path: "cartify/products/details/:id",
-    component: DetailsComponent
+    component: ProductsComponent,
+    children: [
+      {
+        path: "details/:id",
+        component: DetailsComponent
+      },
+      {
+        path: ":category",
+        component: CategoryComponent
+      }
+    ]
   },
   { path: "cartify/cart", component: CartComponent },
-  { path: "products/:category", component: CategoryComponent },
-  { path: "checkout", canActivate: [AuthGuard], component: CheckoutComponent },
+  {
+    path: "checkout",
+    canActivate: [AuthGuard],
+    component: CheckoutComponent,
+    children: [
+      {
+        path: "paymentsuccess",
+        canActivate: [AuthGuard],
+        component: SuccessPurchaseComponent
+      }
+    ]
+  },
+  { path: "", pathMatch: "full", redirectTo: "cartify/products" },
   { path: "**", pathMatch: "full", component: PageNotFoundComponent }
 ];
 
