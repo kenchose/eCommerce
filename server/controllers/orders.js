@@ -14,10 +14,10 @@ module.exports = {
   charge: async (req, res, next) => {
     const {
       stripeToken,
-      user,
       email,
-      order,
     } = req.body
+    const user = req.user
+    const cart = req.session.cart
     let totalAmount = Number(req.body.totalPayment) * 100
     try {
       const customer = await stripe.customers.create({
@@ -44,12 +44,19 @@ module.exports = {
           customer: customer.id
         })
         if (charge) {
-          req.session.cart = null;
-          res.status(200).json({
-            message: 'Successful purchase',
-            charge: charge,
-            order: order,
+          const order = new Order({
+            user: user,
+            cart: cart,
+            paymentId: charge.id
           })
+          const newOrder = await order.save();
+          if (newOrder) {
+            req.session.cart = null;
+            res.status(200).json({
+              message: 'Successful purchase',
+              charge: charge,
+            })
+          }
         }
       }
     } catch (err) {

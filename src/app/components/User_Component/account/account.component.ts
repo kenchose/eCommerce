@@ -12,11 +12,11 @@ export class AccountComponent implements OnInit {
   success: boolean = false;
   constructor(
     private _userService: UserService,
-    private _router: ActivatedRoute
+    private _route: ActivatedRoute
   ) {}
 
   ngOnInit() {
-    this._router.params.subscribe((params: Params) => {
+    this._route.params.subscribe((params: Params) => {
       this._userService.currUser(params["userId"]).subscribe(user => {
         this.user = user["user"];
       });

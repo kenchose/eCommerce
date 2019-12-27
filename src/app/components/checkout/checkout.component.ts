@@ -80,22 +80,6 @@ export class CheckoutComponent implements OnInit {
 
   pay(totalSum: number) {
     document.getElementById("close-btn").click();
-    let cart = Object.values(this.cartItems);
-    let order = [];
-    for (let item of cart) {
-      let id = item.item._id;
-      let image = item.item.imagePath;
-      let name = item.name;
-      let qty = item.qty;
-      let price = item.price;
-      order.push({
-        id: id,
-        image: image,
-        name: name,
-        qty: qty,
-        price: price
-      });
-    }
     let handler = StripeCheckout.configure({
       key: this.stripePubKey,
       locale: "auto",
@@ -103,13 +87,10 @@ export class CheckoutComponent implements OnInit {
         const tokenInfo = {
           stripeToken: token.id,
           email: token["card"].name,
-          totalPayment: totalSum,
-          user: this.loggedUser,
-          order: order
+          totalPayment: totalSum
         };
         this._orderService.stripeCharge(tokenInfo).subscribe(result => {
-          this.order = result["order"];
-          console.log("this.order", typeof this.order);
+          console.log("result", result);
           this.purchaseSuccess = true;
           this._router.navigate(["checkout/paymentsuccess"]);
         });
