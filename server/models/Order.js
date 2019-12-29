@@ -13,6 +13,10 @@ const OrderSchema = new Schema({
   paymentId: {
     type: String,
     required: true
+  },
+  amount: {
+    type: String,
+    required: true
   }
 })
 

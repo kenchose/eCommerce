@@ -1,5 +1,6 @@
 import { Injectable, ɵCodegenComponentFactoryResolver } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
+import { Params } from "@angular/router";
 
 @Injectable({
   providedIn: "root"
@@ -15,6 +16,14 @@ export class OrderService {
 
   removeFromCart(productId: string) {
     return this._http.get(`${this.serviceUrl}/remove-from-cart/${productId}`);
+  }
+
+  getOrders() {
+    return this._http.get(`${this.serviceUrl}/purchaseHistory`);
+  }
+
+  singleOrder(orderId: Params) {
+    return this._http.get(`${this.serviceUrl}/${orderId}`);
   }
 
   currentCart() {

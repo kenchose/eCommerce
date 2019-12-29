@@ -19,6 +19,8 @@ import { CategoryComponent } from "./components/Product_Component/category/categ
 import { FindstoreComponent } from "./components/findstore/findstore.component";
 import { CustomFormComponent } from "./components/custom-form/custom-form.component";
 import { SuccessPurchaseComponent } from "./components/User_Component/success-purchase/success-purchase.component";
+import { PurchasesComponent } from "./components/User_Component/purchases/purchases.component";
+import { OrderDetailsComponent } from "./components/User_Component/order-details/order-details.component";
 // import { NewProductComponent } from "./components/Product_Component/new-product/new-product.component";
 
 const routes: Routes = [
@@ -51,6 +53,18 @@ const routes: Routes = [
         path: "payments/:id",
         canActivate: [AuthGuard],
         component: PaymentsComponent
+      },
+      {
+        path: "purchaseHistory",
+        canActivate: [AuthGuard],
+        component: PurchasesComponent,
+        children: [
+          {
+            path: ":id",
+            canActivate: [AuthGuard],
+            component: OrderDetailsComponent
+          }
+        ]
       }
     ]
   },

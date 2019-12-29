@@ -47,7 +47,8 @@ module.exports = {
           const order = new Order({
             user: user,
             cart: cart,
-            paymentId: charge.id
+            paymentId: charge.id,
+            amount: amount / 100
           })
           const newOrder = await order.save();
           if (newOrder) {
@@ -76,14 +77,47 @@ module.exports = {
   },
 
   allOrders: async (req, res, next) => {
-    const order = await Order.find({})
     try {
+      const orders = await Order.find({
+        user: req.user
+      })
+      if (!orders) return res.json({
+        message: "No purchase history"
+      });
+      var cart;
+      orders.forEach(order => {
+        cart = new Cart(order.cart);
+        order.items = cart.generateArray();
+        return cart
+      })
       res.status(200).json({
-        allOrders: order,
-        count: order.length
+        cart: cart,
+        orders: orders
       })
     } catch (err) {
       res.status(400).send(err)
+    }
+  },
+
+  singleOrder: async (req, res, next) => {
+    const orderId = req.params.orderId;
+    try {
+      const order = await Order.findById({
+        _id: orderId
+      });
+      if (!order || null) return res.status(400).json({
+        errorMessage: "No order found"
+      })
+      let key = order.cart.items
+      let items = Object.values(key)
+      res.status(200).json({
+        order,
+        items
+      })
+    } catch (error) {
+      res.status(400).json({
+        errorMessage: error
+      })
     }
   },
 
@@ -141,44 +175,5 @@ module.exports = {
         errorMessage: err
       })
     }
-  },
-
-  deleteOrder: async (req, res, next) => {
-    try {
-      const order = await Order.deleteOne({
-        _id: req.params.orderId
-      });
-      res.status(200).json({
-        message: "Successfully removed order",
-        order
-      })
-    } catch (err) {
-      res.status(400).json({
-        message: error
-      })
-    }
-  },
+  }
 }
-
-
-// singleOrder: async (req, res, next) => {
-//   // const orderId = req.params.orderId;
-//   const order = await Order.findById({
-//     _id: orderId
-//   });
-//   if (!order || null) return res.status(400).send("No order found");
-//   try {
-//     res.status(200).json({
-//       message: "Order Found",
-//       order: order,
-//       request: {
-//         type: 'GET',
-//         url: `http://localhost:8000/api/order/${orderId}`
-//       }
-//     })
-//   } catch (err) {
-//     res.status(400).json({
-//       error: err
-//     })
-//   }
-// },
