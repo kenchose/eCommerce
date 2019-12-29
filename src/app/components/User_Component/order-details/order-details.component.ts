@@ -9,6 +9,7 @@ import { ActivatedRoute, Params } from "@angular/router";
 })
 export class OrderDetailsComponent implements OnInit {
   cart: any;
+  order: any;
   constructor(
     private _orderService: OrderService,
     private _route: ActivatedRoute
@@ -18,6 +19,7 @@ export class OrderDetailsComponent implements OnInit {
     this._route.params.subscribe((params: Params) => {
       this._orderService.singleOrder(params["id"]).subscribe(order => {
         this.cart = order["items"];
+        this.order = order["order"];
       });
     });
   }
