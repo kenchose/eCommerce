@@ -106,30 +106,48 @@
             >SIGN IN<i class="fa fa-user ml-2"></i
           ></a>
         </li>
-        <li class="nav-item dropdown" *ngIf="loggedUser">
-          <a
-            class="nav-link navbar-item dropdown nav-item"
-            role="button"
-            data-toggle="dropdown"
-            aria-haspopup="true"
-            aria-expanded="false"
-            >My Account<i class="fa fa-user ml-2"></i
-          ></a>
-          <div class="dropdown-menu" aria-labelledby="rightDropdown">
-            <button
-              [routerLink]="['account', loggedUser._id]"
-              class="dropdown-item"
-            >
-              Account
-            </button>
+        <ng-container *ngIf="!user">
+          <li class="nav-item dropdown" *ngIf="_authService.loggedIn()">
             <a
-              [routerLink]="['/cart']"
-              class="dropdown-item"
-              (click)="_authService.logoutUser()"
-              >Logout</a
+              class="nav-link navbar-item dropdown nav-item"
+              role="button"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+              >My Account<i class="fa fa-user ml-2"></i
+            ></a>
+            <div class="dropdown-menu" aria-labelledby="rightDropdown">
+              <button
+                [routerLink]="['account', loggedUser?._id]"
+                class="dropdown-item"
+              >
+                Account
+              </button>
+              <button
+                [routerLink]="['account', loggedUser?._id, 'purchaseHistory']"
+                class="dropdown-item"
+              >
+                Purchase history
+              </button>
+              <a
+                [routerLink]="['/cartify']"
+                class="dropdown-item"
+                (click)="_authService.logoutUser()"
+                >Logout</a
+              >
+            </div>
+          </li>
+        </ng-container>
+        <ng-container *ngIf="user">
+          <li class="nav-item">
+            <a
+              [routerLink]="['/cartify']"
+              class="nav-link navbar-item"
+              (click)="socialLogout()"
+              >GOOGLE/FACEBOOK LOGOUT</a
             >
-          </div>
-        </li>
+          </li>
+        </ng-container>
         <li class="nav-item">
           <a [routerLink]="['cartify/stores']" class="nav-link navbar-item"
             >STORES<i class="fas fa-map-marker-alt ml-2"></i
@@ -233,26 +251,20 @@
           <div class="row my-3 d-flex justify-content-center">
             <!--Facebook-->
             <button
+              (click)="signInWithFB()"
               type="button"
               class="btn btn-white btn-facebook m-3 rounded-circle shadow"
             >
               <i class="fab fa-facebook-f"></i>
-              <!-- Google -->
             </button>
+            <!-- Google -->
             <button
-              (click)="googleLogin()"
+              (click)="signInWithGoogle()"
               type="button"
               class="btn btn-white btn-google m-3 rounded-circle shadow"
             >
               <i class="fab fa-google-plus-g"></i>
             </button>
-            <!-- <button
-              [routerLink]="['googleLogin']"
-              type="button"
-              class="btn btn-white btn-google m-3 rounded-circle shadow"
-            >
-              <i class="fab fa-google-plus-g"></i>
-            </button> -->
           </div>
         </form>
       </div>

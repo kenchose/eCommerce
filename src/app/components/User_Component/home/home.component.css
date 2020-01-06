@@ -30,4 +30,14 @@ ul {
 .account-info {
   list-style-type: none;
 }
+
+.socialLogin {
+  color: #007bff !important;
+}
+
+.socialLogin:hover {
+  cursor: pointer;
+  color: #0056b3 !important;
+  text-decoration: underline !important;
+}
 /*# sourceMappingURL=home.component.css.map */

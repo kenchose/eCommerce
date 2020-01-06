@@ -36,10 +36,27 @@
           </div>
         </div>
         <div class="row">
-          <div class="col">
+          <div class="col-md-4">
             <button type="submit" class="btn mt-3">
               Sign in
             </button>
+          </div>
+          <div class="col-md-4 google">
+            <span>
+              <i
+                id="googleLogin"
+                (click)="signInWithGoogle()"
+                class="fab fa-google fa-2x mt-3"
+              ></i>
+            </span>
+          </div>
+          <div class="col-md-4">
+            <span id="facebookLogin">
+              <i
+                (click)="signInWithFB()"
+                class="fab fa-facebook fa-2x mt-3"
+              ></i>
+            </span>
           </div>
         </div>
         <div class="row">

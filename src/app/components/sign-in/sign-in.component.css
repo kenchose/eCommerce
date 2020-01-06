@@ -21,4 +21,24 @@ button {
   background-color: #426C90;
   color: #ffff;
 }
+
+#googleLogin {
+  background: -webkit-gradient(linear, left top, left bottom, from(-120DEG), color-stop(#4285F4), color-stop(#34A853), color-stop(#fbbc05), to(#ea4335));
+  background: linear-gradient(-120DEG, #4285F4, #34A853, #fbbc05, #ea4335);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  vertical-align: middle;
+}
+
+#googleLogin:hover {
+  cursor: pointer;
+}
+
+#facebookLogin {
+  color: #3b5998;
+}
+
+#facebookLogin:hover {
+  cursor: pointer;
+}
 /*# sourceMappingURL=sign-in.component.css.map */

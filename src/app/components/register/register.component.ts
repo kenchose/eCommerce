@@ -36,6 +36,7 @@ export class RegisterComponent implements OnInit {
         //store token and userID in localStorage
         this._authService.setToken(token);
         this._authService.setUser(user["_id"]);
+        this._authService.setTimeoutStorage();
         this.getCurrentCart();
         this._router.navigate(["/cartify/home"]);
       }

@@ -3,6 +3,12 @@ import { AuthService } from "./../../auth.service";
 import { CartService } from "./../../cart.service";
 import { Router } from "@angular/router";
 import { UserService } from "./../../user.service";
+import { AuthService as AuthSocialService } from "angularx-social-login";
+import {
+  FacebookLoginProvider,
+  GoogleLoginProvider,
+  SocialUser
+} from "angularx-social-login";
 import { NgForm } from "@angular/forms";
 
 @Component({
@@ -19,27 +25,41 @@ export class NavbarComponent implements OnInit {
   loggedUser: object;
   cart: any;
   cartItems: any;
+  loginMethod: any;
+  facebookUser: object;
+  private user: SocialUser;
+  private loggedIn: boolean;
 
   constructor(
-    private _authService: AuthService,
+    public _authService: AuthService,
     private _userService: UserService,
     private _cartService: CartService,
+    private _authSocial: AuthSocialService,
     private _router: Router
   ) {
     this.oldUser = { email: "", password: "" };
   }
 
   ngOnInit() {
-    if (this._authService.loggedIn()) {
-      //added for errors; no more 401
+    this._authSocial.authState.subscribe(user => {
+      console.log("new user", user);
+      this.user = user;
+      this.loggedIn = user != null;
+    });
+
+    if (this._authService.loggedIn() && this.loginMethod === "local") {
+      // only works for local login !== GOOGLE
+      // added for errors; no more 401
       this.getUserData();
       this.getCurrentCart();
     }
-    this._userService.currentUser.subscribe(user => {
-      //shared user data
-      this.loggedUser = user;
-      console.log("this new loggeduser", this.loggedUser);
-    });
+    if (this.loginMethod === "local") {
+      this._userService.currentUser.subscribe(user => {
+        //shared user data
+        this.loggedUser = user;
+        console.log("this new loggeduser", this.loggedUser);
+      });
+    }
     this._cartService.currentCart.subscribe(updatedCart => {
       //shared data
       this.cartItems = updatedCart["cartItems"];
@@ -62,6 +82,7 @@ export class NavbarComponent implements OnInit {
         this._authService.setToken(token);
         this._authService.setUser(user["_id"]);
         this._authService.setTimeoutStorage();
+        this.loginMethod = user.method;
         this.getCurrentCart();
         document.getElementById("closeModal").click();
         myData.resetForm();
@@ -86,7 +107,35 @@ export class NavbarComponent implements OnInit {
     });
   }
 
-  googleLogin() {
-    this._authService.google().subscribe(user => console.log(user));
+  socialLogout(): void {
+    //only capabable using login with angularx-social-login
+    this._authSocial.signOut();
+    this._authService.logoutUser();
+    this._router.navigate(["cartify"]);
+  }
+
+  signInWithGoogle() {
+    const googleUser = GoogleLoginProvider.PROVIDER_ID;
+    this._authSocial.signIn(googleUser).then(userData => {
+      console.log("right beoer we post", userData);
+      this._authService.setToken(`Bearer ${userData.authToken}`);
+      this._authService.setUser(userData["id"]);
+      this._authService.setTimeoutStorage();
+      this.getCurrentCart();
+      this._router.navigate(["cartify/home"]);
+      document.getElementById("closeModal").click();
+    });
+  }
+
+  signInWithFB() {
+    const facebookUser = FacebookLoginProvider.PROVIDER_ID;
+    this._authSocial.signIn(facebookUser).then(userData => {
+      this._authService.setToken(`Bearer ${userData.authToken}`);
+      this._authService.setUser(userData.facebook["id"]);
+      this._authService.setTimeoutStorage();
+      this.getCurrentCart();
+      this._router.navigate(["cartify/home"]);
+      document.getElementById("closeModal").click();
+    });
   }
 }

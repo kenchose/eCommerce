@@ -10,6 +10,11 @@ import { FormsModule } from "@angular/forms";
 // import { AgmCoreModule } from "@agm/core";
 import { Ng2SearchPipeModule } from "ng2-search-filter"; //serach module
 import { NgxPaginationModule } from "ngx-pagination"; //pagination module github:https://github.com/michaelbromley/ngx-pagination
+import { SocialLoginModule, AuthServiceConfig } from "angularx-social-login";
+import {
+  GoogleLoginProvider,
+  FacebookLoginProvider
+} from "angularx-social-login";
 
 import { AppRoutingModule } from "./app-routing.module";
 import { TokenInterceptorService } from "./token-interceptor.service";
@@ -37,10 +42,32 @@ import { CheckoutComponent } from "./components/checkout/checkout.component";
 import { CategoryComponent } from "./components/Product_Component/category/category.component";
 import { CustomFormComponent } from "./components/custom-form/custom-form.component";
 import { SuccessPurchaseComponent } from "./components/User_Component/success-purchase/success-purchase.component";
+import { LoginComponent } from "./components/Social_Login/login/login.component";
+import { DashboardComponent } from "./components/Social_Login/dashboard/dashboard.component";
+import { PurchasesComponent } from "./components/User_Component/purchases/purchases.component";
+import { OrderDetailsComponent } from "./components/User_Component/order-details/order-details.component";
+import { SocialProfileComponent } from "./components/social-profile/social-profile.component";
 // import { NewProductComponent } from './components/Product_Component/new-product/new-product.component';
 export function tokenGetter() {
   return localStorage.getItem("access_token");
 }
+
+const config = new AuthServiceConfig([
+  {
+    id: GoogleLoginProvider.PROVIDER_ID,
+    provider: new GoogleLoginProvider(
+      "134152060122-f09p1trrlssi013htgdh0sk8l5kef962.apps.googleusercontent.com"
+    )
+  },
+  {
+    id: FacebookLoginProvider.PROVIDER_ID,
+    provider: new FacebookLoginProvider("577636242810978")
+  }
+]);
+export function provideConfig() {
+  return config;
+}
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -65,7 +92,12 @@ export function tokenGetter() {
     CheckoutComponent,
     CategoryComponent,
     CustomFormComponent,
-    SuccessPurchaseComponent
+    SuccessPurchaseComponent,
+    LoginComponent,
+    DashboardComponent,
+    PurchasesComponent,
+    OrderDetailsComponent,
+    SocialProfileComponent
     // NewProductComponent
   ],
   imports: [
@@ -74,13 +106,18 @@ export function tokenGetter() {
     HttpClientModule,
     FormsModule,
     Ng2SearchPipeModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    SocialLoginModule
     // AgmCoreModule.forRoot({
     //   apiKey: "AIzaSyDP0qix8TUVIvQmlBwvR0-uGfQyVwHuxQs"
     // })
   ],
   providers: [
     AuthService,
+    {
+      provide: AuthServiceConfig,
+      useFactory: provideConfig
+    },
     HttpService,
     CartService,
     AuthGuard,

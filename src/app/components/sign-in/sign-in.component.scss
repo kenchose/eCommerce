@@ -40,3 +40,31 @@ button {
   background-color: #426C90;
   color: #ffff;
 }
+
+#googleLogin {
+  background: linear-gradient(-120DEG, #4285F4, #34A853, #fbbc05, #ea4335);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  vertical-align: middle;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+}
+
+#facebookLogin {
+  color: #3b5998;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+// .google-btn {
+//   color: linear-gradient(-120DEG, #4285F4, #34A853, #fbbc05, #ea4335);
+//   // color: blue !important;
+//   // background-color: #5cb85c;
+//   // border-radius: 50%
+//   border: solid 2px black;
+// }

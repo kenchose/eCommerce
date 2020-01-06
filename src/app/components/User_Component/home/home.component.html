@@ -1,94 +1,201 @@
-<div id="home-component" *ngIf="_authService.loggedIn()" class="row p-4">
-  <div class="col">
-    <h1 class="text-center">
-      Hello, {{ loggedUser.first_name }} {{ loggedUser.last_name }}
-    </h1>
-    <div class="row">
-      <div class="col text-center">
-        <h5 class="font-weight-bold">
-          <a [routerLink]="['/registration']"> Not a member?</a>
-        </h5>
-      </div>
-    </div>
-    <div id="card-container" class="row my-5">
-      <div class="col-lg-6 col-12">
-        <div class="card m-4">
-          <div class="card-header">
-            <h5>Purchase History</h5>
-          </div>
-          <div class="card-body">
-            <ul class="col-12 account-info">
-              <li>
-                <a href="/cartify/home">View your purchase history</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div class="card m-4">
-          <div class="card-header">
-            <h5>Billing & shipping addresses</h5>
-          </div>
-          <div class="card-body">
-            <ul class="col-12 account-info">
-              <li>
-                <a>Manage your address information</a>
-              </li>
-              <li>
-                <a>Add a new address</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div class="card m-4">
-          <div class="card-header">
-            <h5>Membership information</h5>
-          </div>
-          <div class="card-body">
-            <ul class="col-12 account-info">
-              <li>
-                <a>Member lookup information</a>
-              </li>
-            </ul>
-          </div>
+<ng-container *ngIf="user === null || !user">
+  <div id="home-component" *ngIf="_authService.loggedIn()" class="row p-4">
+    <div class="col">
+      <h1 class="text-center">
+        Hello, {{ loggedUser.first_name }} {{ loggedUser.last_name }}
+      </h1>
+      <div class="row">
+        <div class="col text-center">
+          <h5 class="font-weight-bold">
+            <a [routerLink]="['/registration']"> Not a member?</a>
+          </h5>
         </div>
       </div>
-      <div class="col-lg-6 col-12">
-        <div class="card m-4">
-          <div class="card-header">
-            <h5>Account information</h5>
+      <div id="card-container" class="row my-5">
+        <div class="col-lg-6 col-12">
+          <div class="card m-4">
+            <div class="card-header">
+              <h5>Purchase History</h5>
+            </div>
+            <div class="card-body">
+              <ul class="col-12 account-info">
+                <li>
+                  <a
+                    [routerLink]="[
+                      '/account',
+                      loggedUser._id,
+                      'purchaseHistory'
+                    ]"
+                    >View your purchase history</a
+                  >
+                </li>
+              </ul>
+            </div>
           </div>
-          <div class="card-body" *ngIf="loggedUser">
-            <ul class="col-12 account-info">
-              <li>
-                <a [routerLink]="['/personal', loggedUser._id]"
-                  >Personal details</a
-                >
-              </li>
-              <li>
-                <a>Manage payments</a>
-              </li>
-              <li>
-                <a>Login with you Google account</a>
-              </li>
-              <li>
-                <a>Login with your Facebook account</a>
-              </li>
-            </ul>
+          <div class="card m-4">
+            <div class="card-header">
+              <h5>Billing & shipping addresses</h5>
+            </div>
+            <div class="card-body">
+              <ul class="col-12 account-info">
+                <li>
+                  <a [routerLink]="['/account', loggedUser._id]"
+                    >Manage your address information</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="card m-4">
+            <div class="card-header">
+              <h5>Membership information</h5>
+            </div>
+            <div class="card-body">
+              <ul class="col-12 account-info">
+                <li>
+                  <a>Member lookup information</a>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
-        <div class="card m-4">
-          <div class="card-header">
-            <h5>Need help?</h5>
+        <div class="col-lg-6 col-12">
+          <div class="card m-4">
+            <div class="card-header">
+              <h5>Account information</h5>
+            </div>
+            <div class="card-body" *ngIf="loggedUser">
+              <ul class="col-12 account-info">
+                <li>
+                  <a [routerLink]="['/account', loggedUser._id]"
+                    >Personal details</a
+                  >
+                </li>
+                <li>
+                  <a class="socialLogin" (click)="signInWithGoogle()"
+                    >Login with you Google account</a
+                  >
+                </li>
+                <li>
+                  <a class="socialLogin" (click)="signInWithFb()"
+                    >Login with your Facebook account</a
+                  >
+                </li>
+              </ul>
+            </div>
           </div>
-          <div class="card-body">
-            <ul class="col-12 account-info">
-              <li>
-                <a>Contact us</a>
-              </li>
-            </ul>
+          <div class="card m-4">
+            <div class="card-header">
+              <h5>Need help?</h5>
+            </div>
+            <div class="card-body">
+              <ul class="col-12 account-info">
+                <li>
+                  <a href="#">Contact us</a>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
+</ng-container>
+
+<ng-container *ngIf="user !== null || user">
+  <div id="home-component" *ngIf="_authService.loggedIn()" class="row p-4">
+    <div class="col">
+      <h1 class="text-center">Hello, {{ user?.name }}</h1>
+      <div class="row">
+        <div class="col text-center">
+          <h5 class="font-weight-bold">
+            <a [routerLink]="['/registration']"> Not a member?</a>
+          </h5>
+        </div>
+      </div>
+      <div id="card-container" class="row my-5">
+        <div class="col-lg-6 col-12">
+          <div class="card m-4">
+            <div class="card-header">
+              <h5>
+                Purchase History
+                <a [routerLink]="['sign-in']" (click)="socialLogout()"
+                  >(Login to Cartify)</a
+                >
+              </h5>
+            </div>
+            <!-- <div class="card-body">
+              <ul class="col-12 account-info">
+                <li>
+                  <a
+                    [routerLink]="[
+                      '/account',
+                      loggedUser._id,
+                      'purchaseHistory'
+                    ]"
+                    >View your purchase history</a
+                  >
+                </li>
+              </ul>
+            </div> -->
+          </div>
+          <div class="card m-4">
+            <div class="card-header">
+              <h5>Membership information</h5>
+            </div>
+            <div class="card-body">
+              <ul class="col-12 account-info">
+                <li>
+                  <a href="#"
+                    >Sign up and become a member! Click here for more
+                    details.</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6 col-12">
+          <div class="card m-4">
+            <div class="card-header">
+              <h5>Account information</h5>
+            </div>
+            <div class="card-body" *ngIf="loggedUser">
+              <ul class="col-12 account-info">
+                <li>
+                  <a [routerLink]="['/account', loggedUser._id]"
+                    >Personal details</a
+                  >
+                </li>
+                <ng-container *ngIf="user || user !== null">
+                  <li *ngIf="user?.provider === 'FACEBOOK'">
+                    <a class="socialLogin" (click)="signInWithGoogle()"
+                      >Login with you Google account</a
+                    >
+                  </li>
+                  <li *ngIf="user?.provider === 'GOOGLE'">
+                    <a class="socialLogin" (click)="signInWithFb()"
+                      >Login with your Facebook account</a
+                    >
+                  </li>
+                </ng-container>
+              </ul>
+            </div>
+          </div>
+          <div class="card m-4">
+            <div class="card-header">
+              <h5>Need help?</h5>
+            </div>
+            <div class="card-body">
+              <ul class="col-12 account-info">
+                <li>
+                  <a href="#">Contact us</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>
