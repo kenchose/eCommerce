@@ -30,8 +30,14 @@ $text-color: #CCC;
 }
 
 p {
+  color: #CCCCCC;
   padding-top: 10px;
   line-height: 1.5;
+
+  &:hover {
+    text-decoration: underline;
+    cursor: pointer;
+  }
 }
 
 ul {

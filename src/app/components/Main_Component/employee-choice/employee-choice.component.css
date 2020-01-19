@@ -1,2 +1,49 @@
-@import url("https://fonts.googleapis.com/css?family=Archivo+Black|Domine:700|Roboto|Roboto+Condensed|Roboto+Slab:700&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Archivo+Black|Domine:700|Roboto|Roboto+Condensed|Lora:700|Roboto+Slab:700&display=swap");
+.price-text {
+  color: #767676;
+}
+
+h1 {
+  font-family: "Domine", serif;
+}
+
+a {
+  color: black;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+.card {
+  border: none;
+}
+
+@media (min-width: 576px) {
+  .card-columns {
+    -webkit-column-count: 2;
+            column-count: 2;
+  }
+}
+
+@media (min-width: 768px) {
+  .card-columns {
+    -webkit-column-count: 3;
+            column-count: 3;
+  }
+}
+
+@media (min-width: 992px) {
+  .card-columns {
+    -webkit-column-count: 4;
+            column-count: 4;
+  }
+}
+
+@media (min-width: 1200px) {
+  .card-columns {
+    -webkit-column-count: 5;
+            column-count: 5;
+  }
+}
 /*# sourceMappingURL=employee-choice.component.css.map */

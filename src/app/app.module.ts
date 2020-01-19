@@ -47,7 +47,7 @@ import { DashboardComponent } from "./components/Social_Login/dashboard/dashboar
 import { PurchasesComponent } from "./components/User_Component/purchases/purchases.component";
 import { OrderDetailsComponent } from "./components/User_Component/order-details/order-details.component";
 import { SocialProfileComponent } from "./components/social-profile/social-profile.component";
-// import { NewProductComponent } from './components/Product_Component/new-product/new-product.component';
+// import { NewProductComponent } from "./components/Product_Component/new-product/new-product.component";
 export function tokenGetter() {
   return localStorage.getItem("access_token");
 }

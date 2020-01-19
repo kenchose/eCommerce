@@ -1,10 +1,17 @@
 @import url("https://fonts.googleapis.com/css?family=Archivo+Black|Domine:700|Roboto|Roboto+Condensed|Roboto+Slab:700&display=swap");
 #trending {
   background-color: #fff;
+  position: relative;
 }
 
 h1 {
   font-family: "Domine", serif;
+}
+
+@media (max-width: 576px) {
+  h1 {
+    font-size: 2rem;
+  }
 }
 
 #rock-climber {
@@ -27,6 +34,6 @@ hr {
   border: none;
   background-color: #dcdcdc;
   height: 2px;
-  margin: 0px 130px;
+  margin: 0px 60px;
 }
 /*# sourceMappingURL=trending.component.css.map */

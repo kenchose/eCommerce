@@ -16,12 +16,29 @@ sans-serif;
 $font-h2:'Archivo Black',
 sans-serif;
 
+// Small tablets and large smartphones (landscape view)
+$screen-sm-min: 576px;
+
+// Small tablets (portrait view)
+$screen-md-min: 768px;
+
+// Tablets and small desktops
+$screen-lg-min: 992px;
+
+// Large tablets and desktops
+$screen-xl-min: 1200px;
+
 #trending {
   background-color: #fff;
+  position: relative;
 }
 
 h1 {
   font-family: $font-h1;
+
+  @media(max-width:$screen-sm-min) {
+    font-size: 2rem;
+  }
 }
 
 #rock-climber {
@@ -43,5 +60,5 @@ hr {
   border: none;
   background-color: #dcdcdc;
   height: 2px;
-  margin: 0px 130px;
+  margin: 0px 60px;
 }

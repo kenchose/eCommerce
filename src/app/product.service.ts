@@ -24,4 +24,8 @@ export class ProductService {
   oneProduct(productId: string) {
     return this._http.get(`${this.serviceUrl}/${productId}`);
   }
+
+  choice() {
+    return this._http.get(`${this.serviceUrl}`);
+  }
 }

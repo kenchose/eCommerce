@@ -1,9 +1,4 @@
-@import url("https://fonts.googleapis.com/css?family=Archivo+Black|Domine:700|Roboto|Roboto+Condensed|Roboto+Slab:700&display=swap");
-.peopleCarouselImg {
-  -o-object-fit: contain;
-     object-fit: contain;
-}
-
+@import url("https://fonts.googleapis.com/css?family=Archivo+Black|Domine:700|Roboto|Roboto+Condensed|Lora:700|Roboto+Slab:700&display=swap");
 #feature {
   position: relative;
 }
@@ -18,5 +13,44 @@ h2 {
 
 p {
   font-family: "Roboto", sans-serif;
+}
+
+#season-sale {
+  position: relative;
+  padding-top: 40%;
+  margin-top: 10%;
+  background: url("./../../../../assets/img/season_sale.jpg") no-repeat center;
+  background-size: cover;
+}
+
+@media (max-width: 992px) {
+  #season-sale {
+    padding-top: 60%;
+    font-size: 4em;
+  }
+}
+
+@media (max-width: 576px) {
+  #season-sale .display-4 {
+    font-size: 1.675rem;
+  }
+}
+
+.clearance {
+  position: absolute;
+  top: 20px;
+}
+
+.clearance p {
+  color: #b94d4d;
+  font-family: "Lora", serif;
+}
+
+.clearance .clearance-text {
+  text-align: center;
+}
+
+.clearance .animated-text {
+  text-align: center;
 }
 /*# sourceMappingURL=feature.component.css.map */
