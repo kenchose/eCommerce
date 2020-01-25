@@ -1,5 +1,47 @@
 @import url('https://fonts.googleapis.com/css?family=Archivo+Black|Domine:700|Roboto|Roboto+Condensed|Roboto+Slab:700&display=swap');
 
+// Extra small devices (portrait phones, less than 576px)
+// @media (max-width: 575.98px) {
+//   ...
+// }
+
+// // Small devices (landscape phones, less than 768px)
+// @media (max-width: 767.98px) {
+//   ...
+// }
+
+// // Medium devices (tablets, less than 992px)
+// @media (max-width: 991.98px) {
+//   ...
+// }
+
+// // Large devices (desktops, less than 1200px)
+// @media (max-width: 1199.98px) {
+//   ...
+// }
+
+// Extra large devices (large desktops)
+// No media query since the extra-large breakpoint has no upper bound on its width
+
+
+// .col-sm for larger mobile phones (devices with resolutions ≥ 576px);
+// .col-md for tablets (≥768px);
+// .col-lg for laptops (≥992px);
+// .col-xl for desktops (≥1200px)
+
+// Extra small devices (portrait phones, less than 576px)
+$max-xs-width: 576.98px;
+
+// // Small devices (landscape phones, less than 768px)
+$max-sm-width: 768px;
+
+// // Medium devices (tablets, less than 992px)
+$max-md-width: 991.98px;
+
+// // Large devices (desktops, less than 1200px)
+$max-lg-width: 1199.98px;
+
+
 $font-h1:'Domine',
 serif;
 $font-h2:'Archivo Black',
@@ -64,6 +106,20 @@ p {
   }
 }
 
-.card {
-  width: 18rem;
+#normal-width {
+  @media(max-width:$max-md-width) {
+    display: none;
+  }
+}
+
+#landscape-phone {
+  display: none;
+
+  .text-shopping-total {
+    font-size: 1.3rem;
+  }
+
+  @media(max-width:$max-md-width) {
+    display: block;
+  }
 }

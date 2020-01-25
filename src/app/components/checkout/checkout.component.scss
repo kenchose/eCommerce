@@ -27,6 +27,19 @@ sans-serif;
 $font-generic: "Roboto",
 sans-serif;
 
+// Extra small devices (portrait phones, less than 576px)
+$max-xs-width: 576.98px;
+
+// // Small devices (landscape phones, less than 768px)
+$max-sm-width: 768px;
+
+// // Medium devices (tablets, less than 992px)
+$max-md-width: 991.98px;
+
+// // Large devices (desktops, less than 1200px)
+$max-lg-width: 1199.98px;
+
+
 h1 {
   font-family: $font-h1;
   font-size: 40px;
@@ -107,6 +120,13 @@ button {
 #close-btn {
   background-color: transparent !important;
   color: #000;
+}
+
+
+@media(max-width:$max-md-width) {
+  .card-text {
+    font-size: 1rem;
+  }
 }
 
 // xs = Extra small <576px
