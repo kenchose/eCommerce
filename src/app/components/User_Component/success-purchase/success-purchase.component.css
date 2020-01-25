@@ -78,4 +78,20 @@ button:hover {
 .media small {
   color: green;
 }
+
+@media (max-width: 991.98px) {
+  #normal-width {
+    display: none;
+  }
+}
+
+#landscape-phone {
+  display: none;
+}
+
+@media (max-width: 991.98px) {
+  #landscape-phone {
+    display: block;
+  }
+}
 /*# sourceMappingURL=success-purchase.component.css.map */

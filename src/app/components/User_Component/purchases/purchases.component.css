@@ -21,15 +21,27 @@ p {
   font-family: "Roboto", sans-serif;
 }
 
-table td {
-  padding: 1.75rem;
-}
-
 thead {
   background-color: #CCCCCC;
 }
 
+.order-id {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  color: #007bff !important;
+  max-width: 0px;
+}
+
 .order-id:hover {
   cursor: pointer;
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .itemQty,
+  .item-qty {
+    display: none;
+  }
 }
 /*# sourceMappingURL=purchases.component.css.map */

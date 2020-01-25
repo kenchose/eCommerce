@@ -80,4 +80,10 @@
 .btn-google {
   width: 73px;
 }
+
+@media (min-width: 991.98px) {
+  .nav-link {
+    padding-left: 0px !important;
+  }
+}
 /*# sourceMappingURL=navbar.component.css.map */

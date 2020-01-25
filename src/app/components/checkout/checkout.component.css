@@ -78,4 +78,10 @@ button:hover {
   background-color: transparent !important;
   color: #000;
 }
+
+@media (max-width: 991.98px) {
+  .card-text {
+    font-size: 1rem;
+  }
+}
 /*# sourceMappingURL=checkout.component.css.map */

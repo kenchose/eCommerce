@@ -50,4 +50,20 @@ p {
 .card {
   width: 18rem;
 }
+
+@media (max-width: 991.98px) {
+  #normal-width {
+    display: none;
+  }
+}
+
+#smartphone-width {
+  display: none;
+}
+
+@media (max-width: 991.98px) {
+  #smartphone-width {
+    display: block;
+  }
+}
 /*# sourceMappingURL=order-details.component.css.map */

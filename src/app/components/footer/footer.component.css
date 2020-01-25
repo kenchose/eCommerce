@@ -70,4 +70,17 @@ i {
 .social-media {
   font-size: 28px;
 }
+
+.social-links {
+  text-align: right;
+}
+
+@media (max-width: 768px) {
+  .copyright {
+    display: none;
+  }
+  .social-links {
+    text-align: center;
+  }
+}
 /*# sourceMappingURL=footer.component.css.map */

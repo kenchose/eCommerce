@@ -50,20 +50,4 @@ p small {
 ::ng-deep .ngx-pagination .current {
   background: #17a2b8 !important;
 }
-
-@media (min-width: 768px) and (max-width: 991.98px) {
-  .btn-with-text {
-    display: none;
-  }
-}
-
-.number {
-  display: block;
-}
-
-@media screen and (min-width: 575.98px) {
-  input {
-    margin-left: 15px;
-  }
-}
 /*# sourceMappingURL=products.component.css.map */

@@ -11,6 +11,10 @@ p {
   margin-left: 10px;
 }
 
+.add-order-row {
+  padding-left: 0px;
+}
+
 .fa-check-circle {
   color: #a1c900;
 }
@@ -23,5 +27,13 @@ p {
 .btn-checkout:hover {
   color: #5bc0de !important;
   background-color: transparent !important;
+}
+
+.qty-btn {
+  border: none !important;
+}
+
+.qty-btn:focus {
+  outline: none;
 }
 /*# sourceMappingURL=details.component.css.map */

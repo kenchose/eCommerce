@@ -20,4 +20,13 @@ button {
   background-color: #426C90;
   color: #ffff;
 }
+
+.feedback-text {
+  color: #007bff;
+}
+
+.feedback-text:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
 /*# sourceMappingURL=register.component.css.map */
