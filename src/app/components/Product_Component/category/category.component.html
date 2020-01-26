@@ -22,9 +22,13 @@
       [routerLink]="['/cartify/products/details', product._id]"
       class="card my-5"
     >
-      <!-- <a [routerLink]="['details', product._id]"
-              ><img src="{{ product.imagePath }}" class="card-img-top"
-            /></a> -->
+      <a [routerLink]="['/cartify/products/details', product._id]"
+        ><img
+          src="{{ product.imagePath }}"
+          class="card-img-top"
+          alt="Image not found"
+          onerror="this.onerror=null; this.src='./../../../../assets/img/no_exisint_image.png'; this.class='card-img-top'"
+      /></a>
       <div class="card-body d-flex flex-column">
         <h5 class="card-title">{{ product.name }}</h5>
         <p *ngIf="categoryProduct === 'Outdoorgear'">Outdoor Gear</p>
