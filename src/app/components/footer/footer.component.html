@@ -72,7 +72,9 @@
         <a *ngIf="!_authService.loggedIn()" [routerLink]="['sign-in']"
           >Your online account</a
         >
-        <a *ngIf="loggedUser" [routerLink]="['account', loggedUser?._id]"
+        <a
+          *ngIf="_authService.loggedIn() && loggedUser"
+          [routerLink]="['account', loggedUser?._id]"
           >Your online account</a
         >
       </li>
