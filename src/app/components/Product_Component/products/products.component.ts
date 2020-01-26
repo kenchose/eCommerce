@@ -3,6 +3,7 @@ import { ProductService } from "./../../../product.service";
 import { CartService } from "./../../../cart.service";
 import { AuthService } from "./../../../auth.service";
 import { UserService } from "./../../../user.service";
+import { ActivatedRoute } from "@angular/router";
 
 @Component({
   selector: "app-products",
@@ -25,7 +26,8 @@ export class ProductsComponent implements OnInit {
     private _productService: ProductService,
     private _authService: AuthService,
     private _userService: UserService,
-    private _cartService: CartService
+    private _cartService: CartService,
+    public _route: ActivatedRoute
   ) {}
 
   ngOnInit() {

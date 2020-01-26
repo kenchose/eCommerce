@@ -63,10 +63,11 @@ module.exports = {
           success: false,
           errorMessage: "No product found"
         });
-      if (product)
-        return res.status(200).json({
+      if (product) {
+        res.status(200).json({
           product
         });
+      }
     } catch (error) {
       res.status(400).send(error);
     }
@@ -94,24 +95,43 @@ module.exports = {
         errorMessage: error
       });
     }
-  }
+  },
 
-  // editProduct: async (req, res, next) => {
-  //   const id = req.params._id
-  //   const updateOps = {};
-  //   for (const ops of req.body) { //loop through req.body
-  //     updateOps[ops.propName] = ops.value //therefore we can change one or multiple key value pairs
-  //   }
-  //   Product.update({
-  //     _id: id
-  //   }, {
-  //     $set: updateOps
-  //   }, (err, product) => {
-  //     if (err) {
-  //       res.json(err)
-  //     } else {
-  //       res.json(product)
-  //     }
-  //   })
-  // },
+  popularChoices: async (req, res, next) => {
+    const last5 = await Product.find().sort({
+      $natural: -1
+    }).limit(5)
+    try {
+      if (!last5) return res.status(400).json({
+        success: false,
+        errorMessage: "Could not find products"
+      });
+      if (last5) return res.status(200).json({
+        products: last5
+      })
+    } catch (error) {
+      res.status(400).json({
+        errorMessage: error
+      })
+    }
+  }
 };
+
+// editProduct: async (req, res, next) => {
+//   const id = req.params._id
+//   const updateOps = {};
+//   for (const ops of req.body) { //loop through req.body
+//     updateOps[ops.propName] = ops.value //therefore we can change one or multiple key value pairs
+//   }
+//   Product.update({
+//     _id: id
+//   }, {
+//     $set: updateOps
+//   }, (err, product) => {
+//     if (err) {
+//       res.json(err)
+//     } else {
+//       res.json(product)
+//     }
+//   })
+// },
