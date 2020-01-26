@@ -43,7 +43,6 @@ import { CategoryComponent } from "./components/Product_Component/category/categ
 import { CustomFormComponent } from "./components/custom-form/custom-form.component";
 import { SuccessPurchaseComponent } from "./components/User_Component/success-purchase/success-purchase.component";
 import { LoginComponent } from "./components/Social_Login/login/login.component";
-import { DashboardComponent } from "./components/Social_Login/dashboard/dashboard.component";
 import { PurchasesComponent } from "./components/User_Component/purchases/purchases.component";
 import { OrderDetailsComponent } from "./components/User_Component/order-details/order-details.component";
 import { SocialProfileComponent } from "./components/social-profile/social-profile.component";
@@ -94,7 +93,6 @@ export function provideConfig() {
     CustomFormComponent,
     SuccessPurchaseComponent,
     LoginComponent,
-    DashboardComponent,
     PurchasesComponent,
     OrderDetailsComponent,
     SocialProfileComponent
@@ -109,7 +107,6 @@ export function provideConfig() {
     NgxPaginationModule,
     SocialLoginModule
     // AgmCoreModule.forRoot({
-    //   apiKey: "AIzaSyDP0qix8TUVIvQmlBwvR0-uGfQyVwHuxQs"
     // })
   ],
   providers: [

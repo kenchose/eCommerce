@@ -17,9 +17,12 @@ export class AuthService {
   userLogin(user: Object) {
     return this._http.post<any>(`${this.serviceUrl}/login`, user);
   }
-
-  google() {
-    return this._http.get(`${this.serviceUrl}/google`);
+  redirect() {
+    return this._http.get(`${this.serviceUrl}/google/redirect`);
+  }
+  googleLogin(user) {
+    console.log("got to server", user);
+    return this._http.post(`${this.serviceUrl}/google`, user);
   }
 
   setToken(token: string) {
@@ -35,7 +38,7 @@ export class AuthService {
       localStorage.removeItem("token");
       localStorage.removeItem("userId");
       this._router.navigate(["/cartify"]);
-    }, 60 * 60 * 1000); //60 mins
+    }, 180 * 60 * 1000); //180 mins
   }
 
   loggedIn() {

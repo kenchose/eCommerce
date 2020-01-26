@@ -31,30 +31,30 @@ const UserSchema = new Schema({
       ]
     }
   },
-  google: {
-    id: {
-      type: String
-    },
-    email: {
-      type: String,
-      lowercase: true
-    },
-    first_name: {
-      type: String,
-    },
-    last_name: {
-      type: String,
-    }
-  },
-  facebook: {
-    id: {
-      type: String
-    },
-    email: {
-      type: String,
-      lowercase: true
-    }
-  },
+  // google: {
+  //   id: {
+  //     type: String
+  //   },
+  //   email: {
+  //     type: String,
+  //     lowercase: true
+  //   },
+  //   first_name: {
+  //     type: String,
+  //   },
+  //   last_name: {
+  //     type: String,
+  //   }
+  // },
+  // facebook: {
+  //   id: {
+  //     type: String
+  //   },
+  //   email: {
+  //     type: String,
+  //     lowercase: true
+  //   }
+  // },
   address: {
     street1: {
       type: String,
