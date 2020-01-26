@@ -21,6 +21,9 @@ export class UserService {
     return this._http.get(`${this.serviceUrl}/${id}`);
   }
 
+  getOrder(id: string) {
+    return this._http.get(`${this.serviceUrl}/${id}/purchaseHistory`);
+  }
   editUser(newUserData: any) {
     return this._http.put(
       `${this.serviceUrl}/edit/${newUserData._id}`,
