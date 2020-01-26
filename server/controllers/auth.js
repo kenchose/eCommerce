@@ -8,7 +8,7 @@ const signToken = user => {
       // iss:'issuer',
       sub: user._id,
       iat: new Date().getTime(),
-      exp: Math.floor(Date.now() / 1000) + 60 * 24 * 7 // 1 week | Math.floor(Date.now() / 1000) gets timestamp in secs
+      exp: Math.floor(Date.now() / 1000) + (60 * 24 * 7) // 1 week | Math.floor(Date.now() / 1000) gets timestamp in secs
       //aud:"iPhone-App" | if the token has an aud field that has the value iPhone-App then ignore the exp claim, so that tokens with iPhone-App never expire since the user can reopen the app in a month and not have to sign in again.
     },
     process.env.TOKEN_SECRET

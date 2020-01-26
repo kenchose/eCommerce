@@ -13,23 +13,26 @@ const productRouter = require("./server/config/routes/product");
 const seederRouter = require("./server/config/routes/seeder");
 const passport = require("passport");
 const MongoStore = require("connect-mongo")(session);
-
+const stripePublishableKey = process.env.STRIPE_PUBLISHABLE_KEY;
+const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
+const stripe = require("stripe")(stripeSecretKey);
 app.use(
   session({
     secret: process.env.SECRET_SESSION_KEY,
     resave: false,
     saveUninitialized: true,
     store: new MongoStore({
-      mongooseConnection: mongoose.connection
+      mongooseConnection: mongoose.connection,
+      ttl: 14 * 24 * 60 * 60 //(seconds) = 14 days. Default
     }),
-    cookie: {
-      maxAge: 200 * 60 * 1000 //200 mins
-    }
+    // cookie: {
+    //   maxAge: 200 * 60 * 1000 //200 mins
+    // }
   })
 );
 app.use(express.static(__dirname + "/dist/eCommerce"));
 
-// // DB_CONNECTION
+// // DB_CONNECTION // alternative means of connecting to DB
 // mongoose.connect("mongodb://localhost/eCommerce", {
 //   useNewUrlParser: true,
 //   useCreateIndex: true,
@@ -47,7 +50,7 @@ mongoose.connection.on("connected", () =>
   console.log("Successfully connected to " + process.env.DB_CONNECT)
 );
 mongoose.connection.on("error", error =>
-  console.log("Error, cannot connec to DB ===> " + error)
+  console.log("Error, cannot connect to DB because ===> " + error)
 );
 
 //MIDDLEWARE
@@ -58,7 +61,6 @@ app.use(
   })
 );
 app.use(morgan("dev"));
-
 //ROUTERS
 app.use("/auth", authRouter);
 app.use("/api/product", productRouter);
@@ -69,4 +71,6 @@ app.all("*", (req, res, next) => {
   res.sendFile(path.resolve("./dist/eCommerce/index.html"));
 });
 
-app.listen(8000, () => console.log("Listening on port 8000"));
+app.listen(process.env.DB_LOCALHOST, () =>
+  console.log("Listening on port 8000")
+);
