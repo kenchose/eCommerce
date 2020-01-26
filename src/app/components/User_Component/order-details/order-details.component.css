@@ -57,12 +57,12 @@ p {
   }
 }
 
-#smartphone-width {
+#landscape-phone {
   display: none;
 }
 
 @media (max-width: 991.98px) {
-  #smartphone-width {
+  #landscape-phone {
     display: block;
   }
 }
