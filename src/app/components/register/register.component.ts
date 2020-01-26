@@ -11,7 +11,7 @@ import { Router } from "@angular/router";
 export class RegisterComponent implements OnInit {
   currUser: Object;
   newUser: Object;
-  errors: String[] = [];
+  error: String[] = [];
   constructor(
     private _authService: AuthService,
     private _cartService: CartService,
@@ -26,14 +26,11 @@ export class RegisterComponent implements OnInit {
     this._authService.registerUser(this.newUser).subscribe(newUser => {
       this.emptyArray();
       if (newUser.errors) {
-        for (let key in newUser.errors) {
-          this.errors.push(newUser.errors[key]);
-          this.resetRegistration();
-          this._router.navigate(["/registration"]);
-        }
+        this.error.push(newUser.errors);
+        this.resetRegistration();
+        this._router.navigate(["/registration"]);
       } else {
         const { token, user } = newUser;
-        //store token and userID in localStorage
         this._authService.setToken(token);
         this._authService.setUser(user["_id"]);
         this._authService.setTimeoutStorage();
@@ -48,7 +45,7 @@ export class RegisterComponent implements OnInit {
   }
 
   emptyArray() {
-    this.errors.length = 0;
+    this.error.length = 0;
   }
 
   getCurrentCart() {
