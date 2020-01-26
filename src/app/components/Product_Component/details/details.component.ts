@@ -14,6 +14,7 @@ export class DetailsComponent implements OnInit {
   cart: object;
   cartItems: object;
   fullCart: boolean = false;
+  qty: number = 1;
 
   constructor(
     private _orderService: OrderService,
@@ -55,4 +56,21 @@ export class DetailsComponent implements OnInit {
       this._cartService.cartData(cartUpdate); //get cartdata to update
     });
   }
+
+  // addQty(productId: string) {
+  //   this.qty++;
+  //   console.log(this.qty);
+  //   this._orderService.increaseQty(productId).subscribe(order => {
+  //     console.log("order");
+  //     console.log("order", order);
+  //   });
+  // }
+
+  // minusQty(productId: string) {
+  //   this.qty--;
+  //   this._orderService.decreaseQty(productId).subscribe(product => {
+  //     console.log("product");
+  //     console.log("product", product);
+  //   });
+  // }
 }

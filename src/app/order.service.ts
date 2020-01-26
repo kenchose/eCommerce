@@ -14,6 +14,14 @@ export class OrderService {
     return this._http.get(`${this.serviceUrl}/add-to-cart/${productId}`);
   }
 
+  increaseQty(productId: string) {
+    return this._http.get(`${this.serviceUrl}/increaseQty/${productId}`);
+  }
+
+  decreaseQty(productId: string) {
+    return this._http.get(`${this.serviceUrl}/decreaseQty/${productId}`);
+  }
+
   removeFromCart(productId: string) {
     return this._http.get(`${this.serviceUrl}/remove-from-cart/${productId}`);
   }

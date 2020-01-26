@@ -160,6 +160,40 @@ module.exports = {
     }
   },
 
+  // increaseByOne: (req, res, next) => {
+  //   const productId = req.params.productId;
+  //   let cart = new Cart(req.session.cart ? req.session.cart : {});
+  //   console.log('car', cart)
+  //   try {
+  //     cart.increaseQty(productId)
+  //     req.session.cart = cart
+  //     console.log('cart', cart)
+  //     res.status(200).json({
+  //       cart
+  //     })
+  //   } catch (error) {
+  //     res.status(400).json({
+  //       errorMessage: error
+  //     })
+  //   }
+  // },
+
+  // decreaseByOne: (req, res, next) => {
+  //   try {
+  //     const productId = req.params.productId;
+  //     let cart = new Cart(req.session.cart ? req.session.cart : {});
+  //     cart.reduceQty(productId);
+  //     req.session.cart = cart;
+  //     res.status(200).json({
+  //       cart
+  //     })
+  //   } catch (error) {
+  //     res.status(400).json({
+  //       errorMessge: error
+  //     })
+  //   }
+  // },
+
   removeItem: async (req, res, next) => {
     if (!req.session.cart) return res.status(400).send("No cart found")
     try {

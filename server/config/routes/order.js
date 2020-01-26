@@ -17,11 +17,19 @@ router.post('/charge', passportJwt, (req, res, next) => {
   order.charge(req, res, next);
 });
 
-router.get('/add-to-cart/:productId', passportJwt, (req, res, next) => {
+router.get('/add-to-cart/:productId', (req, res, next) => {
   order.addToCart(req, res, next);
 });
 
-router.get('/cart', passportJwt, (req, res, next) => {
+router.get('/increaseQty/:productId', (req, res, next) => {
+  order.increaseByOne(req, res, next);
+});
+
+router.get('/decreaseQty/:productId', (req, res, next) => {
+  order.decreaseByOne(req, res, next);
+});
+
+router.get('/cart', (req, res, next) => {
   order.getCart(req, res, next);
 });
 
@@ -33,7 +41,7 @@ router.get('/:orderId', passportJwt, (req, res, next) => {
   order.singleOrder(req, res, next);
 });
 
-router.get('/remove-from-cart/:productId', passportJwt, (req, res, next) => {
+router.get('/remove-from-cart/:productId', (req, res, next) => {
   order.removeItem(req, res, next);
 });
 

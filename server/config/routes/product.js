@@ -30,4 +30,7 @@ router.patch('/edit/:id', passportJwt, (req, res, next) => {
   product.editProduct(req, res, next);
 });
 
+router.get('/', (req, res, next) => {
+  product.popularChoices(req, res, next);
+});
 module.exports = router;
