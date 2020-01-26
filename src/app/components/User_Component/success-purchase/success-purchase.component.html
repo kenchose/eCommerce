@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col">
     <div
-      class="alert text-center alert-success alert-message animated fadeOutUp delay-5s"
+      class="alert text-center alert-success alert-message animated fadeOutRightBig delay-5s"
       role="alert"
     >
       <h4>Purchase successful!</h4>
@@ -15,11 +15,11 @@
       <div class="col-md-6">
         <h1>Purchased items</h1>
         <div class="row">
-          <div class="col-md-6">
+          <div class="col-md-6 mb-5">
             <button
               id="keep-shopping-btn"
               [routerLink]="['/cartify/products']"
-              class="btn btn-info btn-lg"
+              class="btn btn-info btn-lg text-nowrap"
             >
               <i class="fas fa-chevron-left"></i> Back to shopping
             </button>
@@ -71,7 +71,48 @@
       </div>
     </div>
   </div>
-  <div class="container mt-5">
+  <div id="landscape-phone" class="container mt-5">
+    <div class="row">
+      <div class="col">
+        <ul class="list-unstyled" *ngFor="let cart of cart">
+          <li class="media py-4" data-item-id="cart.item._id">
+            <div class="col-md-7 col-sm-6">
+              <div class="row">
+                <div class="media-pic img-fluid">
+                  <img
+                    [routerLink]="['/cartify/products/details', cart.item._id]"
+                    src="{{ cart.item.imagePath }}"
+                  />
+                </div>
+                <div class="col-sm-7 mt-3">
+                  <h5>{{ cart.item.brand }}</h5>
+                  <p>
+                    <a
+                      [routerLink]="[
+                        '/cartify/products/details',
+                        cart.item._id
+                      ]"
+                    >
+                      <h5>
+                        {{ cart.item.name }}
+                      </h5>
+                    </a>
+                  </p>
+                  <p>Description: {{ cart.item.description }}</p>
+                  <p>Price: ${{ cart.item.price }}</p>
+                  <p>Quantity: {{ cart.qty }}</p>
+                  <p class="product-price">
+                    Total item price: ${{ cart.price }}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div id="normal-width" class="container mt-5">
     <div class="row">
       <div class="col-md-7 col-sm-6 text-nowrap">
         <h4>Product</h4>

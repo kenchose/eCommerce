@@ -11,13 +11,13 @@
     <h1>{{ oneProduct.name }}</h1>
     <h2 class="text-info">{{ oneProduct.description }}</h2>
     <h4 class="text-info">${{ oneProduct.price }}</h4>
-    <div class="col mt-4">
+    <div class="col-sm mt-4 add-order-row">
       <button
         (click)="addToOrder(oneProduct._id)"
         type="button"
         data-toggle="modal"
         data-target="#addToCartModal"
-        class="btn btn-primary col-6"
+        class="btn btn-info col-xs-4 add-order-btn"
       >
         Add to cart
       </button>

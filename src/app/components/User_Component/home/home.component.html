@@ -1,4 +1,4 @@
-<ng-container *ngIf="user === null || !user">
+<ng-container *ngIf="user === null && loggedUser">
   <div id="home-component" *ngIf="_authService.loggedIn()" class="row p-4">
     <div class="col">
       <h1 class="text-center">
@@ -53,7 +53,9 @@
             <div class="card-body">
               <ul class="col-12 account-info">
                 <li>
-                  <a>Member lookup information</a>
+                  <p>
+                    Member lookup information
+                  </p>
                 </li>
               </ul>
             </div>
@@ -73,12 +75,12 @@
                 </li>
                 <li>
                   <a class="socialLogin" (click)="signInWithGoogle()"
-                    >Login with you Google account</a
+                    >Login through Google</a
                   >
                 </li>
                 <li>
                   <a class="socialLogin" (click)="signInWithFb()"
-                    >Login with your Facebook account</a
+                    >Login through Facebook</a
                   >
                 </li>
               </ul>
@@ -91,7 +93,7 @@
             <div class="card-body">
               <ul class="col-12 account-info">
                 <li>
-                  <a href="#">Contact us</a>
+                  <p>Contact us</p>
                 </li>
               </ul>
             </div>
@@ -102,7 +104,7 @@
   </div>
 </ng-container>
 
-<ng-container *ngIf="user !== null || user">
+<ng-container *ngIf="loggedUser === null || loggedIn">
   <div id="home-component" *ngIf="_authService.loggedIn()" class="row p-4">
     <div class="col">
       <h1 class="text-center">Hello, {{ user?.name }}</h1>
@@ -117,27 +119,17 @@
         <div class="col-lg-6 col-12">
           <div class="card m-4">
             <div class="card-header">
-              <h5>
-                Purchase History
-                <a [routerLink]="['sign-in']" (click)="socialLogout()"
-                  >(Login to Cartify)</a
-                >
-              </h5>
+              <h5>Purchase History</h5>
             </div>
-            <!-- <div class="card-body">
+            <div class="card-body">
               <ul class="col-12 account-info">
                 <li>
-                  <a
-                    [routerLink]="[
-                      '/account',
-                      loggedUser._id,
-                      'purchaseHistory'
-                    ]"
-                    >View your purchase history</a
+                  <a [routerLink]="['sign-in']" (click)="socialLogout()"
+                    >Login to view your purchase history</a
                   >
                 </li>
               </ul>
-            </div> -->
+            </div>
           </div>
           <div class="card m-4">
             <div class="card-header">
@@ -146,7 +138,7 @@
             <div class="card-body">
               <ul class="col-12 account-info">
                 <li>
-                  <a href="#"
+                  <a href="/cartify/home"
                     >Sign up and become a member! Click here for more
                     details.</a
                   >
@@ -163,19 +155,24 @@
             <div class="card-body" *ngIf="loggedUser">
               <ul class="col-12 account-info">
                 <li>
-                  <a [routerLink]="['/account', loggedUser._id]"
+                  <a
+                    *ngIf="loggedUser && loggedUser === null"
+                    [routerLink]="['/account', loggedUser._id]"
+                    >Personal details</a
+                  >
+                  <a *ngIf="loggedIn" [routerLink]="['/sign-in']"
                     >Personal details</a
                   >
                 </li>
                 <ng-container *ngIf="user || user !== null">
                   <li *ngIf="user?.provider === 'FACEBOOK'">
                     <a class="socialLogin" (click)="signInWithGoogle()"
-                      >Login with you Google account</a
+                      >Login through Google</a
                     >
                   </li>
                   <li *ngIf="user?.provider === 'GOOGLE'">
                     <a class="socialLogin" (click)="signInWithFb()"
-                      >Login with your Facebook account</a
+                      >Login through Facebook</a
                     >
                   </li>
                 </ng-container>
@@ -189,7 +186,7 @@
             <div class="card-body">
               <ul class="col-12 account-info">
                 <li>
-                  <a href="#">Contact us</a>
+                  <a href="/cartify/home">Contact us</a>
                 </li>
               </ul>
             </div>

@@ -1,14 +1,78 @@
 <ng-container *ngIf="!purchaseSuccess">
-  <div class="form-row mt-5">
-    <div class="offset-sm-2">
-      <h2>Shipping Address</h2>
+  <ng-container *ngIf="_authService.loggedIn() && loggedUser">
+    <div class="row p-5">
+      <div class="col-sm-12">
+        <div class="card border-info mb-3">
+          <div id="card-header-summary" class="card-header bg-transparent">
+            <div class="row justify-content-between">
+              <div class="col-auto">
+                <h4>Order summary</h4>
+              </div>
+              <div class="col-auto">
+                <a [routerLink]="['/cartify/cart']" class="float-right"
+                  >View cart</a
+                >
+              </div>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="row justify-content-between mb-3">
+              <div class="col-auto">
+                <strong><h5 class="card-text">Subtotal</h5></strong>
+              </div>
+              <div class="col-auto">
+                <h5 class="card-text float-right">
+                  ${{ cart?.totalPrice }}.00
+                </h5>
+              </div>
+            </div>
+            <div class="row justify-content-between">
+              <div class="col-auto">
+                <h5 class="card-text">Tax</h5>
+              </div>
+              <div class="col-auto">
+                <h5 class="card-text float-right">${{ tax }}</h5>
+              </div>
+            </div>
+          </div>
+          <div id="card-footer-summary" class="card-footer bg-transparent">
+            <div class="row justify-content-between">
+              <div class="col-auto">
+                <strong><h4 class="card-text">Total</h4></strong>
+              </div>
+              <div class="col-auto">
+                <strong
+                  ><h5 class="card-text float-right">
+                    ${{ totalSum }}
+                  </h5></strong
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col d-flex justify-content-end">
+            <button
+              id="keep-shopping-btn"
+              [routerLink]="['/cartify/products']"
+              class="btn btn-info"
+            >
+              <i class="fas fa-chevron-left"></i> Back to shopping
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
-  <div *ngIf="_authService.loggedIn() && loggedUser" class="row p-5">
-    <div class="col-md-6">
+
+    <div class="form-row mt-5">
+      <div class="col-sm-12">
+        <h2 class="text-center">Shipping Address</h2>
+      </div>
+    </div>
+    <div class="col-sm-12">
       <form
         (ngSubmit)="updateUserInfo()"
-        *ngIf="loggedUser"
+        *ngIf="loggedUser || user"
         #formData="ngForm"
         class="needs-validation"
         novalidate
@@ -178,23 +242,23 @@
         >
           Process purchase
         </button>
-        <div class="row justify-content-between">
-          <div class="col-lg-8 col-sm-8 text-nowrap">
+        <div class="row justify-content-start">
+          <div class="col-auto text-nowrap">
             <button
               [disabled]="formData.invalid"
               type="submit"
-              class="btn btn-info btn-lg"
+              class="btn btn-info"
               data-toggle="modal"
               data-target=".processPurchase"
             >
-              Confirm shipping information
+              Confirm address
             </button>
           </div>
-          <div class="col-lg-4 col-sm-12">
+          <div class="col-auto">
             <button
               id="cancel-btn"
               type="button"
-              class="btn btn-outline-secondary btn-lg"
+              class="btn btn-outline-secondary"
               [routerLink]="['/cartify/products']"
             >
               Cancel
@@ -203,65 +267,7 @@
         </div>
       </form>
     </div>
-    <div class="offset-md-2 col-md-4">
-      <div class="card border-info mb-3">
-        <div id="card-header-summary" class="card-header bg-transparent">
-          <div class="row justify-content-between">
-            <div class="col-auto">
-              <h4>Order summary</h4>
-            </div>
-            <div class="col-auto">
-              <a [routerLink]="['/cartify/cart']" class="float-right"
-                >View cart</a
-              >
-            </div>
-          </div>
-        </div>
-        <div class="card-body">
-          <div class="row justify-content-between mb-3">
-            <div class="col-auto">
-              <strong><h5 class="card-text">Subtotal</h5></strong>
-            </div>
-            <div class="col-auto">
-              <h5 class="card-text float-right">${{ cart?.totalPrice }}.00</h5>
-            </div>
-          </div>
-          <div class="row justify-content-between">
-            <div class="col-auto">
-              <h5 class="card-text">Tax</h5>
-            </div>
-            <div class="col-auto">
-              <h5 class="card-text float-right">${{ tax }}</h5>
-            </div>
-          </div>
-        </div>
-        <div id="card-footer-summary" class="card-footer bg-transparent">
-          <div class="row justify-content-between">
-            <div class="col-auto">
-              <strong><h4>Total</h4></strong>
-            </div>
-            <div class="col-auto">
-              <strong
-                ><h5 class="card-text float-right">${{ totalSum }}</h5></strong
-              >
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col">
-          <button
-            id="keep-shopping-btn"
-            [routerLink]="['/cartify/products']"
-            class="btn btn-info btn-lg"
-          >
-            <i class="fas fa-chevron-left"></i> Back to shopping
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-
+  </ng-container>
   <!-- MODAL -->
   <div
     class="modal fade processPurchase"
