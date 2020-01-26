@@ -40,8 +40,6 @@ export class HomeComponent implements OnInit {
     });
 
     // this._router.params.subscribe((params: Params) => {
-    //   console.log("this is me");
-    //   console.log("this is me", params);
     //   // this._userService.currUser(params["userId"]).subscribe(user => {
     //   //   this.user = user["user"];
     //   // });
@@ -52,7 +50,6 @@ export class HomeComponent implements OnInit {
       this.loggedUser = user;
       console.log("loggedUser", this.loggedUser);
     });
-
     this._cartService.currentCart.subscribe(updatedCart => {
       //shared cartData
       this.cart = updatedCart;
@@ -71,7 +68,6 @@ export class HomeComponent implements OnInit {
     this._authService.logoutUser();
     const googleUser = GoogleLoginProvider.PROVIDER_ID;
     this._authSocial.signIn(googleUser).then(userData => {
-      console.log("right beoer we post", userData);
       this._authService.setToken(`Bearer ${userData.authToken}`);
       this._authService.setUser(userData["id"]);
       this.getCurrentCart();

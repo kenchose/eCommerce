@@ -25,7 +25,6 @@ export class NavbarComponent implements OnInit {
   loggedUser: object;
   cart: any;
   cartItems: any;
-  loginMethod: any;
   facebookUser: object;
   private user: SocialUser;
   private loggedIn: boolean;
@@ -47,19 +46,16 @@ export class NavbarComponent implements OnInit {
       this.loggedIn = user != null;
     });
 
-    if (this._authService.loggedIn() && this.loginMethod === "local") {
-      // only works for local login !== GOOGLE
-      // added for errors; no more 401
+    if (this._authService.loggedIn() && this.loggedUser !== null) {
       this.getUserData();
-      this.getCurrentCart();
-    }
-    if (this.loginMethod === "local") {
       this._userService.currentUser.subscribe(user => {
         //shared user data
         this.loggedUser = user;
         console.log("this new loggeduser", this.loggedUser);
       });
     }
+
+    this.getCurrentCart();
     this._cartService.currentCart.subscribe(updatedCart => {
       //shared data
       this.cartItems = updatedCart["cartItems"];
@@ -82,7 +78,6 @@ export class NavbarComponent implements OnInit {
         this._authService.setToken(token);
         this._authService.setUser(user["_id"]);
         this._authService.setTimeoutStorage();
-        this.loginMethod = user.method;
         this.getCurrentCart();
         document.getElementById("closeModal").click();
         myData.resetForm();
@@ -117,7 +112,6 @@ export class NavbarComponent implements OnInit {
   signInWithGoogle() {
     const googleUser = GoogleLoginProvider.PROVIDER_ID;
     this._authSocial.signIn(googleUser).then(userData => {
-      console.log("right beoer we post", userData);
       this._authService.setToken(`Bearer ${userData.authToken}`);
       this._authService.setUser(userData["id"]);
       this._authService.setTimeoutStorage();

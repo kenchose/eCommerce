@@ -4,6 +4,8 @@ import { AuthService } from "./../../auth.service";
 import { CartService } from "./../../cart.service";
 import { OrderService } from "./../../order.service";
 import { Router } from "@angular/router";
+import { AuthService as AuthSocialService } from "angularx-social-login";
+import { SocialUser } from "angularx-social-login";
 import { tokenGetter } from "src/app/app.module";
 
 @Component({
@@ -23,21 +25,39 @@ export class CheckoutComponent implements OnInit {
   order: object;
   qty: number;
   purchaseSuccess: boolean;
+  socialUser: any;
+  private user: SocialUser;
+  private loggedIn: boolean;
 
   constructor(
     private _userService: UserService,
     private _authService: AuthService,
     private _cartService: CartService,
     private _orderService: OrderService,
-    private _router: Router
+    private _router: Router,
+    private _authSocial: AuthSocialService
   ) {
     this._orderService.stripGetKeys().subscribe(key => {
       this.stripePubKey = key["stripePubKey"];
       this.stripeSecretKey = key["stripeSecretkey"];
     });
+    this.socialUser = {
+      first_name: "",
+      last_name: "",
+      email: "",
+      address_city: "",
+      address_line1: "",
+      address_line2: "",
+      address_state: "",
+      address_zip: ""
+    };
   }
 
   ngOnInit() {
+    this._authSocial.authState.subscribe(user => {
+      this.user = user;
+      this.loggedIn = user != null;
+    });
     this.getUserData();
     this._userService.currentUser.subscribe(user => {
       this.loggedUser = user;

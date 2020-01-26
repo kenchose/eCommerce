@@ -4,6 +4,9 @@ import { CartService } from "../../cart.service";
 import { UserService } from "./../../user.service";
 import { AuthService } from "./../../auth.service";
 import { NumberValueAccessor } from "@angular/forms";
+import { AuthService as AuthSocialService } from "angularx-social-login";
+import { SocialUser } from "angularx-social-login";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-cart",
@@ -18,15 +21,25 @@ export class CartComponent implements OnInit {
   actualTax: number;
   totalSum: number;
   cartItems: any;
+  private user: SocialUser;
+  private loggedIn: boolean;
 
   constructor(
     private _orderService: OrderService,
     private _cartService: CartService,
     private _userService: UserService,
-    private _authService: AuthService
+    private _authService: AuthService,
+    private _authSocial: AuthSocialService,
+    private _router: Router
   ) {}
 
   ngOnInit() {
+    this._authSocial.authState.subscribe(user => {
+      console.log("new user", user);
+      this.user = user;
+      this.loggedIn = user != null;
+    });
+
     this.getUserData();
     this._userService.currentUser.subscribe(user => {
       this.loggedUser = user;
@@ -63,5 +76,12 @@ export class CartComponent implements OnInit {
       this.loggedUser = user["user"];
       this._userService.userData(this.loggedUser);
     });
+  }
+
+  socialLogout(): void {
+    //only capabable using login with angularx-social-login
+    this._authSocial.signOut();
+    this._authService.logoutUser();
+    this._router.navigate(["sign-in"]);
   }
 }

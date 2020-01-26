@@ -7,12 +7,6 @@
 // font-family: 'Roboto Condensed', sans-serif;
 // font-family: 'Roboto Slab', serif;
 
-// font-family: 'Archivo Black', sans-serif;
-// font-family: 'Domine', serif;
-// font-family: 'Roboto', sans-serif;
-// font-family: 'Roboto Condensed', sans-serif;
-// font-family: 'Roboto Slab', serif;
-
 // Extra small devices (portrait phones, less than 576px)
 // @media (max-width: 575.98px) {
 //   ...
@@ -35,21 +29,6 @@
 
 // Extra large devices (large desktops)
 // No media query since the extra-large breakpoint has no upper bound on its width
-
-// xs = Extra small <576px
-// Max container width None (auto)
-
-// sm = Small ≥576px
-// Max container width 540px
-
-// md = Medium ≥768px
-// Max container width 720px
-
-// lg = Large ≥992px
-// Max container width 960px
-
-// xl = Extra large ≥1200px
-// Max container width 1140px
 
 // .col-sm for larger mobile phones (devices with resolutions ≥ 576px);
 // .col-md for tablets (≥768px);
@@ -105,14 +84,6 @@ h5 {
 p {
   font-family: $font-generic;
 }
-
-// table {
-//   padding: 0px !important;
-
-//   td {
-//     padding: 1.75rem;
-//   }
-// }
 
 thead {
   background-color: #CCCCCC
