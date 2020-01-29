@@ -32,10 +32,9 @@
         /></a>
         <div class="card-body d-flex flex-column">
           <h5 class="card-title">{{ product.name }}</h5>
+          <p class="card-text">{{ product.brand }}</p>
           <p id="category" class="card-text">{{ product.category }}</p>
-          <p class="card-text">
-            {{ product.description }}
-          </p>
+          <p class="card-text">Description: {{ product.description }}</p>
           <p><small>In Stock</small></p>
           <p class="product-price my-auto">${{ product.price }}</p>
         </div>
