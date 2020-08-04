@@ -27,7 +27,7 @@ const routes: Routes = [
   {
     path: "cartify",
     component: WelcomeComponent,
-    children: [{ path: "stores", component: FindstoreComponent }]
+    children: [{ path: "stores", component: FindstoreComponent }],
   },
   { path: "registration", component: RegisterComponent },
   { path: "sign-in", component: SignInComponent },
@@ -36,13 +36,13 @@ const routes: Routes = [
     canActivate: [RedirectGuard],
     component: RedirectGuard,
     data: {
-      externalUrl: "/auth/google"
-    }
+      externalUrl: "/auth/google",
+    },
   },
   {
     path: "cartify/home",
     canActivate: [AuthGuard],
-    component: HomeComponent
+    component: HomeComponent,
   },
   {
     path: "account/:userId",
@@ -52,7 +52,7 @@ const routes: Routes = [
       {
         path: "payments/:id",
         canActivate: [AuthGuard],
-        component: PaymentsComponent
+        component: PaymentsComponent,
       },
       {
         path: "purchaseHistory",
@@ -62,11 +62,11 @@ const routes: Routes = [
           {
             path: ":id",
             canActivate: [AuthGuard],
-            component: OrderDetailsComponent
-          }
-        ]
-      }
-    ]
+            component: OrderDetailsComponent,
+          },
+        ],
+      },
+    ],
   },
   { path: "cartify/production", component: SliderComponent },
   { path: "cartify/logoff", component: SignOutComponent },
@@ -76,13 +76,13 @@ const routes: Routes = [
     children: [
       {
         path: "details/:id",
-        component: DetailsComponent
+        component: DetailsComponent,
       },
       {
         path: ":category",
-        component: CategoryComponent
-      }
-    ]
+        component: CategoryComponent,
+      },
+    ],
   },
   { path: "cartify/cart", component: CartComponent },
   {
@@ -93,16 +93,16 @@ const routes: Routes = [
       {
         path: "paymentsuccess",
         canActivate: [AuthGuard],
-        component: SuccessPurchaseComponent
-      }
-    ]
+        component: SuccessPurchaseComponent,
+      },
+    ],
   },
-  { path: "", pathMatch: "full", redirectTo: "cartify/products" },
-  { path: "**", pathMatch: "full", component: PageNotFoundComponent }
+  { path: "", pathMatch: "full", redirectTo: "cartify" },
+  { path: "**", pathMatch: "full", component: PageNotFoundComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class AppRoutingModule {}

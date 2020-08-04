@@ -24,15 +24,14 @@ app.use(
     store: new MongoStore({
       mongooseConnection: mongoose.connection,
       ttl: 14 * 24 * 60 * 60 //(seconds) = 14 days. Default
-    }),
+    })
     // cookie: {
     //   maxAge: 200 * 60 * 1000 //200 mins
     // }
   })
 );
 app.use(express.static(__dirname + "/dist/eCommerce"));
-
-// // DB_CONNECTION // alternative means of connecting to DB
+// DB_CONNECTION // alternative means of connecting to DB
 // mongoose.connect("mongodb://localhost/eCommerce", {
 //   useNewUrlParser: true,
 //   useCreateIndex: true,
